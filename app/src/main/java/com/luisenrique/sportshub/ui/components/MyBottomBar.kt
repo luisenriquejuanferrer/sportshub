@@ -7,7 +7,6 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
@@ -26,7 +25,7 @@ fun BottomBar(
 
         NavigationBarItem(
             selected = selectedItem == "Inicio",
-            onClick = { },
+            onClick = { onItemClick("Inicio") },
             label = { Text("Inicio", color = Color.White) },
             icon = { Icon(Icons.Filled.Home, contentDescription = "Inicio") },
             colors = NavigationBarItemDefaults.colors(
