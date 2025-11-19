@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-
+import com.luisenrique.sportshub.ui.components.DashboardBox
 
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -54,21 +54,6 @@ fun DashboardScreen() {
 
 }
 
-@Composable
-fun DashboardBox(text: String, color: Color) {
-    Box(
-        modifier = Modifier
-            .width(175.dp)
-            .height(270.dp)
-            .background(color),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = text,
-            color = Color.White
-        )
-    }
-}
 
 @Preview(showBackground = true)
 @Composable
