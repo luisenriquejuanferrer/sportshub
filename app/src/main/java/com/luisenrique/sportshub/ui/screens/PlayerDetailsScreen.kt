@@ -44,7 +44,7 @@ fun PlayerDetailsScreen(
                 Icon(
                     Icons.Filled.Person,
                     contentDescription = "Avatar",
-                    tint = Color.Magenta,
+                    tint = Color.Black,
                     modifier = Modifier.size(60.dp)
                 )
             }
