@@ -26,6 +26,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.luisenrique.sportshub.ui.components.MainNavigationDrawer
 import com.luisenrique.sportshub.ui.components.TopBar
+import com.luisenrique.sportshub.ui.screens.ClasificationScreen
+import com.luisenrique.sportshub.ui.screens.LeagueDetailScreen
+import com.luisenrique.sportshub.ui.screens.LeagueListScreen
+import com.luisenrique.sportshub.ui.screens.LoginRegisterScreen
+import com.luisenrique.sportshub.ui.screens.MatchesScreen
 import com.luisenrique.sportshub.ui.theme.SportsHubTheme
 
 class MainActivity : ComponentActivity() {
@@ -45,29 +50,20 @@ class MainActivity : ComponentActivity() {
                             TopBar("Sports Hub - IES Chabàs", drawerState, scopeDrawer)
                         }
                     ) { innerPadding ->
-                        Greeting(
-                            name = "Android",
-                            modifier = Modifier.padding(innerPadding)
-                        )
+                        // Luis
+//                        LoginRegisterScreen(Modifier.padding(innerPadding))
+//                        LeagueListScreen(Modifier.padding(innerPadding))
+//                        LeagueDetailScreen(Modifier.padding(innerPadding))
+                        ClasificationScreen(Modifier.padding(innerPadding))
+//                        MatchesScreen(Modifier.padding(innerPadding))
+                        // Christian
+//                        ProfileScreen(Modifier.padding(innerPadding))
+//                        TeamDetailScreen(Modifier.padding(innerPadding))
+//                        DashboardScreen(Modifier.padding(innerPadding))
+//                        TeamsListScreen(Modifier.padding(innerPadding))
                     }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    SportsHubTheme {
-        Greeting("Android")
     }
 }
