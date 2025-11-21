@@ -18,6 +18,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.ieschabas.sportshub.ui.screens.DashboardScreen
 import com.ieschabas.sportshub.ui.screens.TeamDetailScreen
 import com.luisenrique.sportshub.ui.components.BottomBar
+import com.luisenrique.sportshub.ui.screens.ProfileScreen
+import com.luisenrique.sportshub.ui.screens.TeamsListScreen
 import com.luisenrique.sportshub.ui.theme.SportsHubTheme
 
 class MainActivity : ComponentActivity() {
@@ -26,7 +28,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             SportsHubTheme {
-               AppContent()
+                AppContent()
             }
         }
     }
@@ -52,8 +54,8 @@ fun AppContent() {
             when (currentScreen) {
                 "Inicio" -> DashboardScreen()
                 "Ligas" -> {}
-                "Equipos" -> {}
-                "Perfil" -> {}
+                "Partidos" -> {}
+                "Perfil" -> ProfileScreen()
             }
         }
     }}
