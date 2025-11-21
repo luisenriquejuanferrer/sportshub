@@ -1,5 +1,6 @@
 package com.luisenrique.sportshub
 
+import BetsScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -61,13 +62,14 @@ class MainActivity : ComponentActivity() {
 //                        LeagueListScreen(Modifier.padding(innerPadding))
 //                        LeagueDetailScreen(Modifier.padding(innerPadding))
 //                        ClasificationScreen(Modifier.padding(innerPadding))
-                        MatchesScreen(Modifier.padding(innerPadding))
+//                        MatchesScreen(Modifier.padding(innerPadding))
                         // Christian
 //                        ProfileScreen(Modifier.padding(innerPadding))
 //                        TeamDetailScreen(Modifier.padding(innerPadding))
 //                        DashboardScreen(Modifier.padding(innerPadding))
 //                        TeamsListScreen(Modifier.padding(innerPadding))
 //                        PlayerDetailsScreen(Modifier.padding(innerPadding))
+                        BetsScreen(Modifier.padding(innerPadding))
                     }
 
 
