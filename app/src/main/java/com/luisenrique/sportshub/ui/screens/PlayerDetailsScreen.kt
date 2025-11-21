@@ -19,10 +19,11 @@ import com.luisenrique.sportshub.ui.components.Jugador
 
 @Composable
 fun PlayerDetailsScreen(
+    modifier: Modifier,
     jugador: Jugador = Jugador(1, "Marcos Pérez", "Delantero")
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -257,8 +258,3 @@ fun PlayerDetailsScreen(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun PlayerDetailsScreenPreview() {
-    PlayerDetailsScreen()
-}

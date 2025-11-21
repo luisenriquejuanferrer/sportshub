@@ -16,7 +16,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun TeamsListScreen() {
+fun TeamsListScreen(
+    modifier: Modifier
+) {
 
     val equipos = listOf(
         "Equipo 1",
@@ -29,7 +31,7 @@ fun TeamsListScreen() {
     )
 
     LazyColumn (
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxSize()
                 .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
@@ -69,8 +71,3 @@ fun TeamsListScreen() {
 
 }
 
-@Preview(showBackground = true)
-@Composable
-fun TeamsListScreenPreview() {
-    TeamsListScreen()
-}

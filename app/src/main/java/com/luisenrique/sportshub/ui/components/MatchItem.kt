@@ -44,7 +44,7 @@ fun MatchItem(partido: Partido) {
                     contentScale = ContentScale.Crop
                 )
                 Spacer(Modifier.padding(horizontal = 4.dp))
-                MyText(text = partido.local)
+                MyText(text = partido.local, fontSize = 24.sp)
             }
             Spacer(Modifier.padding(vertical = 8.dp))
             Row {
