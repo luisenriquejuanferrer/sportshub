@@ -45,9 +45,9 @@ fun BottomBar(
             )
         )
         NavigationBarItem(
-            selected = selectedItem == "Equipos",
-            onClick = { onItemClick("Equipos") },
-            label = { Text("Equipos", color = Color.White) },
+            selected = selectedItem == "Partidos",
+            onClick = { onItemClick("Partidos") },
+            label = { Text("Partidos", color = Color.White) },
             icon = { Icon(Icons.Filled.Star, contentDescription = "Equipos")},
             colors = NavigationBarItemDefaults.colors(
                 selectedIconColor = Color.Black,
