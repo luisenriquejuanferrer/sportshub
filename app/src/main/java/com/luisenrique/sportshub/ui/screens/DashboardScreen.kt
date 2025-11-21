@@ -15,9 +15,9 @@ import androidx.compose.ui.unit.dp
 
 
 @Composable
-fun DashboardScreen() {
+fun DashboardScreen(modifier: Modifier) {
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(20.dp),
         contentAlignment = Alignment.TopCenter
@@ -54,8 +54,3 @@ fun DashboardScreen() {
 }
 
 
-@Preview(showBackground = true)
-@Composable
-fun DashboardScreenPreview() {
-    DashboardScreen()
-}

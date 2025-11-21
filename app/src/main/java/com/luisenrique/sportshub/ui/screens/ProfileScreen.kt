@@ -32,9 +32,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun ProfileScreen(){
+fun ProfileScreen(modifier: Modifier){
    Column(
-       modifier = Modifier
+       modifier = modifier
            .fillMaxSize()
            .padding( top = 30.dp, start = 16.dp, end = 16.dp),
        horizontalAlignment = Alignment.CenterHorizontally
@@ -128,9 +128,5 @@ fun ProfileScreen(){
 
 }
 
-@Preview(showBackground = true)
-@Composable
-fun ProfileScreenPreview(){
-    ProfileScreen()
-}
+
 

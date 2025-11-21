@@ -24,7 +24,9 @@ import com.luisenrique.sportshub.R
 import com.luisenrique.sportshub.ui.components.Jugador
 
 @Composable
-fun TeamDetailScreen() {
+fun TeamDetailScreen(
+    modifier: Modifier
+) {
 
     val jugadores = listOf(
         Jugador(1, "Marcos Pérez", "Portero"),
@@ -40,7 +42,7 @@ fun TeamDetailScreen() {
     )
 
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
 
     ) {
@@ -269,8 +271,3 @@ fun TeamDetailScreen() {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun TeamDetailScreenPreview() {
-    TeamDetailScreen()
-}
