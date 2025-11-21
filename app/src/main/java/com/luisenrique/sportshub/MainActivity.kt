@@ -66,10 +66,10 @@ class MainActivity : ComponentActivity() {
                         // Christian
 //                        ProfileScreen(Modifier.padding(innerPadding))
 //                        TeamDetailScreen(Modifier.padding(innerPadding))
-//                        DashboardScreen(Modifier.padding(innerPadding))
+                        DashboardScreen(Modifier.padding(innerPadding))
 //                        TeamsListScreen(Modifier.padding(innerPadding))
 //                        PlayerDetailsScreen(Modifier.padding(innerPadding))
-                        BetsScreen(Modifier.padding(innerPadding))
+//                        BetsScreen(Modifier.padding(innerPadding))
                     }
 
 
