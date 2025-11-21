@@ -22,12 +22,10 @@ fun DashboardScreen(modifier: Modifier) {
     Box(
         modifier = modifier
             .fillMaxSize()
-            .padding(20.dp),
-        contentAlignment = Alignment.TopCenter
+            .padding(16.dp),
+        contentAlignment = Alignment.Center
     ){
         Column (
-            modifier = Modifier
-                .padding(top = 90.dp),
             verticalArrangement = Arrangement.spacedBy(30.dp),
 
         ){
