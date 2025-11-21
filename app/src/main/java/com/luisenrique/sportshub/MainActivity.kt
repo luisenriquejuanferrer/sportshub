@@ -16,6 +16,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.ieschabas.sportshub.ui.screens.DashboardScreen
+import com.ieschabas.sportshub.ui.screens.PlayerDetailsScreen
 import com.ieschabas.sportshub.ui.screens.TeamDetailScreen
 import com.luisenrique.sportshub.ui.components.BottomBar
 import com.luisenrique.sportshub.ui.screens.ProfileScreen
@@ -28,34 +29,34 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             SportsHubTheme {
-                AppContent()
+
             }
         }
     }
 }
 
-@Composable
-fun AppContent() {
-    var currentScreen by remember { mutableStateOf("Inicio") }
-
-    Scaffold(
-        bottomBar = {
-            BottomBar(
-                selectedItem = currentScreen,
-                onItemClick = { item -> currentScreen = item }
-            )
-        }
-    ) { innerPadding ->
-        Surface(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-        ) {
-            when (currentScreen) {
-                "Inicio" -> DashboardScreen()
-                "Ligas" -> {}
-                "Partidos" -> {}
-                "Perfil" -> ProfileScreen()
-            }
-        }
-    }}
+//@Composable
+//fun AppContent() {
+//    var currentScreen by remember { mutableStateOf("Inicio") }
+//
+//    Scaffold(
+//        bottomBar = {
+//            BottomBar(
+//                selectedItem = currentScreen,
+//                onItemClick = { item -> currentScreen = item }
+//            )
+//        }
+//    ) { innerPadding ->
+//        Surface(
+//            modifier = Modifier
+//                .fillMaxSize()
+//                .padding(innerPadding)
+//        ) {
+//            when (currentScreen) {
+//                "Inicio" -> DashboardScreen()
+//                "Ligas" -> {}
+//                "Partidos" -> {}
+//                "Perfil" -> ProfileScreen()
+//            }
+//        }
+//    }}
