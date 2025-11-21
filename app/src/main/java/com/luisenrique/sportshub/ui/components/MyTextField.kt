@@ -4,6 +4,7 @@ import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldColors
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -15,7 +16,7 @@ import androidx.compose.ui.text.TextStyle
 @Composable
 fun MyTextField(
     placeHolder: String,
-    colors: TextFieldColors,
+    colors: TextFieldColors = TextFieldDefaults.colors(),
     modifier: Modifier,
     textStyle: TextStyle = LocalTextStyle.current
 ) {

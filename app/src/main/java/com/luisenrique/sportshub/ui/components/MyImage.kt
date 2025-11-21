@@ -12,8 +12,8 @@ fun MyImage(
     painter: Painter,
     contentDescription: String,
     modifier: Modifier,
-    alignment: Alignment,
-    contentScale: ContentScale
+    alignment: Alignment = Alignment.Center,
+    contentScale: ContentScale = ContentScale.Fit
 ) {
     Image(
         painter = painter,
