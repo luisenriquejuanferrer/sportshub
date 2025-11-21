@@ -27,12 +27,12 @@ fun PlayerDetailsScreen(
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        // Encabezado con avatar y datos principales
+
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Avatar del jugador
+
             Box(
                 modifier = Modifier
                     .size(100.dp)
@@ -72,12 +72,12 @@ fun PlayerDetailsScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Estadísticas rápidas
+
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            // Goles
+
             Box(
                 modifier = Modifier
                     .width(100.dp)
@@ -105,7 +105,7 @@ fun PlayerDetailsScreen(
                 }
             }
 
-            // Asistencias
+
             Box(
                 modifier = Modifier
                     .width(100.dp)
@@ -133,7 +133,7 @@ fun PlayerDetailsScreen(
                 }
             }
 
-            // Partidos
+
             Box(
                 modifier = Modifier
                     .width(100.dp)
@@ -164,7 +164,7 @@ fun PlayerDetailsScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Información adicional
+
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
