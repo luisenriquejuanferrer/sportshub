@@ -25,7 +25,7 @@ import kotlinx.serialization.decodeFromString
 
 
 @Composable
-fun SportsHubGraph(modifier: Modifier, navController : NavHostController) {
+fun SportsHubGraph(modifier: Modifier, navController: NavHostController) {
     NavHost(
         navController = navController,
         startDestination = "login"
@@ -66,12 +66,12 @@ fun SportsHubGraph(modifier: Modifier, navController : NavHostController) {
             TeamDetailScreen(modifier = modifier, navController = navController)
 
         }
-        composable (route = "detallesJugador"){
+        composable(route = "detallesJugador") {
             PlayerDetailsScreen(modifier = modifier)
         }
 
         composable(route = "registro") {
-            RegisterScreen(modifier = modifier)
+            RegisterScreen(modifier = modifier, navController = navController)
         }
     }
 }

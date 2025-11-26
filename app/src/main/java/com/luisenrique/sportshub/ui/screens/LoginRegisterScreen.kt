@@ -2,6 +2,7 @@ package com.luisenrique.sportshub.ui.screens
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.SwitchDefaults
+import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -23,6 +25,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.luisenrique.sportshub.R
@@ -98,7 +102,7 @@ fun LoginRegisterScreen(modifier: Modifier, navController: NavController) {
         }
         Spacer(Modifier.padding(vertical = 8.dp))
         MyButton(
-            onClick = { navController.navigate("dashboard")},
+            onClick = { navController.navigate("dashboard") },
             enabled = true,
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(
@@ -107,9 +111,18 @@ fun LoginRegisterScreen(modifier: Modifier, navController: NavController) {
             text = "Entrar"
         )
         Spacer(Modifier.padding(vertical = 8.dp))
-        MyText(
-            text = "¿No tienes cuenta? Registrate",
-            modifier = Modifier.fillMaxWidth()
-        )
+        Row(modifier = Modifier.fillMaxWidth()) {
+            MyText(
+                text = "¿No tienes cuenta?",
+                modifier = Modifier.padding(end = 4.dp)
+            )
+            Text(
+                "Registrate",
+                modifier = Modifier.clickable { navController.navigate("registro") },
+                color = Color.Blue,
+                fontStyle = FontStyle.Italic,
+                textDecoration = TextDecoration.Underline
+            )
+        }
     }
 }

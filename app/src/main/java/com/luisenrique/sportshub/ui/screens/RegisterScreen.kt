@@ -22,6 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.luisenrique.sportshub.R
 import com.luisenrique.sportshub.ui.components.MyButton
 import com.luisenrique.sportshub.ui.components.MyCheckBox
@@ -29,7 +30,7 @@ import com.luisenrique.sportshub.ui.components.MyOutlinedTextField
 import com.luisenrique.sportshub.ui.components.MyText
 
 @Composable
-fun RegisterScreen(modifier: Modifier) {
+fun RegisterScreen(modifier: Modifier, navController: NavController) {
     val sexo = listOf("Masculino", "Femenino", "Otro")
     val (selectedOption, onOptionSelected) = remember { mutableStateOf(sexo[0]) }
 
@@ -105,7 +106,7 @@ fun RegisterScreen(modifier: Modifier) {
         Spacer(Modifier.height(8.dp))
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
             MyButton(
-                onClick = { },
+                onClick = { navController.navigate("dashboard") },
                 enabled = true,
                 colors = ButtonDefaults.buttonColors(
                     containerColor = colorResource(R.color.azul_petroleo)
