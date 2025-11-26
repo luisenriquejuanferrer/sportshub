@@ -36,7 +36,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.luisenrique.sportshub.R
-import com.luisenrique.sportshub.ui.components.Jugador
+import com.luisenrique.sportshub.domain.model.Jugador
+import com.luisenrique.sportshub.ui.navigation.Routes
 
 @Composable
 fun TeamDetailScreen(
@@ -61,7 +62,7 @@ fun TeamDetailScreen(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
 
-    ) {
+        ) {
         Card(
             modifier = Modifier
                 .padding(start = 30.dp, top = 35.dp, end = 30.dp)
@@ -79,14 +80,14 @@ fun TeamDetailScreen(
                 modifier = Modifier.padding(start = 16.dp, top = 65.dp, end = 16.dp),
                 verticalAlignment = Alignment.CenterVertically,
 
-            ) {
+                ) {
                 Box(
                     modifier = Modifier
                         .size(80.dp)
                         .clip(RoundedCornerShape(50))
                         .background(Color(0xFFF0EBEB)),
                     contentAlignment = Alignment.Center
-                ){
+                ) {
                     Image(
                         painter = painterResource(R.drawable.escudo_ies_chabas),
                         contentDescription = "Escudo Chabas",
@@ -97,13 +98,20 @@ fun TeamDetailScreen(
 
                 Spacer(modifier = Modifier.width(16.dp))
 
-                Column (
+                Column(
                     modifier = Modifier
                         .padding(16.dp)
-                ){
-                    Text(text = "IES Chabàs", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = Color.White)
-                    Row(modifier = Modifier.padding(top = 8.dp),
-                        verticalAlignment = Alignment.CenterVertically) {
+                ) {
+                    Text(
+                        text = "IES Chabàs",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
+                    )
+                    Row(
+                        modifier = Modifier.padding(top = 8.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
                         Icon(
                             Icons.Filled.Person,
                             contentDescription = "Entrenador",
@@ -112,8 +120,10 @@ fun TeamDetailScreen(
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(text = "Entrenador: A. Ortega", fontSize = 14.sp, color = Color.White)
                     }
-                    Row(modifier = Modifier.padding(top = 8.dp),
-                        verticalAlignment = Alignment.CenterVertically) {
+                    Row(
+                        modifier = Modifier.padding(top = 8.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
                         Icon(
                             Icons.Filled.LocationOn,
                             contentDescription = "Ubicación",
@@ -257,9 +267,12 @@ fun TeamDetailScreen(
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .background(Color(0xFFF5F5F5), shape = androidx.compose.material3.MaterialTheme.shapes.medium)
+                        .background(
+                            Color(0xFFF5F5F5),
+                            shape = androidx.compose.material3.MaterialTheme.shapes.medium
+                        )
                         .padding(12.dp)
-                        .clickable{ navController.navigate("detallesJugador")},
+                        .clickable { navController.navigate(Routes.PlayerDetail) },
                     contentAlignment = Alignment.CenterStart
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically) {

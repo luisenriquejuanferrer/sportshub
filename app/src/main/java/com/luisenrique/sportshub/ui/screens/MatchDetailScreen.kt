@@ -22,24 +22,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.luisenrique.sportshub.R
+import com.luisenrique.sportshub.domain.model.PartidoDetalle
 import com.luisenrique.sportshub.ui.components.MyImage
 import com.luisenrique.sportshub.ui.components.MyText
 
-data class MatchDetail(
-    val fecha: String,
-    val local: String,
-    val visitante: String,
-    val resultado: String,
-    val estadio: String,
-    val ciudad: String,
-    val posesionLocal: Int,
-    val posesionVisitante: Int,
-    val tirosLocal: Int,
-    val tirosVisitante: Int
-)
 @Composable
 fun MatchDetailScreen(modifier: Modifier) {
-    val match = MatchDetail(
+    val partidoDetalle = PartidoDetalle(
         "Sáb 20:47",
         "IES Chabàs",
         "Maria Ivars",
@@ -82,12 +71,12 @@ fun MatchDetailScreen(modifier: Modifier) {
 
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 MyText(
-                    text = match.resultado,
+                    text = partidoDetalle.resultado,
                     fontSize = 32.sp,
                     textAlign = androidx.compose.ui.text.style.TextAlign.Center
                 )
                 MyText(
-                    text = "${match.local} vs ${match.visitante}",
+                    text = "${partidoDetalle.local} vs ${partidoDetalle.visitante}",
                     fontSize = 14.sp,
                     textAlign = androidx.compose.ui.text.style.TextAlign.Center
                 )
@@ -105,12 +94,12 @@ fun MatchDetailScreen(modifier: Modifier) {
 
         Spacer(Modifier.height(16.dp))
 
-        MyText("Fecha: ${match.fecha}", fontSize = 16.sp)
+        MyText("Fecha: ${partidoDetalle.fecha}", fontSize = 16.sp)
 
         Spacer(Modifier.height(24.dp))
 
-        MyText("Estadio: ${match.estadio}", fontSize = 16.sp)
-        MyText("Ciudad: ${match.ciudad}", fontSize = 16.sp)
+        MyText("Estadio: ${partidoDetalle.estadio}", fontSize = 16.sp)
+        MyText("Ciudad: ${partidoDetalle.ciudad}", fontSize = 16.sp)
         Spacer(Modifier.height(24.dp))
 
         MyText("Estadísticas", fontSize = 20.sp)
@@ -124,9 +113,9 @@ fun MatchDetailScreen(modifier: Modifier) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            MyText("${match.posesionLocal}%", fontSize = 16.sp)
+            MyText("${partidoDetalle.posesionLocal}%", fontSize = 16.sp)
             MyText("Posesión", fontSize = 16.sp)
-            MyText("${match.posesionVisitante}%", fontSize = 16.sp)
+            MyText("${partidoDetalle.posesionVisitante}%", fontSize = 16.sp)
         }
 
         Row(
@@ -136,9 +125,9 @@ fun MatchDetailScreen(modifier: Modifier) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            MyText("${match.tirosLocal}", fontSize = 16.sp)
+            MyText("${partidoDetalle.tirosLocal}", fontSize = 16.sp)
             MyText("Tiros", fontSize = 16.sp)
-            MyText("${match.tirosVisitante}", fontSize = 16.sp)
+            MyText("${partidoDetalle.tirosVisitante}", fontSize = 16.sp)
         }
 
         Spacer(Modifier.height(24.dp))

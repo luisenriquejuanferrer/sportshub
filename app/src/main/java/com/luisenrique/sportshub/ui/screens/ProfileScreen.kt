@@ -27,102 +27,107 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.luisenrique.sportshub.ui.navigation.Routes
 
 @Composable
-fun ProfileScreen(modifier: Modifier, navController: NavController){
-   Column(
-       modifier = modifier
-           .fillMaxSize()
-           .padding( top = 30.dp, start = 16.dp, end = 16.dp),
-       horizontalAlignment = Alignment.CenterHorizontally
-   ) {
-       Box(
-           modifier = Modifier
-               .size(80.dp)
-               .clip(RoundedCornerShape(50))
-               .background(Color(0xFFC4C4C4)),
-           contentAlignment = Alignment.Center
-       ) {
-           Icon(
-               imageVector = Icons.Default.Person,
-               contentDescription = "Icono de Perfil",
-               tint = Color.Magenta,
-               modifier = Modifier.size(80.dp)
+fun ProfileScreen(modifier: Modifier, navController: NavController) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(top = 30.dp, start = 16.dp, end = 16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Box(
+            modifier = Modifier
+                .size(80.dp)
+                .clip(RoundedCornerShape(50))
+                .background(Color(0xFFC4C4C4)),
+            contentAlignment = Alignment.Center
+        ) {
+            Icon(
+                imageVector = Icons.Default.Person,
+                contentDescription = "Icono de Perfil",
+                tint = Color.Magenta,
+                modifier = Modifier.size(80.dp)
 
-           )
+            )
+        }
 
-       }
-
-       Card (
+        Card(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(Color(0xFFF5F5F5))
                 .padding(top = 16.dp)
-
-
-       ){ Column(
-            modifier = Modifier.padding(16.dp),
-//
-       ) {
-           Text(text = "Nombre: Nombre Apellido", Modifier.padding(top = 10.dp, start = 16.dp), fontSize = 16.sp)
-           Text(text = "Correo: @nombreusuario", Modifier.padding(top = 4.dp, start = 16.dp), fontSize = 16.sp)
-           Text(text = "Email: user@email.com", Modifier.padding(top = 4.dp, start = 16.dp), fontSize = 16.sp)
-           Text(text = "Miembro desde: 12/03/2024", Modifier.padding(top = 4.dp, start = 16.dp), fontSize = 16.sp)
-
-        Row(
-            modifier = Modifier.padding(16.dp),
         ) {
-            Box(modifier = Modifier
-                .width(100.dp)
-                .height(35.dp)
-                .clip(RoundedCornerShape(10.dp))
-                .background(Color(0xFFF5F5F5))
-                .border(
-                    width = 1.dp,
-                    color = Color.Black,
-                    shape = RoundedCornerShape(10.dp)
-                ),
-                contentAlignment = Alignment.Center
+            Column(
+                modifier = Modifier.padding(16.dp)
+            ) {
+                Text(
+                    text = "Nombre: Nombre Apellido",
+                    Modifier.padding(top = 10.dp, start = 16.dp),
+                    fontSize = 16.sp
+                )
+                Text(
+                    text = "Correo: @nombreusuario",
+                    Modifier.padding(top = 4.dp, start = 16.dp),
+                    fontSize = 16.sp
+                )
+                Text(
+                    text = "Email: user@email.com",
+                    Modifier.padding(top = 4.dp, start = 16.dp),
+                    fontSize = 16.sp
+                )
+                Text(
+                    text = "Miembro desde: 12/03/2024",
+                    Modifier.padding(top = 4.dp, start = 16.dp),
+                    fontSize = 16.sp
+                )
 
-            ){
-                Text(text = "Verificado", color = Color(0xFF4CAF50), fontSize = 16.sp)
-             }
-          }
+                Row(
+                    modifier = Modifier.padding(16.dp),
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .width(100.dp)
+                            .height(35.dp)
+                            .clip(RoundedCornerShape(10.dp))
+                            .background(Color(0xFFF5F5F5))
+                            .border(
+                                width = 1.dp,
+                                color = Color.Black,
+                                shape = RoundedCornerShape(10.dp)
+                            ),
+                        contentAlignment = Alignment.Center
 
+                    ) {
+                        Text(text = "Verificado", color = Color(0xFF4CAF50), fontSize = 16.sp)
+                    }
+                }
+            }
         }
 
-       }
-
-        Row (
+        Row(
             modifier = Modifier
                 .padding(16.dp)
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
 
-        ){
+        ) {
             Text("Zona de peligro", fontSize = 20.sp, color = Color.Red)
         }
 
-       Row (
-           modifier = Modifier
-               .fillMaxWidth(),
-           horizontalArrangement = Arrangement.Center
-       ){
-           OutlinedButton(
-               onClick = {navController.navigate("login")}
-           ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            OutlinedButton(
+                onClick = { navController.navigate(Routes.LoginRegister) }
+            ) {
                 Text(text = "Cerrar Sesión", fontSize = 16.sp, color = Color.Red)
-           }
-       }
-
-   }
-
-
-
-
-
-
-
+            }
+        }
+    }
 }
 
 

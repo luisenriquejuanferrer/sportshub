@@ -15,18 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.luisenrique.sportshub.domain.model.Clasificacion
 import com.luisenrique.sportshub.ui.components.ClasificationTeamItem
 import com.luisenrique.sportshub.ui.components.MyText
-
-
-data class Clasificacion(
-    val team: String,
-    val pj: String,
-    val g: String,
-    val e: String,
-    val p: String,
-    val pts: String
-)
 
 @Composable
 fun ClasificationScreen(modifier: Modifier, navController: NavController) {

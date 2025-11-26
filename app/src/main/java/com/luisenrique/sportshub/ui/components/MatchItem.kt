@@ -23,7 +23,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.luisenrique.sportshub.R
-import com.luisenrique.sportshub.ui.screens.Partido
+import com.luisenrique.sportshub.domain.model.Partido
+import com.luisenrique.sportshub.ui.navigation.Routes
 
 @Composable
 fun MatchItem(partido: Partido, navController: NavController) {
@@ -31,7 +32,7 @@ fun MatchItem(partido: Partido, navController: NavController) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)
-            .clickable {navController.navigate("partido")}
+            .clickable {navController.navigate(Routes.MatchDetail)}
     ) {
         Column {
             MyText(text = partido.fecha)

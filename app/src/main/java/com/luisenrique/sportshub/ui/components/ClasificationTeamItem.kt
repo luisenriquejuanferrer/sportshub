@@ -15,7 +15,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.luisenrique.sportshub.R
-import com.luisenrique.sportshub.ui.screens.Clasificacion
+import com.luisenrique.sportshub.domain.model.Clasificacion
 
 @Composable
 fun ClasificationTeamItem(posicion: Int, equipo: Clasificacion) {

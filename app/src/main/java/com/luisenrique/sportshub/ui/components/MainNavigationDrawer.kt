@@ -15,9 +15,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.luisenrique.sportshub.ui.navigation.Routes
 
 @Composable
-fun MainNavigationDrawer(drawerState: DrawerState, navController: NavController, content: @Composable () -> Unit) {
+fun MainNavigationDrawer(
+    drawerState: DrawerState,
+    navController: NavController,
+    content: @Composable () -> Unit
+) {
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
@@ -30,7 +35,7 @@ fun MainNavigationDrawer(drawerState: DrawerState, navController: NavController,
                     },
                     selected = false,
                     onClick = {
-                        navController.navigate("ligas")
+                        navController.navigate(Routes.Leagues)
                     }
                 )
                 NavigationDrawerItem(
@@ -39,7 +44,7 @@ fun MainNavigationDrawer(drawerState: DrawerState, navController: NavController,
                     },
                     selected = false,
                     onClick = {
-                        navController.navigate("equipos")
+                        navController.navigate(Routes.Teams)
                     }
                 )
                 NavigationDrawerItem(
@@ -48,7 +53,7 @@ fun MainNavigationDrawer(drawerState: DrawerState, navController: NavController,
                     },
                     selected = false,
                     onClick = {
-                        navController.navigate("partidos")
+                        navController.navigate(Routes.Matches)
                     }
                 )
                 NavigationDrawerItem(
@@ -57,7 +62,7 @@ fun MainNavigationDrawer(drawerState: DrawerState, navController: NavController,
                     },
                     selected = false,
                     onClick = {
-                        navController.navigate("clasificacion")
+                        navController.navigate(Routes.Clasification)
                     }
                 )
 
@@ -67,7 +72,7 @@ fun MainNavigationDrawer(drawerState: DrawerState, navController: NavController,
                     },
                     selected = false,
                     onClick = {
-                        navController.navigate("apuestas")
+                        navController.navigate(Routes.Bets)
                     }
                 )
 
@@ -78,7 +83,7 @@ fun MainNavigationDrawer(drawerState: DrawerState, navController: NavController,
                     },
                     selected = false,
                     onClick = {
-                        navController.navigate("dashboard")
+                        navController.navigate(Routes.Dashboard)
                     }, icon = {
                         Icon(Icons.Default.Home, "Home button")
                     }
@@ -89,14 +94,14 @@ fun MainNavigationDrawer(drawerState: DrawerState, navController: NavController,
                     },
                     selected = false,
                     onClick = {
-                        navController.navigate("perfil")
+                        navController.navigate(Routes.Profile)
                     }, icon = {
                         Icon(Icons.Default.Person, "Profile button")
                     }
                 )
             }
         }
-    ){
+    ) {
         content()
     }
 }

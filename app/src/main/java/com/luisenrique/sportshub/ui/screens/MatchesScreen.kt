@@ -9,14 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.luisenrique.sportshub.domain.model.Partido
 import com.luisenrique.sportshub.ui.components.MatchItem
-
-data class Partido(
-    val fecha: String,
-    val local: String,
-    val visitante: String,
-    val resultado: String
-)
 
 @Composable
 fun MatchesScreen(modifier: Modifier, navController: NavController) {

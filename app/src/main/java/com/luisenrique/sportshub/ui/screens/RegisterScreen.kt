@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
@@ -28,6 +29,7 @@ import com.luisenrique.sportshub.ui.components.MyButton
 import com.luisenrique.sportshub.ui.components.MyCheckBox
 import com.luisenrique.sportshub.ui.components.MyOutlinedTextField
 import com.luisenrique.sportshub.ui.components.MyText
+import com.luisenrique.sportshub.ui.navigation.Routes
 
 @Composable
 fun RegisterScreen(modifier: Modifier, navController: NavController) {
@@ -39,15 +41,6 @@ fun RegisterScreen(modifier: Modifier, navController: NavController) {
             .padding(16.dp)
             .fillMaxWidth()
     ) {
-        MyText(
-            text = "Registro de usuario",
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxWidth()
-        )
-        HorizontalDivider(Modifier.padding(vertical = 16.dp))
-
         MyText(text = "Usuario", fontSize = 14.sp, fontWeight = FontWeight.Bold)
         MyOutlinedTextField(
             placeHolder = "",
@@ -106,7 +99,7 @@ fun RegisterScreen(modifier: Modifier, navController: NavController) {
         Spacer(Modifier.height(8.dp))
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
             MyButton(
-                onClick = { navController.navigate("dashboard") },
+                onClick = { navController.navigate(Routes.Dashboard) },
                 enabled = true,
                 colors = ButtonDefaults.buttonColors(
                     containerColor = colorResource(R.color.azul_petroleo)

@@ -35,6 +35,7 @@ import com.luisenrique.sportshub.ui.components.MyImage
 import com.luisenrique.sportshub.ui.components.MySwitch
 import com.luisenrique.sportshub.ui.components.MyText
 import com.luisenrique.sportshub.ui.components.MyTextField
+import com.luisenrique.sportshub.ui.navigation.Routes
 
 @Composable
 fun LoginRegisterScreen(modifier: Modifier, navController: NavController) {
@@ -102,7 +103,7 @@ fun LoginRegisterScreen(modifier: Modifier, navController: NavController) {
         }
         Spacer(Modifier.padding(vertical = 8.dp))
         MyButton(
-            onClick = { navController.navigate("dashboard") },
+            onClick = { navController.navigate(Routes.Dashboard) },
             enabled = true,
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(
@@ -118,7 +119,7 @@ fun LoginRegisterScreen(modifier: Modifier, navController: NavController) {
             )
             Text(
                 "Registrate",
-                modifier = Modifier.clickable { navController.navigate("registro") },
+                modifier = Modifier.clickable { navController.navigate(Routes.Register) },
                 color = Color.Blue,
                 fontStyle = FontStyle.Italic,
                 textDecoration = TextDecoration.Underline

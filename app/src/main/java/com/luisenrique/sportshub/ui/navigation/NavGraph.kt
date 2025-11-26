@@ -12,6 +12,7 @@ import androidx.navigation.navArgument
 import com.ieschabas.sportshub.ui.screens.DashboardScreen
 import com.ieschabas.sportshub.ui.screens.PlayerDetailsScreen
 import com.ieschabas.sportshub.ui.screens.TeamDetailScreen
+import com.luisenrique.sportshub.ui.navigation.Routes
 import com.luisenrique.sportshub.ui.screens.ClasificationScreen
 import com.luisenrique.sportshub.ui.screens.LeagueDetailScreen
 import com.luisenrique.sportshub.ui.screens.LeagueListScreen
@@ -28,50 +29,46 @@ import kotlinx.serialization.decodeFromString
 fun SportsHubGraph(modifier: Modifier, navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = "login"
+        startDestination = Routes.LoginRegister
     ) {
-        composable(route = "login") {
+        composable(route = Routes.LoginRegister) {
             LoginRegisterScreen(modifier = modifier, navController = navController)
         }
-        composable(route = "dashboard") {
+        composable(route = Routes.Register) {
+            RegisterScreen(modifier = modifier, navController = navController)
+        }
+        composable(route = Routes.Dashboard) {
             DashboardScreen(modifier = modifier, navController = navController)
         }
-        composable(route = "ligas") {
+        composable(route = Routes.Leagues) {
             LeagueListScreen(modifier = modifier, navController = navController)
         }
-        composable(route = "equipos") {
+        composable(route = Routes.Teams) {
             TeamsListScreen(modifier = modifier, navController = navController)
         }
-        composable(route = "partidos") {
+        composable(route = Routes.Matches) {
             MatchesScreen(modifier = modifier, navController = navController)
         }
-        composable(route = "clasificacion") {
+        composable(route = Routes.Clasification) {
             ClasificationScreen(modifier = modifier, navController = navController)
         }
-        composable(route = "ligaDetails") {
+        composable(route = Routes.LeagueDetail) {
             LeagueDetailScreen(modifier = modifier, navController = navController)
         }
-        composable(route = "apuestas") {
+        composable(route = Routes.Bets) {
             BetsScreen(modifier = modifier)
         }
-        composable(route = "perfil") {
+        composable(route = Routes.Profile) {
             ProfileScreen(modifier = modifier, navController = navController)
         }
-
-        composable(route = "partido") {
+        composable(route = Routes.MatchDetail) {
             MatchDetailScreen(modifier = modifier)
         }
-
-        composable(route = "detallesEquipo") {
+        composable(route = Routes.TeamDetail) {
             TeamDetailScreen(modifier = modifier, navController = navController)
-
         }
-        composable(route = "detallesJugador") {
+        composable(route = Routes.PlayerDetail) {
             PlayerDetailsScreen(modifier = modifier)
-        }
-
-        composable(route = "registro") {
-            RegisterScreen(modifier = modifier, navController = navController)
         }
     }
 }

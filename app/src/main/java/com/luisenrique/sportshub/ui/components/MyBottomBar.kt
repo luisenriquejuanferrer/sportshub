@@ -16,19 +16,22 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.luisenrique.sportshub.R
+import com.luisenrique.sportshub.ui.navigation.Routes
 
 @Composable
 fun BottomBar(
-        selectedItem: String = "Inicio",
-        navController: NavController,
-        onItemClick: (String) -> Unit = {}
-){
+    selectedItem: String = "Inicio",
+    navController: NavController,
+    onItemClick: (String) -> Unit = {}
+) {
     NavigationBar(containerColor = colorResource(id = R.color.azul_petroleo)) {
 
         NavigationBarItem(
             selected = selectedItem == "Inicio",
-            onClick = { onItemClick("Inicio")
-                navController.navigate("dashboard") },
+            onClick = {
+                onItemClick("Inicio")
+                navController.navigate(Routes.Dashboard)
+            },
             label = { Text("Inicio", color = Color.White) },
             icon = { Icon(Icons.Filled.Home, contentDescription = "Inicio") },
             colors = NavigationBarItemDefaults.colors(
@@ -39,10 +42,12 @@ fun BottomBar(
 
         NavigationBarItem(
             selected = selectedItem == "Ligas",
-            onClick = { onItemClick("Ligas")
-                      navController.navigate("ligas")},
+            onClick = {
+                onItemClick("Ligas")
+                navController.navigate(Routes.Leagues)
+            },
             label = { Text("Ligas", color = Color.White) },
-            icon = { Icon(Icons.Filled.List, contentDescription = "Ligas")},
+            icon = { Icon(Icons.Filled.List, contentDescription = "Ligas") },
             colors = NavigationBarItemDefaults.colors(
                 selectedIconColor = Color.Black,
                 unselectedIconColor = Color.White
@@ -50,10 +55,12 @@ fun BottomBar(
         )
         NavigationBarItem(
             selected = selectedItem == "Partidos",
-            onClick = { onItemClick("Partidos")
-                      navController.navigate("partidos")},
+            onClick = {
+                onItemClick("Partidos")
+                navController.navigate(Routes.Matches)
+            },
             label = { Text("Partidos", color = Color.White) },
-            icon = { Icon(Icons.Filled.Star, contentDescription = "Equipos")},
+            icon = { Icon(Icons.Filled.Star, contentDescription = "Equipos") },
             colors = NavigationBarItemDefaults.colors(
                 selectedIconColor = Color.Black,
                 unselectedIconColor = Color.White
@@ -62,10 +69,12 @@ fun BottomBar(
 
         NavigationBarItem(
             selected = selectedItem == "Perfil",
-            onClick = { onItemClick("Perfil")
-                      navController.navigate("perfil")},
+            onClick = {
+                onItemClick("Perfil")
+                navController.navigate(Routes.Profile)
+            },
             label = { Text("Perfil", color = Color.White) },
-            icon = { Icon(Icons.Filled.Person, contentDescription = "Perfil")},
+            icon = { Icon(Icons.Filled.Person, contentDescription = "Perfil") },
             colors = NavigationBarItemDefaults.colors(
                 selectedIconColor = Color.Black,
                 unselectedIconColor = Color.White

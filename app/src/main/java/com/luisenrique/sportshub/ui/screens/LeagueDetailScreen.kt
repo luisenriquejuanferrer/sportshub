@@ -18,6 +18,7 @@ import com.luisenrique.sportshub.R
 import com.luisenrique.sportshub.ui.components.MyButton
 import com.luisenrique.sportshub.ui.components.MyImage
 import com.luisenrique.sportshub.ui.components.MyText
+import com.luisenrique.sportshub.ui.navigation.Routes
 
 @Composable
 fun LeagueDetailScreen(modifier: Modifier, navController: NavController) {
@@ -37,7 +38,7 @@ fun LeagueDetailScreen(modifier: Modifier, navController: NavController) {
         MyText(text = "Caracteristicas de la liga (Lorem Ipsum)")
         Spacer(Modifier.padding(vertical = 8.dp))
         MyButton(
-            onClick = {navController.navigate("clasificacion")},
+            onClick = { navController.navigate(Routes.Clasification) },
             enabled = true,
             modifier = Modifier,
             colors = ButtonDefaults.buttonColors(
@@ -46,7 +47,7 @@ fun LeagueDetailScreen(modifier: Modifier, navController: NavController) {
             text = "Ver clasificación"
         )
         MyButton(
-            onClick = { navController.navigate("partidos") },
+            onClick = { navController.navigate(Routes.Matches) },
             enabled = true,
             modifier = Modifier,
             colors = ButtonDefaults.buttonColors(

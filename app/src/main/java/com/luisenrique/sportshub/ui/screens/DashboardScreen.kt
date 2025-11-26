@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.luisenrique.sportshub.ui.components.DashboardBox
+import com.luisenrique.sportshub.ui.navigation.Routes
 
 
 @Composable
@@ -26,11 +27,9 @@ fun DashboardScreen(modifier: Modifier, navController: NavController) {
         contentAlignment = Alignment.Center
     ) {
         Column(
-            verticalArrangement = Arrangement.spacedBy(30.dp),
-
+            verticalArrangement = Arrangement.spacedBy(30.dp)
             ) {
             Row(
-
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
@@ -39,11 +38,11 @@ fun DashboardScreen(modifier: Modifier, navController: NavController) {
                 DashboardBox(
                     "Ligas",
                     Color(0xFF4CAF50),
-                    onClick = { navController.navigate("ligas") })
+                    onClick = { navController.navigate(Routes.Leagues) })
                 DashboardBox(
                     "Equipos",
                     Color(0xFF03A9F4),
-                    onClick = { navController.navigate("equipos") })
+                    onClick = { navController.navigate(Routes.Teams) })
             }
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -53,16 +52,14 @@ fun DashboardScreen(modifier: Modifier, navController: NavController) {
                 DashboardBox(
                     "Partidos",
                     Color(0xFF49F527),
-                    onClick = { navController.navigate("partidos") })
+                    onClick = { navController.navigate(Routes.Matches) })
                 DashboardBox(
                     "Clasificación",
                     Color(0xFFED2600),
-                    onClick = { navController.navigate("clasificacion") })
+                    onClick = { navController.navigate(Routes.Clasification) })
             }
         }
     }
-
-
 }
 
 

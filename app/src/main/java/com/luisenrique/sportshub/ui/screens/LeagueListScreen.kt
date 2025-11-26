@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.luisenrique.sportshub.ui.components.MyCard
 import com.luisenrique.sportshub.ui.components.MyText
+import com.luisenrique.sportshub.ui.navigation.Routes
 
 data class Liga(val name: String, val city: String)
 
@@ -44,7 +45,7 @@ fun LeagueListScreen(modifier: Modifier, navController: NavController) {
                 colors = CardDefaults.cardColors(
                     containerColor = Color(0xFF3aa57a)
                 ),
-                onClick = { navController.navigate("ligaDetails") }
+                onClick = { navController.navigate(Routes.LeagueDetail) }
             ) {
                 Column(
                     modifier = Modifier.padding(16.dp)

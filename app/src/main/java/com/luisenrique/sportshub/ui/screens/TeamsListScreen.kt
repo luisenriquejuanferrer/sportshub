@@ -21,6 +21,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.luisenrique.sportshub.domain.model.Equipo
+import com.luisenrique.sportshub.ui.navigation.Routes
 
 @Composable
 fun TeamsListScreen(
@@ -29,22 +31,22 @@ fun TeamsListScreen(
 ) {
 
     val equipos = listOf(
-        "Equipo 1",
-        "Equipo 2",
-        "Equipo 3",
-        "Equipo 4",
-        "Equipo 5",
-        "Equipo 6",
-        "Equipo 7"
+        Equipo("Equipo 1", "-", "-"),
+        Equipo("Equipo 2", "-", "-"),
+        Equipo("Equipo 3", "-", "-"),
+        Equipo("Equipo 4", "-", "-"),
+        Equipo("Equipo 5", "-", "-"),
+        Equipo("Equipo 6", "-", "-"),
+        Equipo("Equipo 7", "-", "-")
     )
 
-    LazyColumn (
-            modifier = modifier
-                .fillMaxSize()
-                .padding(16.dp),
+    LazyColumn(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
-    ){
-        items(equipos){ equipos ->
+    ) {
+        items(equipos) { equipo ->
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -54,29 +56,26 @@ fun TeamsListScreen(
                         shape = RoundedCornerShape(12.dp)
                     )
                     .padding(16.dp)
-                    .clickable{ navController.navigate("detallesEquipo")},
+                    .clickable { navController.navigate(Routes.TeamDetail) },
                 contentAlignment = Alignment.TopStart
-            ){
+            ) {
                 Column {
                     Text(
-                        text = equipos,
+                        text = equipo.nombre,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold
                     )
                     Text(
-                        text = "Ciudad: -",
+                        text = "Ciudad: ${equipo.ciudad}",
                         fontSize = 14.sp
                     )
-                   Text(
-                       text = "IES: -",
-                       fontSize = 14.sp
-                   )
-
+                    Text(
+                        text = "IES: ${equipo.ies}",
+                        fontSize = 14.sp
+                    )
                 }
             }
         }
     }
-
-
 }
 
