@@ -26,9 +26,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
 @Composable
-fun ProfileScreen(modifier: Modifier){
+fun ProfileScreen(modifier: Modifier, navController: NavController){
    Column(
        modifier = modifier
            .fillMaxSize()
@@ -108,7 +109,7 @@ fun ProfileScreen(modifier: Modifier){
            horizontalArrangement = Arrangement.Center
        ){
            OutlinedButton(
-               onClick = {/* Cerrar Sesión*/}
+               onClick = {navController.navigate("login")}
            ) {
                 Text(text = "Cerrar Sesión", fontSize = 16.sp, color = Color.Red)
            }

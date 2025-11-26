@@ -13,13 +13,14 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.luisenrique.sportshub.R
 import com.luisenrique.sportshub.ui.components.MyButton
 import com.luisenrique.sportshub.ui.components.MyImage
 import com.luisenrique.sportshub.ui.components.MyText
 
 @Composable
-fun LeagueDetailScreen(modifier: Modifier) {
+fun LeagueDetailScreen(modifier: Modifier, navController: NavController) {
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -36,7 +37,7 @@ fun LeagueDetailScreen(modifier: Modifier) {
         MyText(text = "Caracteristicas de la liga (Lorem Ipsum)")
         Spacer(Modifier.padding(vertical = 8.dp))
         MyButton(
-            onClick = {},
+            onClick = {navController.navigate("clasificacion")},
             enabled = true,
             modifier = Modifier,
             colors = ButtonDefaults.buttonColors(
@@ -45,7 +46,7 @@ fun LeagueDetailScreen(modifier: Modifier) {
             text = "Ver clasificación"
         )
         MyButton(
-            onClick = { },
+            onClick = { navController.navigate("partidos") },
             enabled = true,
             modifier = Modifier,
             colors = ButtonDefaults.buttonColors(

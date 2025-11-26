@@ -14,9 +14,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 
 @Composable
-fun MainNavigationDrawer(drawerState: DrawerState, content: @Composable () -> Unit) {
+fun MainNavigationDrawer(drawerState: DrawerState, navController: NavController, content: @Composable () -> Unit) {
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
@@ -29,7 +30,7 @@ fun MainNavigationDrawer(drawerState: DrawerState, content: @Composable () -> Un
                     },
                     selected = false,
                     onClick = {
-                        //TODO
+                        navController.navigate("ligas")
                     }
                 )
                 NavigationDrawerItem(
@@ -38,7 +39,7 @@ fun MainNavigationDrawer(drawerState: DrawerState, content: @Composable () -> Un
                     },
                     selected = false,
                     onClick = {
-                        //TODO
+                        navController.navigate("equipos")
                     }
                 )
                 NavigationDrawerItem(
@@ -47,7 +48,7 @@ fun MainNavigationDrawer(drawerState: DrawerState, content: @Composable () -> Un
                     },
                     selected = false,
                     onClick = {
-                        //TODO
+                        navController.navigate("partidos")
                     }
                 )
                 NavigationDrawerItem(
@@ -56,9 +57,20 @@ fun MainNavigationDrawer(drawerState: DrawerState, content: @Composable () -> Un
                     },
                     selected = false,
                     onClick = {
-                        //TODO
+                        navController.navigate("clasificacion")
                     }
                 )
+
+                NavigationDrawerItem(
+                    label = {
+                        Text("Apuestas")
+                    },
+                    selected = false,
+                    onClick = {
+                        navController.navigate("apuestas")
+                    }
+                )
+
                 HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
                 NavigationDrawerItem(
                     label = {
@@ -66,7 +78,7 @@ fun MainNavigationDrawer(drawerState: DrawerState, content: @Composable () -> Un
                     },
                     selected = false,
                     onClick = {
-                        //TODO
+                        navController.navigate("dashboard")
                     }, icon = {
                         Icon(Icons.Default.Home, "Home button")
                     }
@@ -77,7 +89,7 @@ fun MainNavigationDrawer(drawerState: DrawerState, content: @Composable () -> Un
                     },
                     selected = false,
                     onClick = {
-                        //TODO
+                        navController.navigate("perfil")
                     }, icon = {
                         Icon(Icons.Default.Person, "Profile button")
                     }

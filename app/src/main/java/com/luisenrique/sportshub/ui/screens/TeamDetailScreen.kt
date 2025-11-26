@@ -2,6 +2,7 @@ package com.ieschabas.sportshub.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -33,12 +34,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.luisenrique.sportshub.R
 import com.luisenrique.sportshub.ui.components.Jugador
 
 @Composable
 fun TeamDetailScreen(
-    modifier: Modifier
+    modifier: Modifier,
+    navController: NavController
 ) {
 
     val jugadores = listOf(
@@ -255,7 +258,8 @@ fun TeamDetailScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .background(Color(0xFFF5F5F5), shape = androidx.compose.material3.MaterialTheme.shapes.medium)
-                        .padding(12.dp),
+                        .padding(12.dp)
+                        .clickable{ navController.navigate("detallesJugador")},
                     contentAlignment = Alignment.CenterStart
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically) {

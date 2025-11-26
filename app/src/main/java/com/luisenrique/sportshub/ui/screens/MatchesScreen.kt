@@ -34,7 +34,7 @@ fun MatchesScreen(modifier: Modifier, navController: NavController) {
             .padding(16.dp)
     ) {
         items(partidos) { partido ->
-            MatchItem(partido)
+            MatchItem(partido, navController)
             HorizontalDivider()
         }
     }
