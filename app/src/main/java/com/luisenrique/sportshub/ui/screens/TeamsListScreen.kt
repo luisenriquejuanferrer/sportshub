@@ -1,6 +1,7 @@
 package com.luisenrique.sportshub.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -52,7 +53,8 @@ fun TeamsListScreen(
                         color = Color(0xFF7FF0F0),
                         shape = RoundedCornerShape(12.dp)
                     )
-                    .padding(16.dp),
+                    .padding(16.dp)
+                    .clickable{ navController.navigate("detallesEquipo")},
                 contentAlignment = Alignment.TopStart
             ){
                 Column {

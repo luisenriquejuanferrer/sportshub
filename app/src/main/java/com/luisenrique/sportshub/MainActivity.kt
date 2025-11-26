@@ -46,8 +46,10 @@ class MainActivity : ComponentActivity() {
             var currentScreen by remember { mutableStateOf("Inicio") }
             val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
             val scopeDrawer = rememberCoroutineScope()
+            val navController = rememberNavController()
+
             SportsHubTheme {
-                MainNavigationDrawer(drawerState) {
+                MainNavigationDrawer(drawerState, navController = navController) {
                     Scaffold(
                         modifier = Modifier.fillMaxSize(),
                         topBar = {
@@ -56,12 +58,15 @@ class MainActivity : ComponentActivity() {
                         bottomBar = {
                             BottomBar(
                                 selectedItem = currentScreen,
+                                navController = navController,
                                 onItemClick = { item -> currentScreen = item }
                             )
 
                         }
                     ) { innerPadding ->
-                        SportsHubGraph(modifier = Modifier.padding(innerPadding))
+                        SportsHubGraph(
+                            modifier = Modifier.padding(innerPadding),
+                            navController = navController)
                     }
                 }
             }

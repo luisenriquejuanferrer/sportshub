@@ -14,18 +14,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import com.luisenrique.sportshub.R
 
 @Composable
 fun BottomBar(
         selectedItem: String = "Inicio",
+        navController: NavController,
         onItemClick: (String) -> Unit = {}
 ){
     NavigationBar(containerColor = colorResource(id = R.color.azul_petroleo)) {
 
         NavigationBarItem(
             selected = selectedItem == "Inicio",
-            onClick = { onItemClick("Inicio") },
+            onClick = { onItemClick("Inicio")
+                navController.navigate("dashboard") },
             label = { Text("Inicio", color = Color.White) },
             icon = { Icon(Icons.Filled.Home, contentDescription = "Inicio") },
             colors = NavigationBarItemDefaults.colors(
@@ -36,7 +39,8 @@ fun BottomBar(
 
         NavigationBarItem(
             selected = selectedItem == "Ligas",
-            onClick = { onItemClick("Ligas") },
+            onClick = { onItemClick("Ligas")
+                      navController.navigate("ligas")},
             label = { Text("Ligas", color = Color.White) },
             icon = { Icon(Icons.Filled.List, contentDescription = "Ligas")},
             colors = NavigationBarItemDefaults.colors(
@@ -46,7 +50,8 @@ fun BottomBar(
         )
         NavigationBarItem(
             selected = selectedItem == "Partidos",
-            onClick = { onItemClick("Partidos") },
+            onClick = { onItemClick("Partidos")
+                      navController.navigate("partidos")},
             label = { Text("Partidos", color = Color.White) },
             icon = { Icon(Icons.Filled.Star, contentDescription = "Equipos")},
             colors = NavigationBarItemDefaults.colors(
@@ -57,7 +62,8 @@ fun BottomBar(
 
         NavigationBarItem(
             selected = selectedItem == "Perfil",
-            onClick = { onItemClick("Perfil") },
+            onClick = { onItemClick("Perfil")
+                      navController.navigate("perfil")},
             label = { Text("Perfil", color = Color.White) },
             icon = { Icon(Icons.Filled.Person, contentDescription = "Perfil")},
             colors = NavigationBarItemDefaults.colors(
@@ -67,10 +73,4 @@ fun BottomBar(
         )
 
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun BottomBarPreview() {
-    BottomBar()
 }
