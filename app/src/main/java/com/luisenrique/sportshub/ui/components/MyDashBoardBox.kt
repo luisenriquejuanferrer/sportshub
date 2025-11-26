@@ -1,6 +1,7 @@
 package com.luisenrique.sportshub.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -20,21 +21,13 @@ fun DashboardBox(text: String, color: Color, onClick: () -> Unit) {
         modifier = Modifier
             .width(175.dp)
             .height(270.dp)
-            .background(color),
-        contentAlignment = Alignment.Center
+            .background(color)
+            .clickable { onClick() },
+        contentAlignment = Alignment.Center,
     ) {
-        Button(
-            onClick = onClick,
-            modifier = Modifier.fillMaxSize(),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color.Transparent
-            )
-        ) {
-            Text(
-                text = text,
-                color = Color.White
-            )
-        }
-
+        Text(
+            text = text,
+            color = Color.White
+        )
     }
 }
