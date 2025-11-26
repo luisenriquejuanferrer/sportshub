@@ -74,6 +74,7 @@ class MainActivity : ComponentActivity() {
                 Routes.LeagueDetail -> "Detalle de liga"
                 Routes.Clasification -> "Clasificación"
                 Routes.TeamDetail -> "Detalle de equipo"
+                Routes.PlayerDetail -> "Detalle de jugador"
                 else -> "Sports Hub - IES Chabàs"
             }
 
