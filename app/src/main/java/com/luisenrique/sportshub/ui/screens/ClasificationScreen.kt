@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.luisenrique.sportshub.ui.components.ClasificationTeamItem
 import com.luisenrique.sportshub.ui.components.MyText
 
@@ -28,7 +29,7 @@ data class Clasificacion(
 )
 
 @Composable
-fun ClasificationScreen(modifier: Modifier) {
+fun ClasificationScreen(modifier: Modifier, navController: NavController) {
     val equipos = listOf(
         Clasificacion("Equipo 1", "11", "7", "2", "2", "21"),
         Clasificacion("Equipo 2", "12", "8", "2", "2", "22"),

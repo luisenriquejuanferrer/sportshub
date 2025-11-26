@@ -24,6 +24,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.luisenrique.sportshub.R
 import com.luisenrique.sportshub.ui.components.MyButton
 import com.luisenrique.sportshub.ui.components.MyImage
@@ -32,7 +33,7 @@ import com.luisenrique.sportshub.ui.components.MyText
 import com.luisenrique.sportshub.ui.components.MyTextField
 
 @Composable
-fun LoginRegisterScreen(modifier: Modifier) {
+fun LoginRegisterScreen(modifier: Modifier, navController: NavController) {
     var checked by remember { mutableStateOf(true) }
 
     Column(
@@ -97,7 +98,7 @@ fun LoginRegisterScreen(modifier: Modifier) {
         }
         Spacer(Modifier.padding(vertical = 8.dp))
         MyButton(
-            onClick = { },
+            onClick = { navController.navigate("dashboard")},
             enabled = true,
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(

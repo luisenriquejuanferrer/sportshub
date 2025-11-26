@@ -8,6 +8,7 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.luisenrique.sportshub.ui.components.MatchItem
 
 data class Partido(
@@ -18,7 +19,7 @@ data class Partido(
 )
 
 @Composable
-fun MatchesScreen(modifier: Modifier) {
+fun MatchesScreen(modifier: Modifier, navController: NavController) {
     val partidos = listOf(
         Partido("Sab 20:46", "fx.home", "fx.away", "  -  "),
         Partido("Sab 20:47", "fx.home", "fx.away", "0 - 0"),

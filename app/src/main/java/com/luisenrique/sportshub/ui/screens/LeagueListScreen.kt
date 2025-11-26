@@ -13,13 +13,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.luisenrique.sportshub.ui.components.MyCard
 import com.luisenrique.sportshub.ui.components.MyText
 
 data class Liga(val name: String, val city: String)
 
 @Composable
-fun LeagueListScreen(modifier: Modifier) {
+fun LeagueListScreen(modifier: Modifier, navController: NavController) {
     val ligas = listOf(
         Liga("LaLiga", "--"),
         Liga("Premier League", "--"),
@@ -42,7 +43,8 @@ fun LeagueListScreen(modifier: Modifier) {
                     .fillMaxWidth(),
                 colors = CardDefaults.cardColors(
                     containerColor = Color(0xFF3aa57a)
-                )
+                ),
+                onClick = { navController.navigate("ligaDetails") }
             ) {
                 Column(
                     modifier = Modifier.padding(16.dp)
