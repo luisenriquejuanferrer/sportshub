@@ -1,0 +1,20 @@
+package com.luisenrique.sportshub.data.local.dao
+
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import com.luisenrique.sportshub.data.local.entities.PlayerEntity
+import kotlinx.coroutines.flow.Flow
+
+@Dao
+interface PlayerDao {
+    @Query("SELECT * FROM player ORDER BY id DESC")
+    fun observePlayers(): Flow<List<PlayerEntity>>
+
+    @Query("SELECT * FROM player WHERE id = :id LIMIT 1")
+    suspend fun getPlayer(id: String): PlayerEntity?
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsertAll(items: List<PlayerEntity>)
+}
