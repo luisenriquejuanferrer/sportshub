@@ -12,8 +12,8 @@ object SampleData {
         return SampleDataPayload(
             user = User(
                 id = "u1",
-                fullName = "Nombre Apellido",
-                userName = "nombreusuario",
+                fullName = "Luisito Comunica",
+                userName = "luisillo",
                 email = "user@mail.com",
                 memberSince = "2024-03-12",
                 verified = true
