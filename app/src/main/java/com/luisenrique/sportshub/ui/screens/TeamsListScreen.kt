@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.luisenrique.sportshub.domain.model.Equipo
+import com.luisenrique.sportshub.domain.model.Player
 import com.luisenrique.sportshub.ui.navigation.Routes
 
 @Composable
@@ -30,14 +31,14 @@ fun TeamsListScreen(
     navController: NavController
 ) {
 
-    val equipos = listOf(
+    val equipo = listOf(
         Equipo("Equipo 1", "-", "-"),
         Equipo("Equipo 2", "-", "-"),
         Equipo("Equipo 3", "-", "-"),
         Equipo("Equipo 4", "-", "-"),
         Equipo("Equipo 5", "-", "-"),
         Equipo("Equipo 6", "-", "-"),
-        Equipo("Equipo 7", "-", "-")
+        Equipo("Equipo 7", "-", "-"),
     )
 
     LazyColumn(
@@ -46,7 +47,7 @@ fun TeamsListScreen(
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(equipos) { equipo ->
+        items(equipo) { equipo ->
             Box(
                 modifier = Modifier
                     .fillMaxWidth()

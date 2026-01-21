@@ -14,6 +14,10 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -27,6 +31,8 @@ import com.luisenrique.sportshub.R
 fun BetsScreen(
     modifier: Modifier
 ) {
+    var apuesta by remember { mutableStateOf("") }
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -78,8 +84,8 @@ fun BetsScreen(
         Spacer(modifier = Modifier.height(25.dp))
 
         OutlinedTextField(
-            value = "",
-            onValueChange = {},
+            value = apuesta,
+            onValueChange = {newText -> apuesta = newText },
             label = { Text("Número de apuesta (€)") },
             enabled = true
         )

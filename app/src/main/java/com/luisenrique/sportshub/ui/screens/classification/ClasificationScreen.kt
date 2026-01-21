@@ -1,4 +1,4 @@
-package com.luisenrique.sportshub.ui.screens
+package com.luisenrique.sportshub.ui.screens.classification
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
