@@ -29,7 +29,9 @@ import com.luisenrique.sportshub.ui.components.MainNavigationDrawer
 import com.luisenrique.sportshub.ui.components.TopBar
 import com.luisenrique.sportshub.ui.navigation.Routes
 import com.luisenrique.sportshub.ui.theme.SportsHubTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
