@@ -15,10 +15,13 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.luisenrique.sportshub.R
-import com.luisenrique.sportshub.domain.model.Clasificacion
+import com.luisenrique.sportshub.domain.model.Classification
 
 @Composable
-fun ClasificationTeamItem(posicion: Int, equipo: Clasificacion) {
+fun ClasificationTeamItem(
+    posicion: Int,
+    classification: Classification
+) {
     val textColor = if (posicion < 4) Color.Magenta else Color.Unspecified
 
     Row(
@@ -38,33 +41,34 @@ fun ClasificationTeamItem(posicion: Int, equipo: Clasificacion) {
             alignment = Alignment.CenterStart,
             contentScale = ContentScale.Fit
         )
+
         MyText(
-            text = equipo.team,
+            text = classification.teamId,
             color = textColor,
             modifier = Modifier.weight(2f)
         )
         MyText(
-            text = equipo.pj,
+            text = classification.gamesPlayed.toString(),
             color = textColor,
             modifier = Modifier.weight(1f)
         )
         MyText(
-            text = equipo.g,
+            text = classification.victories.toString(),
             color = textColor,
             modifier = Modifier.weight(1f)
         )
         MyText(
-            text = equipo.e,
+            text = classification.ties.toString(),
             color = textColor,
             modifier = Modifier.weight(1f)
         )
         MyText(
-            text = equipo.p,
+            text = classification.lost.toString(),
             color = textColor,
             modifier = Modifier.weight(1f)
         )
         MyText(
-            text = equipo.pts,
+            text = classification.totalPoints.toString(),
             color = textColor,
             modifier = Modifier.weight(1f)
         )

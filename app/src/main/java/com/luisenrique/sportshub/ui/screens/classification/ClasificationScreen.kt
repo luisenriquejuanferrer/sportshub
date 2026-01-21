@@ -1,4 +1,4 @@
-package com.luisenrique.sportshub.ui.screens
+package com.luisenrique.sportshub.ui.screens.classification
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -11,28 +11,27 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.draw
 import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.luisenrique.sportshub.domain.model.Clasificacion
+import com.luisenrique.sportshub.domain.model.Classification
 import com.luisenrique.sportshub.ui.components.ClasificationTeamItem
 import com.luisenrique.sportshub.ui.components.MyText
 
 @Composable
-fun ClasificationScreen(modifier: Modifier, navController: NavController) {
-    val equipos = listOf(
-        Clasificacion("Equipo 1", "11", "7", "2", "2", "21"),
-        Clasificacion("Equipo 2", "12", "8", "2", "2", "22"),
-        Clasificacion("Equipo 3", "13", "6", "2", "2", "23"),
-        Clasificacion("Equipo 4", "14", "7", "2", "2", "24"),
-        Clasificacion("Equipo 5", "15", "8", "2", "2", "25"),
-        Clasificacion("Equipo 6", "16", "6", "2", "2", "26"),
-        Clasificacion("Equipo 7", "17", "7", "2", "2", "27"),
-        Clasificacion("Equipo 8", "18", "8", "2", "2", "28"),
-        Clasificacion("Equipo 9", "19", "6", "2", "2", "29"),
-        Clasificacion("Equipo 10", "20", "7", "2", "2", "30"),
-    )
+fun ClasificationScreen(
+    modifier: Modifier,
+    navController: NavController,
+    viewModel: ClassificationViewModel = hiltViewModel()
+) {
+
+    // 1. Observamos el estado del ViewModel de forma reactiva
+    val classifications by viewModel.classifications.collectAsState()
 
     Column(
         modifier = modifier
@@ -86,9 +85,11 @@ fun ClasificationScreen(modifier: Modifier, navController: NavController) {
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            itemsIndexed(equipos) { posicion, equipo ->
-                ClasificationTeamItem(posicion, equipo)
-                HorizontalDivider()
+            itemsIndexed(classifications) { posicion, item ->
+                ClasificationTeamItem(
+                    posicion = posicion,
+                    classification = item
+                )
             }
         }
     }
