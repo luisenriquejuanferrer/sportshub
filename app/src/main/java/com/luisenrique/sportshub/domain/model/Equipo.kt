@@ -4,5 +4,5 @@ data class Equipo(
     val nombre: String,
     val ciudad: String,
     val ies: String
+
 )
-    
