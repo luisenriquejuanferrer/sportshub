@@ -4,8 +4,6 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.luisenrique.sportshub.data.local.SampleData
 import com.luisenrique.sportshub.data.local.SportsHubDatabase
-import com.luisenrique.sportshub.domain.model.User
-import com.luisenrique.sportshub.data.local.mapper.toEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,12 +15,18 @@ class AppDatabaseCallback(
 
     override fun onCreate(db: SupportSQLiteDatabase) {
         super.onCreate(db)
-        scope.launch {
+        scope.launch(Dispatchers.IO) {
             val database = dbProvider()
             val payload = SampleData.create()
-            database.userDao().upsertAll(
-                listOf(payload.user.toEntity())
-            )
+
+            //database.clubDao().insertAlL(payload.clubs)
+            database.classificationDao().upsertAll(payload.classifications)
+            database.leagueDao().upsertAll(payload.leagues)
+            //database.teamDao().insertAll(payload.teams)
+            //database.playerDao().insertAll(payload.players)
+            database.matchDao().upsertAll(payload.matches)
+            //database.userDao().upsertAll(payload.user)
+            //payload.favorites.forEach { database.userDao().addFavouriteTeam(it) }
         }
     }
 }
