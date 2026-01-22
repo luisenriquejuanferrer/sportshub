@@ -43,7 +43,7 @@ fun ClasificationTeamItem(
         )
 
         MyText(
-            text = classification.teamId,
+            text = classification.clubId,
             color = textColor,
             modifier = Modifier.weight(2f)
         )

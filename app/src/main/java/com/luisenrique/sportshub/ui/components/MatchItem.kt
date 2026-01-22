@@ -23,19 +23,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.luisenrique.sportshub.R
+import com.luisenrique.sportshub.domain.model.Match
 import com.luisenrique.sportshub.domain.model.Partido
 import com.luisenrique.sportshub.ui.navigation.Routes
 
 @Composable
-fun MatchItem(partido: Partido, navController: NavController) {
+fun MatchItem(partido: Match, navController: NavController) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)
-            .clickable {navController.navigate(Routes.MatchDetail)}
+            .clickable { navController.navigate(Routes.MatchDetail) }
     ) {
         Column {
-            MyText(text = partido.fecha)
+            MyText(text = partido.dateUtc)
             Spacer(Modifier.padding(vertical = 8.dp))
             Row {
                 MyImage(
@@ -48,7 +49,7 @@ fun MatchItem(partido: Partido, navController: NavController) {
                     contentScale = ContentScale.Crop
                 )
                 Spacer(Modifier.padding(horizontal = 4.dp))
-                MyText(text = partido.local, fontSize = 24.sp)
+                MyText(text = partido.homeTeamId, fontSize = 24.sp)
             }
             Spacer(Modifier.padding(vertical = 8.dp))
             Row {
@@ -62,7 +63,7 @@ fun MatchItem(partido: Partido, navController: NavController) {
                     contentScale = ContentScale.Crop
                 )
                 Spacer(Modifier.padding(horizontal = 4.dp))
-                MyText(text = partido.visitante, fontSize = 24.sp)
+                MyText(text = partido.awayTeamId, fontSize = 24.sp)
             }
         }
         Spacer(modifier = Modifier.weight(1f))
@@ -71,8 +72,8 @@ fun MatchItem(partido: Partido, navController: NavController) {
                 .border(1.dp, Color.DarkGray, RoundedCornerShape(8.dp))
         ) {
             MyText(
-                text = partido.resultado,
-                textAlign = TextAlign.End,
+                text = "${partido.homeScore} - ${partido.awayScore}",
+                textAlign = TextAlign.Start,
                 modifier = Modifier.padding(16.dp, 4.dp)
             )
         }

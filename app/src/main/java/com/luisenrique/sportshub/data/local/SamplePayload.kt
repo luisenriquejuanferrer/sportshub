@@ -202,7 +202,7 @@ object SampleData {
                 victories = 8,
                 lost = 1,
                 ties = 1,
-                totalPoints = 69
+                totalPoints = 25
             ),
             ClassificationEntity(
                 id = "c_team_fcb",

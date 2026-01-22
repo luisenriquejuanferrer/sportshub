@@ -12,10 +12,10 @@ import com.ieschabas.sportshub.ui.screens.TeamDetailScreen
 import com.luisenrique.sportshub.ui.navigation.Routes
 import com.luisenrique.sportshub.ui.screens.classification.ClasificationScreen
 import com.luisenrique.sportshub.ui.screens.LeagueDetailScreen
-import com.luisenrique.sportshub.ui.screens.LeagueListScreen
+import com.luisenrique.sportshub.ui.screens.leagues.LeagueListScreen
 import com.luisenrique.sportshub.ui.screens.LoginRegisterScreen
 import com.luisenrique.sportshub.ui.screens.MatchDetailScreen
-import com.luisenrique.sportshub.ui.screens.MatchesScreen
+import com.luisenrique.sportshub.ui.screens.matches.MatchesScreen
 import com.luisenrique.sportshub.ui.screens.ProfileScreen
 import com.luisenrique.sportshub.ui.screens.RegisterScreen
 import com.luisenrique.sportshub.ui.screens.TeamsListScreen

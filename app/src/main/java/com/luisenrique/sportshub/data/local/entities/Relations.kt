@@ -34,12 +34,12 @@ data class TeamAndClassification(
 data class ClassificationWithTeamAndClub(
     @Embedded val classification: ClassificationEntity,
     @Relation(
-        parentColumn = "team_id",
+        parentColumn = "teamId",
         entityColumn = "id"
     )
     val team: TeamEntity,
     @Relation(
-        parentColumn = "club_id",
+        parentColumn = "clubId",
         entityColumn = "id"
     )
     val club: ClubEntity

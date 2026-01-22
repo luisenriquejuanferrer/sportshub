@@ -29,8 +29,6 @@ fun ClasificationScreen(
     navController: NavController,
     viewModel: ClassificationViewModel = hiltViewModel()
 ) {
-
-    // 1. Observamos el estado del ViewModel de forma reactiva
     val classifications by viewModel.classifications.collectAsState()
 
     Column(
