@@ -32,12 +32,15 @@ import com.luisenrique.sportshub.ui.utils.formatUtcDate
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun MatchItem(partido: Match, navController: NavController) {
+fun MatchItem(
+    partido: Match,
+    onClick: () -> Unit
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .clickable { onClick() }
             .padding(16.dp)
-            .clickable { navController.navigate(Routes.MatchDetail) }
     ) {
         Column {
             MyText(text = formatUtcDate(partido.dateUtc))
@@ -76,7 +79,7 @@ fun MatchItem(partido: Match, navController: NavController) {
                 .border(1.dp, Color.DarkGray, RoundedCornerShape(8.dp))
         ) {
             MyText(
-                text = "${partido.homeScore?: "0"} - ${partido.awayScore?: "0"}",
+                text = "${partido.homeScore ?: "0"} - ${partido.awayScore ?: "0"}",
                 textAlign = TextAlign.Start,
                 modifier = Modifier.padding(16.dp, 4.dp)
             )

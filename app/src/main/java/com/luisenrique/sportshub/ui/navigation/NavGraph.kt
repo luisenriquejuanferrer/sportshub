@@ -1,11 +1,17 @@
 package com.ieschabas.navigationcompose.navigation
 
 import BetsScreen
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.ieschabas.sportshub.ui.screens.DashboardScreen
 import com.ieschabas.sportshub.ui.screens.PlayerDetailsScreen
 import com.ieschabas.sportshub.ui.screens.TeamDetailScreen
@@ -21,6 +27,7 @@ import com.luisenrique.sportshub.ui.screens.RegisterScreen
 import com.luisenrique.sportshub.ui.screens.TeamsListScreen
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun SportsHubGraph(modifier: Modifier, navController: NavHostController) {
     NavHost(
@@ -43,7 +50,22 @@ fun SportsHubGraph(modifier: Modifier, navController: NavHostController) {
             TeamsListScreen(modifier = modifier, navController = navController)
         }
         composable(route = Routes.Matches) {
-            MatchesScreen(modifier = modifier, navController = navController)
+            MatchesScreen(
+                modifier = modifier,
+                navController = navController,
+                onMatchClick = { matchId ->
+                    navController.navigate(Routes.createMatchDetailRoute(matchId))
+                })
+        }
+        composable(
+            route = Routes.MatchDetail,
+            arguments = listOf(
+                navArgument(name = Routes.MatchDetailArg) {
+                    type = NavType.StringType
+                    nullable = false
+                }
+            )) {
+            MatchDetailScreen(modifier = modifier)
         }
         composable(route = Routes.Clasification) {
             ClasificationScreen(modifier = modifier, navController = navController)
@@ -56,9 +78,6 @@ fun SportsHubGraph(modifier: Modifier, navController: NavHostController) {
         }
         composable(route = Routes.Profile) {
             ProfileScreen(modifier = modifier, navController = navController)
-        }
-        composable(route = Routes.MatchDetail) {
-            MatchDetailScreen(modifier = modifier)
         }
         composable(route = Routes.TeamDetail) {
             TeamDetailScreen(modifier = modifier, navController = navController)

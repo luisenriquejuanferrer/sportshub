@@ -23,7 +23,8 @@ import com.luisenrique.sportshub.ui.components.MatchItem
 fun MatchesScreen(
     modifier: Modifier,
     navController: NavController,
-    viewModel: MatchesViewModel = hiltViewModel()
+    viewModel: MatchesViewModel = hiltViewModel(),
+    onMatchClick: (String) -> Unit
 ) {
     val matches by viewModel.matches.collectAsState()
 
@@ -32,8 +33,10 @@ fun MatchesScreen(
             .fillMaxWidth()
             .padding(16.dp)
     ) {
-        itemsIndexed(matches) { posicion, item->
-            MatchItem(item, navController)
+        itemsIndexed(matches) { posicion, item ->
+            MatchItem(
+                partido = item,
+                onClick = { onMatchClick(item.id) })
             HorizontalDivider()
         }
     }
