@@ -1,5 +1,7 @@
 package com.luisenrique.sportshub.ui.components
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -26,7 +28,9 @@ import com.luisenrique.sportshub.R
 import com.luisenrique.sportshub.domain.model.Match
 import com.luisenrique.sportshub.domain.model.Partido
 import com.luisenrique.sportshub.ui.navigation.Routes
+import com.luisenrique.sportshub.ui.utils.formatUtcDate
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MatchItem(partido: Match, navController: NavController) {
     Row(
@@ -36,7 +40,7 @@ fun MatchItem(partido: Match, navController: NavController) {
             .clickable { navController.navigate(Routes.MatchDetail) }
     ) {
         Column {
-            MyText(text = partido.dateUtc)
+            MyText(text = formatUtcDate(partido.dateUtc))
             Spacer(Modifier.padding(vertical = 8.dp))
             Row {
                 MyImage(
@@ -49,7 +53,7 @@ fun MatchItem(partido: Match, navController: NavController) {
                     contentScale = ContentScale.Crop
                 )
                 Spacer(Modifier.padding(horizontal = 4.dp))
-                MyText(text = partido.homeTeamId, fontSize = 24.sp)
+                MyText(text = partido.homeTeam.name, fontSize = 24.sp)
             }
             Spacer(Modifier.padding(vertical = 8.dp))
             Row {
@@ -63,7 +67,7 @@ fun MatchItem(partido: Match, navController: NavController) {
                     contentScale = ContentScale.Crop
                 )
                 Spacer(Modifier.padding(horizontal = 4.dp))
-                MyText(text = partido.awayTeamId, fontSize = 24.sp)
+                MyText(text = partido.awayTeam.name, fontSize = 24.sp)
             }
         }
         Spacer(modifier = Modifier.weight(1f))
@@ -72,7 +76,7 @@ fun MatchItem(partido: Match, navController: NavController) {
                 .border(1.dp, Color.DarkGray, RoundedCornerShape(8.dp))
         ) {
             MyText(
-                text = "${partido.homeScore} - ${partido.awayScore}",
+                text = "${partido.homeScore?: "0"} - ${partido.awayScore?: "0"}",
                 textAlign = TextAlign.Start,
                 modifier = Modifier.padding(16.dp, 4.dp)
             )

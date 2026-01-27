@@ -1,18 +1,21 @@
 package com.luisenrique.sportshub.data.local.mapper
 
 import com.luisenrique.sportshub.data.local.entities.MatchEntity
+import com.luisenrique.sportshub.data.local.entities.MatchWithTeams
 import com.luisenrique.sportshub.domain.model.Match
 
-fun MatchEntity.toDomain(): Match =
+fun MatchWithTeams.toDomain(): Match =
     Match(
-        id = id,
-        leagueId = leagueId,
-        dateUtc = dateUtc,
-        homeTeamId = homeTeamId,
-        awayTeamId = awayTeamId,
-        homeScore = homeScore,
-        awayScore = awayScore,
-        status = status
+        id = match.id,
+        leagueId = match.leagueId,
+        dateUtc = match.dateUtc,
+        homeTeamId = match.homeTeamId,
+        awayTeamId = match.awayTeamId,
+        homeScore = match.homeScore,
+        awayScore = match.awayScore,
+        status = match.status,
+        homeTeam = homeTeam.toDomain(),
+        awayTeam = awayTeam.toDomain()
     )
 
 fun Match.toEntity(): MatchEntity =

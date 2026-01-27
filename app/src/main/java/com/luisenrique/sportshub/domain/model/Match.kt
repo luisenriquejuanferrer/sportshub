@@ -8,5 +8,7 @@ data class Match(
     val awayTeamId: String,
     val homeScore: Int?,
     val awayScore: Int?,
-    val status: String
+    val status: String,
+    val homeTeam: Team,
+    val awayTeam: Team
 )

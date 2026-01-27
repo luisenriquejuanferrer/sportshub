@@ -10,6 +10,6 @@ data class TeamEntity(
     val clubId: String,
     val name: String,
     val city: String,
-    val founded: Int,
+    val founded: Int?,
     val crestUrl: String?
 )

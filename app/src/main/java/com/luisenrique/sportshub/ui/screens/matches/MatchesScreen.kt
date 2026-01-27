@@ -1,5 +1,7 @@
 package com.luisenrique.sportshub.ui.screens.matches
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -16,6 +18,7 @@ import androidx.navigation.NavController
 import com.luisenrique.sportshub.domain.model.Partido
 import com.luisenrique.sportshub.ui.components.MatchItem
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MatchesScreen(
     modifier: Modifier,
