@@ -19,10 +19,10 @@ class AppDatabaseCallback(
             val database = dbProvider()
             val payload = SampleData.create()
 
-            //database.clubDao().insertAlL(payload.clubs)
+            database.clubDao().upsertAll(payload.clubs)
             database.classificationDao().upsertAll(payload.classifications)
             database.leagueDao().upsertAll(payload.leagues)
-            //database.teamDao().insertAll(payload.teams)
+            database.teamDao().upsertAll(payload.teams)
             //database.playerDao().insertAll(payload.players)
             database.matchDao().upsertAll(payload.matches)
             //database.userDao().upsertAll(payload.user)
