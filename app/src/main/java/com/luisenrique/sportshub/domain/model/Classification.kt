@@ -8,5 +8,7 @@ data class Classification(
     val victories: Int,
     val lost: Int,
     val ties: Int,
-    val totalPoints: Int
+    val totalPoints: Int,
+    val team: Team,
+    val club: Club
 )
