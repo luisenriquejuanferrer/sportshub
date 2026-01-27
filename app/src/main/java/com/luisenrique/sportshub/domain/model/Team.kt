@@ -7,5 +7,6 @@ data class Team(
     val name: String,
     val city: String,
     val founded: Int?,
-    val crestUrl: String?
+    val crestUrl: String?,
+    val stadium: String
 )

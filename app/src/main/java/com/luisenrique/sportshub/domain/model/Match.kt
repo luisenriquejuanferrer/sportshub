@@ -10,5 +10,9 @@ data class Match(
     val awayScore: Int?,
     val status: String,
     val homeTeam: Team,
-    val awayTeam: Team
+    val awayTeam: Team,
+    val homeTeamPosession: Int?,
+    val awayTeamPosession: Int?,
+    val homeTeamKicks: Int?,
+    val awayTeamKicks: Int?
 )

@@ -40,19 +40,6 @@ fun MatchDetailScreen(
     modifier: Modifier,
     viewModel: MatchDetailViewModel = hiltViewModel()
 ) {
-//    val partidoDetalle = PartidoDetalle(
-//        "Sáb 20:47",
-//        "IES Chabàs",
-//        "Maria Ivars",
-//        "2 - 1",
-//        "El Rodat",
-//        "Dénia",
-//        55,
-//        45,
-//        7,
-//        4
-//    )
-
     val match by viewModel.state.collectAsState()
 
     Column(
@@ -87,12 +74,12 @@ fun MatchDetailScreen(
                 MyText(
                     text = "${match?.homeScore ?: "0"} - ${match?.awayScore ?: "0"}",
                     fontSize = 32.sp,
-                    textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                    textAlign = TextAlign.Center
                 )
                 MyText(
                     text = "${match?.homeTeam?.name} vs ${match?.awayTeam?.name}",
                     fontSize = 14.sp,
-                    textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                    textAlign = TextAlign.Center
                 )
             }
 
@@ -112,7 +99,7 @@ fun MatchDetailScreen(
 
         Spacer(Modifier.height(24.dp))
 
-        MyText("Estadio: ${match?.homeTeam?.city}", fontSize = 16.sp)
+        MyText("Estadio: ${match?.homeTeam?.stadium}", fontSize = 16.sp)
         MyText("Ciudad: ${match?.homeTeam?.city}", fontSize = 16.sp)
         Spacer(Modifier.height(24.dp))
 
@@ -127,9 +114,9 @@ fun MatchDetailScreen(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            //MyText("${partidoDetalle.posesionLocal}%", fontSize = 16.sp)
+            MyText("${match?.homeTeamPosession ?: "0"}%", fontSize = 16.sp)
             MyText("Posesión", fontSize = 16.sp)
-            //MyText("${partidoDetalle.posesionVisitante}%", fontSize = 16.sp)
+            MyText("${match?.awayTeamPosession ?: "0"}%", fontSize = 16.sp)
         }
 
         Row(
@@ -139,9 +126,9 @@ fun MatchDetailScreen(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            //MyText("${partidoDetalle.tirosLocal}", fontSize = 16.sp)
+            MyText("${match?.homeTeamKicks ?: "0"}", fontSize = 16.sp)
             MyText("Tiros", fontSize = 16.sp)
-            //MyText("${partidoDetalle.tirosVisitante}", fontSize = 16.sp)
+            MyText("${match?.awayTeamKicks ?: "0"}", fontSize = 16.sp)
         }
 
         Spacer(Modifier.height(24.dp))

@@ -15,7 +15,11 @@ fun MatchWithTeams.toDomain(): Match =
         awayScore = match.awayScore,
         status = match.status,
         homeTeam = homeTeam.toDomain(),
-        awayTeam = awayTeam.toDomain()
+        awayTeam = awayTeam.toDomain(),
+        homeTeamPosession = match.homeTeamPosession,
+        awayTeamPosession = match.awayTeamPosession,
+        homeTeamKicks = match.homeTeamKicks,
+        awayTeamKicks = match.awayTeamKicks
     )
 
 fun Match.toEntity(): MatchEntity =
@@ -27,5 +31,9 @@ fun Match.toEntity(): MatchEntity =
         awayTeamId = awayTeamId,
         homeScore = homeScore,
         awayScore = awayScore,
-        status = status
+        status = status,
+        homeTeamPosession = homeTeamPosession,
+        awayTeamPosession = awayTeamPosession,
+        homeTeamKicks = homeTeamKicks,
+        awayTeamKicks = awayTeamKicks
     )

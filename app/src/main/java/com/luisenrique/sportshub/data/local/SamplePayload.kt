@@ -57,7 +57,8 @@ object SampleData {
                 name = "Real Madrid",
                 city = "Madrid",
                 founded = 1902,
-                crestUrl = null
+                crestUrl = null,
+                stadium = "Bernabéu"
             ),
             TeamEntity(
                 id = "team_fcb",
@@ -66,7 +67,8 @@ object SampleData {
                 name = "FC Barcelona",
                 city = "Barcelona",
                 founded = 1899,
-                crestUrl = null
+                crestUrl = null,
+                stadium = "Spotify Camp Nou"
             ),
             TeamEntity(
                 id = "team_val",
@@ -75,7 +77,8 @@ object SampleData {
                 name = "Valencia CF",
                 city = "Valencia",
                 founded = 1919,
-                crestUrl = null
+                crestUrl = null,
+                stadium = "Mestalla"
             ),
             TeamEntity(
                 id = "team_ars",
@@ -84,7 +87,8 @@ object SampleData {
                 name = "Arsenal",
                 city = "London",
                 founded = 1886,
-                crestUrl = null
+                crestUrl = null,
+                stadium = "Emirates Stadium"
             ),
             TeamEntity(
                 id = "team_mci",
@@ -93,7 +97,8 @@ object SampleData {
                 name = "Manchester City",
                 city = "Manchester",
                 founded = 1880,
-                crestUrl = null
+                crestUrl = null,
+                stadium = "Etihad Stadium"
             )
         )
         // 4) Players (teamId debe existir)
@@ -168,7 +173,11 @@ object SampleData {
                 awayTeamId = "team_fcb",
                 homeScore = null,
                 awayScore = null,
-                status = "SCHEDULED"
+                status = "SCHEDULED",
+                homeTeamPosession = null,
+                awayTeamPosession = null,
+                homeTeamKicks = null,
+                awayTeamKicks = null
             ),
             MatchEntity(
                 id = "m_laliga_2",
@@ -178,7 +187,11 @@ object SampleData {
                 awayTeamId = "team_val",
                 homeScore = 2,
                 awayScore = 1,
-                status = "FINISHED"
+                status = "FINISHED",
+                homeTeamPosession = 65,
+                awayTeamPosession = 35,
+                homeTeamKicks = 11,
+                awayTeamKicks = 4
             ),
             MatchEntity(
                 id = "m_premier_1",
@@ -188,7 +201,11 @@ object SampleData {
                 awayTeamId = "team_mci",
                 homeScore = null,
                 awayScore = null,
-                status = "SCHEDULED"
+                status = "SCHEDULED",
+                homeTeamPosession = null,
+                awayTeamPosession = null,
+                homeTeamKicks = null,
+                awayTeamKicks = null
             )
         )
         // 6) Classifications (OJO: tableName = "classifications" y requiere teamId + clubId)
