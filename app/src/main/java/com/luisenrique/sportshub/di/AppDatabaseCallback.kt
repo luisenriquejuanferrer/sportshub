@@ -23,9 +23,9 @@ class AppDatabaseCallback(
             database.classificationDao().upsertAll(payload.classifications)
             database.leagueDao().upsertAll(payload.leagues)
             database.teamDao().upsertAll(payload.teams)
-            //database.playerDao().insertAll(payload.players)
+            database.playerDao().upsertAll(payload.players)
             database.matchDao().upsertAll(payload.matches)
-            //database.userDao().upsertAll(payload.user)
+            database.userDao().upsertAll(payload.user)
             //payload.favorites.forEach { database.userDao().addFavouriteTeam(it) }
         }
     }

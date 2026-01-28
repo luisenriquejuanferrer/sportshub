@@ -2,8 +2,8 @@ package com.luisenrique.sportshub.ui.screens.classification
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.luisenrique.sportshub.domain.repository.ClassificationRepository
 import com.luisenrique.sportshub.domain.model.Classification
+import com.luisenrique.sportshub.domain.repository.ClassificationRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

@@ -1,13 +1,13 @@
-package com.luisenrique.sportshub.data.repository
+package com.luisenrique.sportshub.data.repositoryimpl
 
 import com.luisenrique.sportshub.data.local.dao.FavoriteTeamDao
 import com.luisenrique.sportshub.data.local.mapper.toDomain
 import com.luisenrique.sportshub.data.local.mapper.toEntity
 import com.luisenrique.sportshub.domain.model.FavoriteTeam
 import com.luisenrique.sportshub.domain.repository.FavoriteTeamRepository
-import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
 class FavoriteTeamRepositoryImpl @Inject constructor(
     private val favoriteTeamDao: FavoriteTeamDao

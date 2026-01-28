@@ -18,7 +18,6 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
-import javax.inject.Provider
 import javax.inject.Singleton
 
 @Module
@@ -28,33 +27,26 @@ object AppModule {
     @Provides
     @Singleton
     fun provideDb(
-        @ApplicationContext context: Context,
-        callback: AppDatabaseCallback
+        @ApplicationContext context: Context
     ): SportsHubDatabase {
-        return Room.databaseBuilder(
+
+        lateinit var instance: SportsHubDatabase
+
+        instance = Room.databaseBuilder(
             context,
             SportsHubDatabase::class.java,
             "sportshub.db"
         )
-            .addCallback(callback)
+            .addCallback(
+                AppDatabaseCallback(
+                    scope = CoroutineScope(SupervisorJob() + Dispatchers.IO),
+                    dbProvider = { instance }
+                )
+            )
             .build()
-    }
 
-    @Provides
-    @Singleton
-    fun provideAppDatabaseCallback(
-        scope: CoroutineScope,
-        dbProvider: Provider<SportsHubDatabase>
-    ): AppDatabaseCallback {
-        return AppDatabaseCallback(scope, dbProvider)
+        return instance
     }
-
-    @Provides
-    @Singleton
-    fun provideCoroutineScope(): CoroutineScope {
-        return CoroutineScope(SupervisorJob() + Dispatchers.IO)
-    }
-
     @Provides
     fun provideLeagueDao(db: SportsHubDatabase): LeagueDao = db.leagueDao()
 

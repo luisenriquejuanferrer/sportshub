@@ -1,4 +1,4 @@
-package com.luisenrique.sportshub.data.repository
+package com.luisenrique.sportshub.data.repositoryimpl
 
 import com.luisenrique.sportshub.data.local.dao.LeagueDao
 import com.luisenrique.sportshub.data.local.mapper.toDomain

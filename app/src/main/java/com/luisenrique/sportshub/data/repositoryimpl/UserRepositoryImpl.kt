@@ -2,7 +2,6 @@ package com.luisenrique.sportshub.data.repositoryimpl
 
 import com.luisenrique.sportshub.data.local.dao.UserDao
 import com.luisenrique.sportshub.data.local.mapper.toDomain
-import com.luisenrique.sportshub.data.local.mapper.toEntity
 import com.luisenrique.sportshub.domain.model.User
 import com.luisenrique.sportshub.domain.repository.UserRepository
 import kotlinx.coroutines.flow.Flow

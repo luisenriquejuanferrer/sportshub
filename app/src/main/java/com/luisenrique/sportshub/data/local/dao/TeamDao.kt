@@ -13,6 +13,9 @@ interface TeamDao {
     fun observeTeams(): Flow<List<TeamEntity>>
 
     @Query("SELECT * FROM teams WHERE id = :id LIMIT 1")
+    fun observeTeam(id: String): Flow<TeamEntity?>
+
+    @Query("SELECT * FROM teams WHERE id = :id LIMIT 1")
     suspend fun getTeam(id: String): TeamEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

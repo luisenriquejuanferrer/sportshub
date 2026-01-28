@@ -23,11 +23,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.luisenrique.sportshub.R
 import com.luisenrique.sportshub.domain.model.Match
-import com.luisenrique.sportshub.domain.model.Partido
-import com.luisenrique.sportshub.ui.navigation.Routes
 import com.luisenrique.sportshub.ui.utils.formatUtcDate
 
 @RequiresApi(Build.VERSION_CODES.O)
