@@ -12,6 +12,12 @@ interface PlayerDao {
     @Query("SELECT * FROM player ORDER BY id DESC")
     fun observePlayers(): Flow<List<PlayerEntity>>
 
+    @Query("SELECT * FROM player WHERE teamId = :teamId ORDER BY name ASC")
+    fun observePlayersByTeam(teamId: String): Flow<List<PlayerEntity>>
+
+    @Query("SELECT * FROM player WHERE id = :id LIMIT 1")
+    fun observePlayer(id: String): Flow<PlayerEntity?>
+
     @Query("SELECT * FROM player WHERE id = :id LIMIT 1")
     suspend fun getPlayer(id: String): PlayerEntity?
 
