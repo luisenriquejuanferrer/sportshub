@@ -104,7 +104,14 @@ object SampleData {
                 name = "Jugador RM 1",
                 position = "GK",
                 number = 1,
-                nationality = "ES"
+                nationality = "ES",
+                foot = "Diestro",
+                height = 180,
+                weight = 60,
+                goals = 5,
+                assists = 10,
+                games = 20,
+                age = 25
             ),
             PlayerEntity(
                 id = "p_rm_2",
@@ -112,7 +119,14 @@ object SampleData {
                 name = "Jugador RM 2",
                 position = "DF",
                 number = 4,
-                nationality = "ES"
+                nationality = "ES",
+                foot = "Diestro",
+                height = 180,
+                weight = 80,
+                goals = 10,
+                assists = 5,
+                games = 30,
+                age = 25
             ),
 
             PlayerEntity(
@@ -121,7 +135,14 @@ object SampleData {
                 name = "Jugador FCB 1",
                 position = "FW",
                 number = 9,
-                nationality = "AR"
+                nationality = "AR",
+                foot = "Zurdo",
+                height = 175,
+                weight = 7,
+                goals = 5,
+                assists = 10,
+                games = 20,
+                age = 27
             ),
             PlayerEntity(
                 id = "p_fcb_2",
@@ -129,7 +150,14 @@ object SampleData {
                 name = "Jugador FCB 2",
                 position = "MF",
                 number = 8,
-                nationality = "ES"
+                nationality = "ES",
+                foot = "Diestro",
+                height = 180,
+                weight = 80,
+                goals = 10,
+                assists = 5,
+                games = 30,
+                age = 18
             ),
 
             PlayerEntity(
@@ -138,7 +166,14 @@ object SampleData {
                 name = "Jugador VAL 1",
                 position = "DF",
                 number = 3,
-                nationality = "ES"
+                nationality = "ES",
+                foot = "Diestro",
+                height = 180,
+                weight = 80,
+                goals = 10,
+                assists = 5,
+                games = 30,
+                age = 19
             ),
 
             PlayerEntity(
@@ -147,7 +182,14 @@ object SampleData {
                 name = "Jugador ARS 1",
                 position = "FW",
                 number = 11,
-                nationality = "GB"
+                nationality = "GB",
+                foot = "Zurdo",
+                height = 169,
+                weight = 65,
+                goals = 5,
+                assists = 10,
+                games = 20,
+                age = 25
             ),
             PlayerEntity(
                 id = "p_mci_1",
@@ -155,9 +197,19 @@ object SampleData {
                 name = "Jugador MCI 1",
                 position = "MF",
                 number = 17,
-                nationality = "BE"
+                nationality = "BE",
+                foot = "Diestro",
+                height = 180,
+                weight = 80,
+                goals = 0,
+                assists = 0,
+                games = 0,
+                age = 25
+            ),
+
             )
-        )
+
+
         // 5) Matches (leagueId + homeTeamId/awayTeamId deben existir)
         val matches = listOf(
             MatchEntity(
@@ -248,8 +300,8 @@ object SampleData {
         // 7) User
         val user = UserEntity(
             id = "u1",
-            fullName = "Nombre Apellido",
-            username = "nombreusuario",
+            fullName = "Luis Abad",
+            userName = "luisita",
             email = "user@mail.com",
             memberSince = "2024-03-12",
             verified = true
