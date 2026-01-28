@@ -16,8 +16,14 @@ class PlayerRepositoryImpl @Inject constructor(
         playerDao.observePlayers()
             .map { list -> list.map { it.toDomain() } }
 
+    override fun observePlayersByTeam(teamId: String): Flow<List<Player>> =
+        playerDao.observePlayersByTeam(teamId)
+            .map { list -> list.map { it.toDomain() } }
+
+    override fun observePlayer(id: String): Flow<Player?> =
+        playerDao.observePlayer(id).map { it?.toDomain() }
+
     override suspend fun getPlayer(id: String): Player? =
         playerDao.getPlayer(id)?.toDomain()
 
- }
-
+}

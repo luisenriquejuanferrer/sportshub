@@ -14,6 +14,9 @@ class TeamRepositoryImpl @Inject constructor(
     override fun observeTeams() = teamDao.observeTeams()
         .map { list -> list.map { it.toDomain() } }
 
+    override fun observeTeam(id: String) = teamDao.observeTeam(id)
+        .map { it?.toDomain() }
+
     override suspend fun getTeam(id: String) : Team? =
         teamDao.getTeam(id)?.toDomain()
 
