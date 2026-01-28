@@ -1,4 +1,4 @@
-package com.ieschabas.sportshub.ui.screens
+package com.luisenrique.sportshub.ui.screens.player
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -15,9 +15,11 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -25,25 +27,35 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.luisenrique.sportshub.domain.model.Jugador
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
 
 @Composable
 fun PlayerDetailsScreen(
-    modifier: Modifier,
-    jugador: Jugador = Jugador(1, "Marcos Pérez", "Delantero")
+    modifier: Modifier = Modifier,
+    navController: NavController, // Added NavController for future use
+    viewModel: PlayerViewModel = hiltViewModel()
 ) {
+    val player by viewModel.player.collectAsStateWithLifecycle()
+
+    if (player == null) {
+        Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            CircularProgressIndicator()
+        }
+        return
+    }
+
     Column(
         modifier = modifier
             .fillMaxSize()
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-
             Box(
                 modifier = Modifier
                     .size(100.dp)
@@ -61,20 +73,19 @@ fun PlayerDetailsScreen(
 
             Spacer(modifier = Modifier.width(16.dp))
 
-            // Nombre y datos principales
             Column {
                 Text(
-                    text = jugador.nombre,
+                    text = player!!.name,
                     fontSize = 22.sp,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "Dorsal ${jugador.dorsal}",
+                    text = "Dorsal ${player!!.number}",
                     fontSize = 16.sp,
                     color = Color(0xFF37474F)
                 )
                 Text(
-                    text = jugador.posicion,
+                    text = player!!.position,
                     fontSize = 16.sp,
                     color = Color.Gray
                 )
@@ -83,188 +94,72 @@ fun PlayerDetailsScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-
+        // Estadísticas
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceAround
         ) {
-
-            Box(
-                modifier = Modifier
-                    .width(100.dp)
-                    .height(60.dp)
-                    .background(
-                        color = Color(0xFFBAFFBA),
-                        shape = RoundedCornerShape(8.dp)
-                    ),
-                contentAlignment = Alignment.Center
-            ) {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        text = "5",
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color(0xFF4CAF50)
-                    )
-                    Text(
-                        text = "Goles",
-                        fontSize = 12.sp,
-                        color = Color.Gray
-                    )
-                }
-            }
-
-
-            Box(
-                modifier = Modifier
-                    .width(100.dp)
-                    .height(60.dp)
-                    .background(
-                        color = Color(0xFFA4F7FC),
-                        shape = RoundedCornerShape(8.dp)
-                    ),
-                contentAlignment = Alignment.Center
-            ) {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        text = "3",
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color(0xFF2196F3)
-                    )
-                    Text(
-                        text = "Asistencias",
-                        fontSize = 12.sp,
-                        color = Color.Gray
-                    )
-                }
-            }
-
-
-            Box(
-                modifier = Modifier
-                    .width(100.dp)
-                    .height(60.dp)
-                    .background(
-                        color = Color(0xFFFCE0A4),
-                        shape = RoundedCornerShape(8.dp)
-                    ),
-                contentAlignment = Alignment.Center
-            ) {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        text = "8",
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color(0xFFFF9800)
-                    )
-                    Text(
-                        text = "Partidos",
-                        fontSize = 12.sp,
-                        color = Color.Gray
-                    )
-                }
-            }
+            StatBox(value = player!!.goals.toString(), label = "Goles", color = Color(0xFF4CAF50))
+            StatBox(value = player!!.assists.toString(), label = "Asistencias", color = Color(0xFF2196F3))
+            StatBox(value = player!!.games.toString(), label = "Partidos", color = Color(0xFFFF9800))
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        // Datos personales
+        DetailRow(label = "Altura:", value = "${player!!.height} cm")
+        DetailRow(label = "Peso:", value = "${player!!.weight} kg")
+        DetailRow(label = "Edad:", value = player!!.age.toString())
+        DetailRow(label = "Pie:", value = player!!.foot.orEmpty())
+        DetailRow(label = "Nacionalidad:", value = player!!.nationality.orEmpty())
+    }
+}
 
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
+@Composable
+fun StatBox(value: String, label: String, color: Color) {
+    Box(
+        modifier = Modifier
+            .width(100.dp)
+            .height(60.dp)
+            .background(
+                color = color.copy(alpha = 0.2f),
+                shape = RoundedCornerShape(8.dp)
+            ),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
-                text = "Altura:",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Medium,
-                color = Color.Gray
-            )
-            Text(
-                text = "178 cm",
-                fontSize = 16.sp,
+                text = value,
+                fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.Black
+                color = color
             )
-        }
-
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
             Text(
-                text = "Peso:",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Medium,
+                text = label,
+                fontSize = 12.sp,
                 color = Color.Gray
-            )
-            Text(
-                text = "72 kg",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black
-            )
-        }
-
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Text(
-                text = "Edad:",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Medium,
-                color = Color.Gray
-            )
-            Text(
-                text = "17 años",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black
-            )
-        }
-
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Text(
-                text = "Pie:",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Medium,
-                color = Color.Gray
-            )
-            Text(
-                text = "Diestro",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black
-            )
-        }
-
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Text(
-                text = "Nacionalidad:",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Medium,
-                color = Color.Gray
-            )
-            Text(
-                text = "Peruana",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black
             )
         }
     }
 }
 
+@Composable
+private fun DetailRow(label: String, value: String) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text(
+            text = label,
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Medium,
+            color = Color.Gray
+        )
+        Text(
+            text = value,
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.Black
+        )
+    }
+}
