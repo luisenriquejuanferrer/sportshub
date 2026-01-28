@@ -1,4 +1,4 @@
-package com.luisenrique.sportshub.ui.screens
+package com.luisenrique.sportshub.ui.screens.team
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -14,32 +14,26 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
-import com.luisenrique.sportshub.domain.model.Equipo
-import com.luisenrique.sportshub.domain.model.Player
+import com.luisenrique.sportshub.domain.model.Team
 import com.luisenrique.sportshub.ui.navigation.Routes
 
 @Composable
 fun TeamsListScreen(
     modifier: Modifier,
-    navController: NavController
+    navController: NavController,
+    viewModel: TeamViewModel = hiltViewModel()
 ) {
-
-    val equipo = listOf(
-        Equipo("Equipo 1", "-", "-"),
-        Equipo("Equipo 2", "-", "-"),
-        Equipo("Equipo 3", "-", "-"),
-        Equipo("Equipo 4", "-", "-"),
-        Equipo("Equipo 5", "-", "-"),
-        Equipo("Equipo 6", "-", "-"),
-        Equipo("Equipo 7", "-", "-"),
-    )
+    val teams by viewModel.teams.collectAsStateWithLifecycle()
 
     LazyColumn(
         modifier = modifier
@@ -47,7 +41,7 @@ fun TeamsListScreen(
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        items(equipo) { equipo ->
+        items(teams) { team ->
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -57,21 +51,17 @@ fun TeamsListScreen(
                         shape = RoundedCornerShape(12.dp)
                     )
                     .padding(16.dp)
-                    .clickable { navController.navigate(Routes.TeamDetail) },
+                    .clickable { navController.navigate(Routes.TeamDetail + "/${team.id}") }, // Corrected navigation
                 contentAlignment = Alignment.TopStart
             ) {
                 Column {
                     Text(
-                        text = equipo.nombre,
+                        text = team.name,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold
                     )
                     Text(
-                        text = "Ciudad: ${equipo.ciudad}",
-                        fontSize = 14.sp
-                    )
-                    Text(
-                        text = "IES: ${equipo.ies}",
+                        text = "Ciudad: ${team.city}",
                         fontSize = 14.sp
                     )
                 }
@@ -79,4 +69,3 @@ fun TeamsListScreen(
         }
     }
 }
-
