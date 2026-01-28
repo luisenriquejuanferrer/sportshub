@@ -18,7 +18,8 @@ fun PlayerEntity.toDomain(): Player =
         weight = weight,
         goals = goals,
         assists = assists,
-        games = games
+        games = games,
+        age = age
     )
 
 fun Player.toEntity(): PlayerEntity =
@@ -34,5 +35,7 @@ fun Player.toEntity(): PlayerEntity =
         weight = weight,
         goals = goals,
         assists = assists,
-        games = games
+        games = games,
+        age = age
     )
+
