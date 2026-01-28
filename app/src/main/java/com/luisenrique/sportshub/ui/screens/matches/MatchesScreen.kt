@@ -33,7 +33,7 @@ fun MatchesScreen(
             .fillMaxWidth()
             .padding(16.dp)
     ) {
-        itemsIndexed(matches) { posicion, item ->
+        itemsIndexed(matches) { _, item ->
             MatchItem(
                 partido = item,
                 onClick = { onMatchClick(item.id) })

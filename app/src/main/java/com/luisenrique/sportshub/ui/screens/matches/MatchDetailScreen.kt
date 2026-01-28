@@ -1,4 +1,4 @@
-package com.luisenrique.sportshub.ui.screens
+package com.luisenrique.sportshub.ui.screens.matches
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -26,12 +26,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.luisenrique.sportshub.R
-import com.luisenrique.sportshub.domain.model.PartidoDetalle
 import com.luisenrique.sportshub.ui.components.MyImage
 import com.luisenrique.sportshub.ui.components.MyText
-import com.luisenrique.sportshub.ui.screens.matches.MatchDetailViewModel
 import com.luisenrique.sportshub.ui.utils.formatUtcDate
 
 @RequiresApi(Build.VERSION_CODES.O)

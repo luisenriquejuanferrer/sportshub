@@ -5,8 +5,6 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -17,10 +15,10 @@ import com.ieschabas.sportshub.ui.screens.PlayerDetailsScreen
 import com.ieschabas.sportshub.ui.screens.TeamDetailScreen
 import com.luisenrique.sportshub.ui.navigation.Routes
 import com.luisenrique.sportshub.ui.screens.classification.ClasificationScreen
-import com.luisenrique.sportshub.ui.screens.LeagueDetailScreen
+import com.luisenrique.sportshub.ui.screens.leagues.LeagueDetailScreen
 import com.luisenrique.sportshub.ui.screens.leagues.LeagueListScreen
 import com.luisenrique.sportshub.ui.screens.LoginRegisterScreen
-import com.luisenrique.sportshub.ui.screens.MatchDetailScreen
+import com.luisenrique.sportshub.ui.screens.matches.MatchDetailScreen
 import com.luisenrique.sportshub.ui.screens.matches.MatchesScreen
 import com.luisenrique.sportshub.ui.screens.ProfileScreen
 import com.luisenrique.sportshub.ui.screens.RegisterScreen
