@@ -5,5 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface TeamRepository {
     fun observeTeams(): Flow<List<Team>>
+    fun observeTeam(id: String): Flow<Team?>
     suspend fun getTeam(id: String): Team?
 }
