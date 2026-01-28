@@ -1,5 +1,3 @@
-package com.luisenrique.sportshub.data.repositoryimpl
-
 import com.luisenrique.sportshub.data.local.dao.TeamDao
 import com.luisenrique.sportshub.data.local.mapper.toDomain
 import com.luisenrique.sportshub.domain.model.Team
@@ -11,14 +9,14 @@ class TeamRepositoryImpl @Inject constructor(
     private val teamDao: TeamDao
 ) : TeamRepository {
 
-    override fun observeTeams() = teamDao.observeTeams()
-        .map { list -> list.map { it.toDomain() } }
 
     override fun observeTeam(id: String) = teamDao.observeTeam(id)
         .map { it?.toDomain() }
+    override fun observeTeams(): Flow<List<Team>> =
+        teamDao.observeTeams().map { list ->
+            list.map { it.toDomain() }
+        }
 
     override suspend fun getTeam(id: String) : Team? =
         teamDao.getTeam(id)?.toDomain()
-
 }
-

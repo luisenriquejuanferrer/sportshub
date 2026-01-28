@@ -9,15 +9,12 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TeamDao {
-    @Query("SELECT * FROM team ORDER BY id DESC")
+    @Query("SELECT * FROM teams")
     fun observeTeams(): Flow<List<TeamEntity>>
 
-    @Query("SELECT * FROM team WHERE id = :id LIMIT 1")
-    fun observeTeam(id: String): Flow<TeamEntity?>
-
-    @Query("SELECT * FROM team WHERE id = :id LIMIT 1")
+    @Query("SELECT * FROM teams WHERE id = :id LIMIT 1")
     suspend fun getTeam(id: String): TeamEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun upsertAll(items: List<TeamEntity>)
+    suspend fun upsertAll(teams: List<TeamEntity>)
 }

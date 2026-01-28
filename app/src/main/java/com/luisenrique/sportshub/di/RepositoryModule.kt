@@ -1,48 +1,53 @@
 package com.luisenrique.sportshub.di
 
+import com.luisenrique.sportshub.data.repository.ClassificationRepositoryImpl
+import com.luisenrique.sportshub.data.repository.ClubRepositoryImpl
+import com.luisenrique.sportshub.data.repository.FavoriteTeamRepositoryImpl
 import com.luisenrique.sportshub.data.repository.LeagueRepositoryImpl
-import com.luisenrique.sportshub.data.repositoryimpl.ClassificationRepositoryImpl
-import com.luisenrique.sportshub.data.repositoryimpl.MatchRepositoryImpl
-import com.luisenrique.sportshub.data.repositoryimpl.PlayerRepositoryImpl
-import com.luisenrique.sportshub.data.repositoryimpl.TeamRepositoryImpl
-import com.luisenrique.sportshub.data.repositoryimpl.UserRepositoryImpl
+import com.luisenrique.sportshub.data.repository.MatchRepositoryImpl
+import com.luisenrique.sportshub.data.repository.TeamRepositoryImpl
 import com.luisenrique.sportshub.domain.repository.ClassificationRepository
+import com.luisenrique.sportshub.domain.repository.ClubRepository
+import com.luisenrique.sportshub.domain.repository.FavoriteTeamRepository
 import com.luisenrique.sportshub.domain.repository.LeagueRepository
 import com.luisenrique.sportshub.domain.repository.MatchRepository
-import com.luisenrique.sportshub.domain.repository.PlayerRepository
 import com.luisenrique.sportshub.domain.repository.TeamRepository
-import com.luisenrique.sportshub.domain.repository.UserRepository
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RepositoryModule {
+abstract class RepositoryModule {
 
-    @Provides
-    @Singleton
-    fun provideTeamRepository(impl: TeamRepositoryImpl): TeamRepository = impl
+    @Binds
+    abstract fun bindClassificationRepository(
+        impl: ClassificationRepositoryImpl
+    ): ClassificationRepository
 
-    @Provides
-    @Singleton
-    fun providePlayerRepository(impl: PlayerRepositoryImpl): PlayerRepository = impl
+    @Binds
+    abstract fun bindMatchRepository(
+        impl: MatchRepositoryImpl
+    ): MatchRepository
 
-    @Provides
-    @Singleton
-    fun provideMatchRepository(impl: MatchRepositoryImpl): MatchRepository = impl
+    @Binds
+    abstract fun bindLeagueRepository(
+        impl: LeagueRepositoryImpl
+    ): LeagueRepository
 
-    @Provides
-    @Singleton
-    fun provideClassificationRepository(impl: ClassificationRepositoryImpl): ClassificationRepository = impl
+    @Binds
+    abstract fun bindFavoriteTeamRepository(
+        impl: FavoriteTeamRepositoryImpl
+    ): FavoriteTeamRepository
 
-    @Provides
-    @Singleton
-    fun provideLeagueRepository(impl: LeagueRepositoryImpl): LeagueRepository = impl
+    @Binds
+    abstract fun bindClubRepository(
+        impl: ClubRepositoryImpl
+    ): ClubRepository
 
-    @Provides
-    @Singleton
-    fun provideUserRepository(impl: UserRepositoryImpl): UserRepository = impl
+    @Binds
+    abstract fun bindTeamRepository(
+        impl: TeamRepositoryImpl
+    ): TeamRepository
 }

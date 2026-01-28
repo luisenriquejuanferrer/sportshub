@@ -6,19 +6,28 @@ import com.luisenrique.sportshub.domain.model.Classification
 
 data class TeamWithPlayers(
     @Embedded val team: TeamEntity,
-    @Relation(parentColumn = "id", entityColumn = "teamId")
+    @Relation(
+        parentColumn = "id",
+        entityColumn = "teamId"
+    )
     val players: List<PlayerEntity>
 )
 
 data class LeagueWithTeams(
     @Embedded val league: LeagueEntity,
-    @Relation(parentColumn = "id", entityColumn = "leagueId")
+    @Relation(
+        parentColumn = "id",
+        entityColumn = "leagueId"
+    )
     val teams: List<TeamEntity>
 )
 
 data class ClubWithTeams(
     @Embedded val club: ClubEntity,
-    @Relation(parentColumn = "id", entityColumn = "clubId")
+    @Relation(
+        parentColumn = "id",
+        entityColumn = "clubId"
+    )
     val teams: List<TeamEntity>
 )
 
@@ -34,13 +43,27 @@ data class TeamAndClassification(
 data class ClassificationWithTeamAndClub(
     @Embedded val classification: ClassificationEntity,
     @Relation(
-        parentColumn = "team_id",
+        parentColumn = "teamId",
         entityColumn = "id"
     )
     val team: TeamEntity,
     @Relation(
-        parentColumn = "club_id",
+        parentColumn = "clubId",
         entityColumn = "id"
     )
     val club: ClubEntity
+)
+
+data class MatchWithTeams(
+    @Embedded val match: MatchEntity,
+    @Relation(
+        parentColumn = "homeTeamId",
+        entityColumn = "id"
+    )
+    val homeTeam: TeamEntity,
+    @Relation(
+        parentColumn = "awayTeamId",
+        entityColumn = "id"
+    )
+    val awayTeam: TeamEntity
 )
