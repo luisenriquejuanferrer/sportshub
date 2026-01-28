@@ -8,6 +8,7 @@ data class Player(
     val number: Int?,
     val nationality: String?,
     val foot: String?,
+    val age: Int?,
     val height: Int?,
     val weight: Int?,
     val goals: Int?,
