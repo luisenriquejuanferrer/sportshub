@@ -64,24 +64,33 @@ class MainActivity : ComponentActivity() {
             )
 
 
-            val topBarTitle = when (currentRoute) {
-                Routes.LoginRegister -> "Acceso"
-                Routes.Register -> "Registro de usuario"
-                Routes.Matches -> "Partidos"
-                Routes.MatchDetail -> "Detalle de partido"
-                Routes.Teams -> "Equipos"
-                Routes.Bets -> "Apuesta"
-                Routes.Profile -> "Mi Cuenta"
-                Routes.Leagues -> "Ligas"
-                Routes.LeagueDetail -> "Detalle de liga"
-                Routes.Clasification -> "Clasificación"
-                Routes.TeamDetail -> "Detalle de equipo"
-                Routes.PlayerDetail -> "Detalle de jugador"
-                else -> "Sports Hub - IES Chabàs"
+            // ... (código anterior)
+
+            // CAMBIAMOS EL 'when' PARA QUE SEA MÁS ROBUSTO
+            val topBarTitle = remember(currentRoute) { // Usamos remember para eficiencia
+                when {
+                    currentRoute?.startsWith(Routes.LoginRegister) == true -> "Acceso"
+                    currentRoute?.startsWith(Routes.Register) == true -> "Registro de usuario"
+                    currentRoute?.startsWith(Routes.Matches) == true -> "Partidos"
+                    currentRoute?.startsWith(Routes.MatchDetail) == true -> "Detalle de partido"
+                    currentRoute?.startsWith(Routes.Teams) == true -> "Equipos"
+                    currentRoute?.startsWith(Routes.Bets) == true -> "Apuesta"
+                    currentRoute?.startsWith(Routes.Profile) == true -> "Mi Cuenta"
+                    currentRoute?.startsWith(Routes.Leagues) == true -> "Ligas"
+                    currentRoute?.startsWith(Routes.LeagueDetail) == true -> "Detalle de liga"
+                    currentRoute?.startsWith(Routes.Clasification) == true -> "Clasificación"
+                    currentRoute?.startsWith(Routes.TeamDetail) == true -> "Detalle de equipo" // <-- ESTA LÍNEA AHORA FUNCIONARÁ
+                    currentRoute?.startsWith(Routes.PlayerDetail) == true -> "Detalle de jugador"
+                    else -> "Sports Hub - IES Chabàs"
+                }
             }
 
-            val showFullUI = currentRoute in routesWithFullTopBar
-            val showSimpleTopBar = currentRoute in routesWithSimpleTopBar
+
+            val showFullUI = routesWithFullTopBar.any { currentRoute?.startsWith(it) == true }
+            val showSimpleTopBar = routesWithSimpleTopBar.any { currentRoute?.startsWith(it) == true }
+
+// ... (el resto del código sigue igual)
+
 
             var currentScreen by remember { mutableStateOf("Inicio") }
 
