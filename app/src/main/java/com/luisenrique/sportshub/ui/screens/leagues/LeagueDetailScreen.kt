@@ -1,4 +1,4 @@
-package com.luisenrique.sportshub.ui.screens
+package com.luisenrique.sportshub.ui.screens.leagues
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer

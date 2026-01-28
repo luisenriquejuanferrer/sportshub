@@ -12,5 +12,9 @@ data class MatchEntity(
     val awayTeamId: String,
     val homeScore: Int?,
     val awayScore: Int?,
+    val homeTeamPosession: Int?,
+    val awayTeamPosession: Int?,
+    val homeTeamKicks: Int?,
+    val awayTeamKicks: Int?,
     val status: String
 )
