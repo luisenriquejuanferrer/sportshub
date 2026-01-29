@@ -58,7 +58,8 @@ object SampleData {
                 city = "Madrid",
                 founded = 1902,
                 crestUrl = null,
-                stadium = "Bernabéu"
+                stadium = "Bernabéu",
+                entrenador = "Alvaro Arbeloa"
             ),
             TeamEntity(
                 id = "team_fcb",
@@ -68,7 +69,8 @@ object SampleData {
                 city = "Barcelona",
                 founded = 1899,
                 crestUrl = null,
-                stadium = "Spotify Camp Nou"
+                stadium = "Spotify Camp Nou",
+                entrenador = "Hansi Flick"
             ),
             TeamEntity(
                 id = "team_val",
@@ -78,7 +80,8 @@ object SampleData {
                 city = "Valencia",
                 founded = 1919,
                 crestUrl = null,
-                stadium = "Mestalla"
+                stadium = "Mestalla",
+                entrenador = "Christian Abad"
             ),
             TeamEntity(
                 id = "team_ars",
@@ -88,7 +91,8 @@ object SampleData {
                 city = "London",
                 founded = 1886,
                 crestUrl = null,
-                stadium = "Emirates Stadium"
+                stadium = "Emirates Stadium",
+                entrenador = "Mikel Merino"
             ),
             TeamEntity(
                 id = "team_mci",
@@ -98,7 +102,8 @@ object SampleData {
                 city = "Manchester",
                 founded = 1880,
                 crestUrl = null,
-                stadium = "Etihad Stadium"
+                stadium = "Etihad Stadium",
+                entrenador = "Pep Guardiola"
             )
         )
         // 4) Players (teamId debe existir)

@@ -12,7 +12,8 @@ fun TeamEntity.toDomain(): Team =
         city = city,
         founded = founded,
         crestUrl = crestUrl,
-        stadium = stadium
+        stadium = stadium,
+        entrenador = entrenador
     )
 
 fun Team.toEntity(): TeamEntity =
@@ -24,5 +25,6 @@ fun Team.toEntity(): TeamEntity =
         city = city,
         founded = founded,
         crestUrl = crestUrl,
-        stadium = stadium
+        stadium = stadium,
+        entrenador = entrenador
     )

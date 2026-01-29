@@ -18,8 +18,6 @@ class MatchDetailViewModel @Inject constructor(
     private val repository: MatchRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-
-    // Recuperamos el ID automáticamente de los argumentos de navegación
     private val matchId: String = checkNotNull(savedStateHandle[Routes.MatchDetailArg])
 
     private val _state = MutableStateFlow<Match?>(null)

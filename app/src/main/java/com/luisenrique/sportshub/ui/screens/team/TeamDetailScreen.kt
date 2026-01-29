@@ -112,8 +112,7 @@ fun TeamDetailScreen(
                                 ) {
                                     Icon(Icons.Filled.Person, contentDescription = "Entrenador", tint = Color.White)
                                     Spacer(modifier = Modifier.width(4.dp))
-                                    // TODO: Añadir el entrenador al modelo de datos del equipo
-                                    Text(text = "Entrenador: A. Ortega", fontSize = 14.sp, color = Color.White)
+                                    Text(text = "Entrenador: ${team!!.entrenador}", fontSize = 14.sp, color = Color.White)
                                 }
                                 Row(
                                     modifier = Modifier.padding(top = 8.dp),

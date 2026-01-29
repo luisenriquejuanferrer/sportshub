@@ -8,5 +8,6 @@ data class Team(
     val city: String,
     val founded: Int?,
     val crestUrl: String?,
-    val stadium: String
+    val stadium: String,
+    val entrenador: String
 )

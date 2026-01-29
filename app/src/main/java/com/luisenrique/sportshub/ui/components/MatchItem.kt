@@ -41,6 +41,7 @@ fun MatchItem(
     ) {
         Column {
             MyText(text = formatUtcDate(partido.dateUtc))
+            MyText(text = partido.status)
             Spacer(Modifier.padding(vertical = 8.dp))
             Row {
                 MyImage(

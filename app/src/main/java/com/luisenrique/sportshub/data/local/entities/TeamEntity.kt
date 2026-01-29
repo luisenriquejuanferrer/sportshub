@@ -12,5 +12,6 @@ data class TeamEntity(
     val city: String,
     val stadium: String,
     val founded: Int?,
-    val crestUrl: String?
+    val crestUrl: String?,
+    val entrenador: String
 )
