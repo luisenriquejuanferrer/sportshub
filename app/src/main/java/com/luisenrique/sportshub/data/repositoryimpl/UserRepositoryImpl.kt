@@ -2,6 +2,7 @@ package com.luisenrique.sportshub.data.repositoryimpl
 
 import com.luisenrique.sportshub.data.local.dao.UserDao
 import com.luisenrique.sportshub.data.local.mapper.toDomain
+import com.luisenrique.sportshub.data.local.mapper.toEntity
 import com.luisenrique.sportshub.domain.model.User
 import com.luisenrique.sportshub.domain.repository.UserRepository
 import kotlinx.coroutines.flow.Flow
@@ -13,11 +14,12 @@ class UserRepositoryImpl @Inject constructor(
 ) : UserRepository {
     override fun observeUsers(): Flow<List<User>> =
         userDao.observeUsers()
-            .map { list -> list.map { it.toDomain() }  }
+            .map { list -> list.map { it.toDomain() } }
 
     override suspend fun getUser(id: String): User? =
         userDao.getUser(id)?.toDomain()
 
-
-
+    override suspend fun registerUser(user: User) {
+        userDao.upsert(user.toEntity())
+    }
 }

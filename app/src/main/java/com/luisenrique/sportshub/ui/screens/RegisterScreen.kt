@@ -11,6 +11,9 @@ import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.RadioButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -20,6 +23,7 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.luisenrique.sportshub.R
 import com.luisenrique.sportshub.ui.components.MyButton
@@ -29,9 +33,20 @@ import com.luisenrique.sportshub.ui.components.MyText
 import com.luisenrique.sportshub.ui.navigation.Routes
 
 @Composable
-fun RegisterScreen(modifier: Modifier, navController: NavController) {
+fun RegisterScreen(
+    modifier: Modifier,
+    navController: NavController,
+    viewModel: RegisterViewModel = hiltViewModel()
+) {
     val sexo = listOf("Masculino", "Femenino", "Otro")
     val (selectedOption, onOptionSelected) = remember { mutableStateOf(sexo[0]) }
+    val uiState by viewModel.uiState.collectAsState()
+
+    if (uiState.registrationSuccess) {
+        LaunchedEffect(Unit) {
+            navController.navigate(Routes.Dashboard)
+        }
+    }
 
     Column(
         modifier = modifier
@@ -40,6 +55,8 @@ fun RegisterScreen(modifier: Modifier, navController: NavController) {
     ) {
         MyText(text = "Usuario", fontSize = 14.sp, fontWeight = FontWeight.Bold)
         MyOutlinedTextField(
+            value = uiState.userName,
+            onValueChange = viewModel::onUserNameChange,
             placeHolder = "",
             modifier = Modifier.fillMaxWidth()
         )
@@ -47,6 +64,8 @@ fun RegisterScreen(modifier: Modifier, navController: NavController) {
         Spacer(Modifier.padding(8.dp))
         MyText(text = "Nombre y apellidos", fontSize = 14.sp, fontWeight = FontWeight.Bold)
         MyOutlinedTextField(
+            value = uiState.fullName,
+            onValueChange = viewModel::onFullNameChange,
             placeHolder = "",
             modifier = Modifier.fillMaxWidth()
         )
@@ -77,6 +96,8 @@ fun RegisterScreen(modifier: Modifier, navController: NavController) {
         Spacer(Modifier.padding(8.dp))
         MyText(text = "Email", fontSize = 14.sp, fontWeight = FontWeight.Bold)
         MyOutlinedTextField(
+            value = uiState.email,
+            onValueChange = viewModel::onEmailChange,
             placeHolder = "",
             modifier = Modifier.fillMaxWidth()
         )
@@ -84,6 +105,8 @@ fun RegisterScreen(modifier: Modifier, navController: NavController) {
         Spacer(Modifier.padding(8.dp))
         MyText(text = "Contraseña", fontSize = 14.sp, fontWeight = FontWeight.Bold)
         MyOutlinedTextField(
+            value = "",
+            onValueChange = {},
             placeHolder = "",
             modifier = Modifier.fillMaxWidth()
         )
@@ -96,7 +119,7 @@ fun RegisterScreen(modifier: Modifier, navController: NavController) {
         Spacer(Modifier.height(8.dp))
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
             MyButton(
-                onClick = { navController.navigate(Routes.Dashboard) },
+                onClick = viewModel::onRegisterClick,
                 enabled = true,
                 colors = ButtonDefaults.buttonColors(
                     containerColor = colorResource(R.color.azul_petroleo)

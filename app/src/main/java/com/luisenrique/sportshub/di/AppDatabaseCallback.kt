@@ -25,7 +25,7 @@ class AppDatabaseCallback(
             database.teamDao().upsertAll(payload.teams)
             database.playerDao().upsertAll(payload.players)
             database.matchDao().upsertAll(payload.matches)
-            database.userDao().upsertAll(payload.user)
+            //database.userDao().upsertAll(payload.user)
             //payload.favorites.forEach { database.userDao().addFavouriteTeam(it) }
         }
     }

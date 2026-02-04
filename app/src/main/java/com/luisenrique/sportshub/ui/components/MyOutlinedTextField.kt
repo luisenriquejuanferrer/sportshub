@@ -8,10 +8,6 @@ import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldColors
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -20,6 +16,8 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun MyOutlinedTextField(
+    value: String,
+    onValueChange: (String) -> Unit,
     placeHolder: String,
     modifier: Modifier = Modifier,
     textStyle: TextStyle = LocalTextStyle.current,
@@ -28,11 +26,9 @@ fun MyOutlinedTextField(
         unfocusedBorderColor = Color.DarkGray
     )
 ) {
-    var text by remember { mutableStateOf("") }
-
     OutlinedTextField(
-        value = text,
-        onValueChange = { text = it },
+        value = value,
+        onValueChange = onValueChange,
         placeholder = {
             Text(
                 text = placeHolder,

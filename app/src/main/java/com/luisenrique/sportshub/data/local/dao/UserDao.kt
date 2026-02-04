@@ -15,5 +15,5 @@ interface UserDao {
     suspend fun getUser(id: String): UserEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun upsertAll(items: UserEntity)
+    suspend fun upsert(user: UserEntity)
 }
