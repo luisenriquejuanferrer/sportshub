@@ -69,6 +69,7 @@ hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", ve
 # --- Firebase ---
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
+firebase-authentication = { module = "com.google.firebase:firebase-auth" }
 
 # --- Testing - Unit & Instrumented ---
 # Unit Tests
