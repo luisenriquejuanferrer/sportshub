@@ -14,6 +14,9 @@ class LeagueRepositoryImpl @Inject constructor(
     override fun observeLeagues(): Flow<List<League>> =
         leagueDao.observeLeagues().map { list -> list.map { it.toDomain() } }
 
+    override fun observeLeague(id: String): Flow<League?> =
+        leagueDao.observeLeague(id).map { it?.toDomain() }
+
     override suspend fun getLeague(id: String): League? =
         leagueDao.getLeague(id)?.toDomain()
 }

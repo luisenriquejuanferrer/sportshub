@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -13,6 +15,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.luisenrique.sportshub.R
 import com.luisenrique.sportshub.ui.components.MyButton
@@ -21,7 +24,13 @@ import com.luisenrique.sportshub.ui.components.MyText
 import com.luisenrique.sportshub.ui.navigation.Routes
 
 @Composable
-fun LeagueDetailScreen(modifier: Modifier, navController: NavController) {
+fun LeagueDetailScreen(
+    modifier: Modifier,
+    navController: NavController,
+    viewModel: LeaguesViewModel = hiltViewModel()
+) {
+    val league by viewModel.league.collectAsState()
+
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -34,8 +43,14 @@ fun LeagueDetailScreen(modifier: Modifier, navController: NavController) {
             alignment = Alignment.Center,
             contentScale = ContentScale.Fit
         )
-        MyText(text = "Liga: LaLiga")
-        MyText(text = "Caracteristicas de la liga (Lorem Ipsum)")
+        league?.let {
+            MyText(text = "Liga: ${it.name}")
+            MyText(text = "País: ${it.country}")
+            MyText(text = "Temporada: ${it.season}")
+        } ?: run {
+            MyText(text = "Cargando...")
+        }
+
         Spacer(Modifier.padding(vertical = 8.dp))
         MyButton(
             onClick = { navController.navigate(Routes.Clasification) },

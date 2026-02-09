@@ -68,7 +68,13 @@ fun SportsHubGraph(modifier: Modifier, navController: NavHostController) {
         composable(route = Routes.Clasification) {
             ClasificationScreen(modifier = modifier, navController = navController)
         }
-        composable(route = Routes.LeagueDetail) {
+        composable(route = Routes.LeagueDetail,
+            arguments = listOf(
+                navArgument(name = Routes.LeagueDetailArg) {
+                    type = NavType.StringType
+                    nullable = false
+                }
+            )) {
             LeagueDetailScreen(modifier = modifier, navController = navController)
         }
         composable(route = Routes.Bets) {
