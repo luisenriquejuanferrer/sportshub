@@ -9,12 +9,14 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class ClassificationRepositoryImpl @Inject constructor(
-    private val classificationDao: ClassificationDao
+    private val dao: ClassificationDao
 ) : ClassificationRepository {
     override fun observeClassifications(): Flow<List<Classification>> =
-        classificationDao.observeClassifications()
-            .map { list -> list.map { it.toDomain() } }
+        dao.observeClassifications().map { list -> list.map { it.toDomain() } }
+
+    override fun observeClassificationForLeague(leagueId: String): Flow<List<Classification>> =
+        dao.observeClassificationForLeague(leagueId).map { list -> list.map { it.toDomain() } }
 
     override suspend fun getClassification(id: String): Classification? =
-        classificationDao.getClassification(id)?.toDomain()
+        dao.getClassification(id)?.toDomain()
 }

@@ -1,4 +1,4 @@
-package com.ieschabas.navigationcompose.navigation
+package com.luisenrique.sportshub.ui.navigation
 
 import BetsScreen
 import ProfileScreen
@@ -11,8 +11,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.ieschabas.sportshub.ui.screens.DashboardScreen
-import com.luisenrique.sportshub.ui.navigation.Routes
+import com.luisenrique.sportshub.ui.screens.DashboardScreen
 import com.luisenrique.sportshub.ui.screens.LoginRegisterScreen
 import com.luisenrique.sportshub.ui.screens.RegisterScreen
 import com.luisenrique.sportshub.ui.screens.classification.ClasificationScreen
@@ -65,7 +64,13 @@ fun SportsHubGraph(modifier: Modifier, navController: NavHostController) {
             )) {
             MatchDetailScreen(modifier = modifier)
         }
-        composable(route = Routes.Clasification) {
+        composable(route = Routes.Clasification,
+            arguments = listOf(
+                navArgument(name = Routes.ClasificationArg) {
+                    type = NavType.StringType
+                    nullable = true
+                }
+            )) {
             ClasificationScreen(modifier = modifier, navController = navController)
         }
         composable(route = Routes.LeagueDetail,

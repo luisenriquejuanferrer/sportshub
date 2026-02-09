@@ -43,24 +43,25 @@ fun LeagueDetailScreen(
             alignment = Alignment.Center,
             contentScale = ContentScale.Fit
         )
-        league?.let {
-            MyText(text = "Liga: ${it.name}")
-            MyText(text = "País: ${it.country}")
-            MyText(text = "Temporada: ${it.season}")
+        league?.let { currentLeague ->
+            MyText(text = "Liga: ${currentLeague.name}")
+            MyText(text = "País: ${currentLeague.country}")
+            MyText(text = "Temporada: ${currentLeague.season}")
+
+            Spacer(Modifier.padding(vertical = 8.dp))
+            MyButton(
+                onClick = { navController.navigate(Routes.createClasificationRoute(currentLeague.id)) },
+                enabled = true,
+                modifier = Modifier,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = colorResource(R.color.azul_petroleo)
+                ),
+                text = "Ver clasificación"
+            )
         } ?: run {
             MyText(text = "Cargando...")
         }
 
-        Spacer(Modifier.padding(vertical = 8.dp))
-        MyButton(
-            onClick = { navController.navigate(Routes.Clasification) },
-            enabled = true,
-            modifier = Modifier,
-            colors = ButtonDefaults.buttonColors(
-                containerColor = colorResource(R.color.azul_petroleo)
-            ),
-            text = "Ver clasificación"
-        )
         MyButton(
             onClick = { navController.navigate(Routes.Matches) },
             enabled = true,

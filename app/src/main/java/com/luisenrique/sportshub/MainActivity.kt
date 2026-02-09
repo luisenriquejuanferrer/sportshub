@@ -23,11 +23,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.ieschabas.navigationcompose.navigation.SportsHubGraph
 import com.luisenrique.sportshub.ui.components.BottomBar
 import com.luisenrique.sportshub.ui.components.MainNavigationDrawer
 import com.luisenrique.sportshub.ui.components.TopBar
 import com.luisenrique.sportshub.ui.navigation.Routes
+import com.luisenrique.sportshub.ui.navigation.SportsHubGraph
 import com.luisenrique.sportshub.ui.theme.SportsHubTheme
 import dagger.hilt.android.AndroidEntryPoint
 

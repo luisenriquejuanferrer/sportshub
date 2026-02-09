@@ -1,4 +1,4 @@
-package com.ieschabas.sportshub.ui.screens
+package com.luisenrique.sportshub.ui.screens
 
 
 import androidx.compose.foundation.layout.Arrangement
@@ -56,7 +56,7 @@ fun DashboardScreen(modifier: Modifier, navController: NavController) {
                 DashboardBox(
                     "Clasificación",
                     Color(0xFFED2600),
-                    onClick = { navController.navigate(Routes.Clasification) })
+                    onClick = { navController.navigate(Routes.ClasificationBase) })
             }
         }
     }
