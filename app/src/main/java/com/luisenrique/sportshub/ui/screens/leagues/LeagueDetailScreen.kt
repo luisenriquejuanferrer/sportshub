@@ -58,18 +58,18 @@ fun LeagueDetailScreen(
                 ),
                 text = "Ver clasificación"
             )
+            MyButton(
+                onClick = { navController.navigate(Routes.createMatchesRoute(currentLeague.id)) },
+                enabled = true,
+                modifier = Modifier,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF625b71)
+                ),
+                text = "Ver partidos"
+            )
         } ?: run {
             MyText(text = "Cargando...")
         }
 
-        MyButton(
-            onClick = { navController.navigate(Routes.Matches) },
-            enabled = true,
-            modifier = Modifier,
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFF625b71)
-            ),
-            text = "Ver partidos"
-        )
     }
 }

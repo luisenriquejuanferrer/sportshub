@@ -53,7 +53,7 @@ fun MainNavigationDrawer(
                     },
                     selected = false,
                     onClick = {
-                        navController.navigate(Routes.Matches)
+                        navController.navigate(Routes.MatchesBase)
                     }
                 )
                 NavigationDrawerItem(

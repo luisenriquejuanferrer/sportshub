@@ -8,7 +8,10 @@ object Routes {
     const val Teams = "teams";
     const val TeamDetail = "teamDetail";
     const val PlayerDetail = "playerDetail"
-    const val Matches = "matches";
+
+    const val MatchesBase = "matches";
+    const val MatchesArg = "leagueId"
+    const val Matches = "$MatchesBase?$MatchesArg={$MatchesArg}"
     const val Bets = "bets"
     const val Profile = "profile";
 
@@ -36,5 +39,9 @@ object Routes {
 
     fun createMatchDetailRoute(matchId: String): String {
         return "$MatchDetailBase/$matchId"
+    }
+
+    fun createMatchesRoute(leagueId: String): String {
+        return "$MatchesBase?$MatchesArg=$leagueId"
     }
 }

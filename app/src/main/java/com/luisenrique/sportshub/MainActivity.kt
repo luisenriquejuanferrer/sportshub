@@ -51,7 +51,7 @@ class MainActivity : ComponentActivity() {
 
             val routesWithFullTopBar = listOf(
                 Routes.Dashboard,
-                Routes.Matches,
+                Routes.MatchesBase,
                 Routes.MatchDetail,
                 Routes.Teams,
                 Routes.Bets,
@@ -71,7 +71,7 @@ class MainActivity : ComponentActivity() {
                 when {
                     currentRoute?.startsWith(Routes.LoginRegister) == true -> "Acceso"
                     currentRoute?.startsWith(Routes.Register) == true -> "Registro de usuario"
-                    currentRoute?.startsWith(Routes.Matches) == true -> "Partidos"
+                    currentRoute?.startsWith(Routes.MatchesBase) == true -> "Partidos"
                     currentRoute?.startsWith(Routes.MatchDetail) == true -> "Detalle de partido"
                     currentRoute?.startsWith(Routes.Teams) == true -> "Equipos"
                     currentRoute?.startsWith(Routes.Bets) == true -> "Apuesta"

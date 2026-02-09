@@ -52,7 +52,7 @@ fun DashboardScreen(modifier: Modifier, navController: NavController) {
                 DashboardBox(
                     "Partidos",
                     Color(0xFF49F527),
-                    onClick = { navController.navigate(Routes.Matches) })
+                    onClick = { navController.navigate(Routes.MatchesBase) })
                 DashboardBox(
                     "Clasificación",
                     Color(0xFFED2600),

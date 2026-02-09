@@ -56,7 +56,7 @@ fun BottomBar(
             selected = selectedItem == "Partidos",
             onClick = {
                 onItemClick("Partidos")
-                navController.navigate(Routes.Matches)
+                navController.navigate(Routes.MatchesBase)
             },
             label = { Text("Partidos", color = Color.White) },
             icon = { Icon(Icons.Filled.Star, contentDescription = "Equipos") },

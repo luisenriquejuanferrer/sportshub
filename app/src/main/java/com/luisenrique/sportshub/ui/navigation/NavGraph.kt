@@ -46,7 +46,14 @@ fun SportsHubGraph(modifier: Modifier, navController: NavHostController) {
         composable(route = Routes.Teams) {
             TeamsListScreen(modifier = modifier, navController = navController)
         }
-        composable(route = Routes.Matches) {
+        composable(
+            route = Routes.Matches,
+            arguments = listOf(
+                navArgument(name = Routes.MatchesArg) {
+                    type = NavType.StringType
+                    nullable = true
+                }
+            )) {
             MatchesScreen(
                 modifier = modifier,
                 navController = navController,
@@ -64,16 +71,18 @@ fun SportsHubGraph(modifier: Modifier, navController: NavHostController) {
             )) {
             MatchDetailScreen(modifier = modifier)
         }
-        composable(route = Routes.Clasification,
+        composable(
+            route = Routes.Clasification,
             arguments = listOf(
                 navArgument(name = Routes.ClasificationArg) {
                     type = NavType.StringType
                     nullable = true
                 }
             )) {
-            ClasificationScreen(modifier = modifier, navController = navController)
+            ClasificationScreen(modifier = modifier)
         }
-        composable(route = Routes.LeagueDetail,
+        composable(
+            route = Routes.LeagueDetail,
             arguments = listOf(
                 navArgument(name = Routes.LeagueDetailArg) {
                     type = NavType.StringType
@@ -93,7 +102,9 @@ fun SportsHubGraph(modifier: Modifier, navController: NavHostController) {
         }
         composable(
             route = Routes.PlayerDetail + "/{playerId}", // Ruta con parametro
-            arguments = listOf(navArgument("playerId") { type = NavType.StringType }) // Definimos el argumento
+            arguments = listOf(navArgument("playerId") {
+                type = NavType.StringType
+            }) // Definimos el argumento
         ) {
             PlayerDetailsScreen(modifier = modifier, navController = navController)
         }
