@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.RadioButton
 import androidx.compose.runtime.Composable
@@ -21,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -44,7 +46,7 @@ fun RegisterScreen(
 
     if (uiState.registrationSuccess) {
         LaunchedEffect(Unit) {
-            navController.navigate(Routes.Dashboard)
+            navController.navigate(Routes.LoginRegister)
         }
     }
 
@@ -105,8 +107,10 @@ fun RegisterScreen(
         Spacer(Modifier.padding(8.dp))
         MyText(text = "Contraseña", fontSize = 14.sp, fontWeight = FontWeight.Bold)
         MyOutlinedTextField(
-            value = "",
-            onValueChange = {},
+            value = uiState.password,
+            onValueChange = {newPassword ->
+                viewModel.onPasswordChange(newPassword)
+                },
             placeHolder = "",
             modifier = Modifier.fillMaxWidth()
         )
