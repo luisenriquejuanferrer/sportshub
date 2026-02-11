@@ -19,7 +19,6 @@ class TeamDetailViewModel @Inject constructor(
     private val playerRepository: PlayerRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-
     private val teamId: String = checkNotNull(savedStateHandle["teamId"])
 
     val team: StateFlow<Team?> =
@@ -37,5 +36,4 @@ class TeamDetailViewModel @Inject constructor(
                 started = SharingStarted.WhileSubscribed(5_000),
                 initialValue = emptyList()
             )
-
 }

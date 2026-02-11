@@ -15,8 +15,6 @@ class ClubRepositoryImpl @Inject constructor(
         clubDao.observeClubs()
             .map { list -> list.map { it.toDomain() } }
 
-
     override suspend fun getClub(id: String): Club? =
         clubDao.getClub(id)?.toDomain()
-
 }

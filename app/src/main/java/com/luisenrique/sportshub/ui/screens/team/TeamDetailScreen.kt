@@ -53,7 +53,6 @@ fun TeamDetailScreen(
     val team by viewModel.team.collectAsStateWithLifecycle()
     val players by viewModel.players.collectAsStateWithLifecycle()
 
-
     Surface(modifier = modifier.fillMaxSize()) {
         if (team == null) {
             Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
@@ -88,7 +87,6 @@ fun TeamDetailScreen(
                                 contentAlignment = Alignment.Center
                             ) {
                                 Image(
-                                    // TODO: Cambiar por la imagen real del equipo cuando esté en el modelo
                                     painter = painterResource(R.drawable.escudo_ies_chabas),
                                     contentDescription = "Escudo ${team!!.name}",
                                     modifier = Modifier.size(80.dp)
@@ -127,7 +125,6 @@ fun TeamDetailScreen(
                     }
                 }
 
-                // --- Fila de Estadísticas ---
                 item {
                     Row(
                         modifier = Modifier
@@ -136,7 +133,6 @@ fun TeamDetailScreen(
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        //  Conectar estos datos al modelo cuando existan
                         Box(
                             modifier = Modifier.weight(1f).height(40.dp).background(color = Color(0xFFF5F5F5), shape = RoundedCornerShape(12.dp)),
                             contentAlignment = Alignment.Center
@@ -156,7 +152,6 @@ fun TeamDetailScreen(
                     }
                 }
 
-                // --- Caja de Detalles ---
                 item {
                     Box(
                         modifier = Modifier
@@ -197,7 +192,6 @@ fun TeamDetailScreen(
                     }
                 }
 
-                // --- Título Plantilla ---
                 item {
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
@@ -209,7 +203,6 @@ fun TeamDetailScreen(
                     Spacer(modifier = Modifier.height(8.dp))
                 }
 
-                // --- Lista de Jugadores ---
                 items(players) { player ->
                     Box(
                         modifier = Modifier

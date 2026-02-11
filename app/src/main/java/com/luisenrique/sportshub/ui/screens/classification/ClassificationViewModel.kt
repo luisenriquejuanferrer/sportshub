@@ -18,7 +18,6 @@ class ClassificationViewModel @Inject constructor(
     repository: ClassificationRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-
     val classifications: StateFlow<List<Classification>> =
         savedStateHandle.getStateFlow<String?>(Routes.ClasificationArg, null)
             .flatMapLatest { leagueId ->

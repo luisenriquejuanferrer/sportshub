@@ -66,7 +66,6 @@ fun MatchDetailScreen(
                     .clip(CircleShape),
                 contentScale = ContentScale.Crop
             )
-
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 MyText(
                     text = "${match?.homeScore ?: "0"} - ${match?.awayScore ?: "0"}",
@@ -79,7 +78,6 @@ fun MatchDetailScreen(
                     textAlign = TextAlign.Center
                 )
             }
-
             MyImage(
                 painter = painterResource(R.drawable.escudo_maria_ivars),
                 contentDescription = "Escudo visitante",
@@ -89,11 +87,9 @@ fun MatchDetailScreen(
                 contentScale = ContentScale.Crop
             )
         }
-
         Spacer(Modifier.height(16.dp))
 
         MyText("Fecha: ${formatUtcDate(match?.dateUtc)}", fontSize = 16.sp)
-
         Spacer(Modifier.height(24.dp))
 
         MyText("Estadio: ${match?.homeTeam?.stadium}", fontSize = 16.sp)
@@ -101,7 +97,6 @@ fun MatchDetailScreen(
         Spacer(Modifier.height(24.dp))
 
         MyText("Estadísticas", fontSize = 20.sp)
-
         Spacer(Modifier.height(8.dp))
 
         Row(
@@ -127,7 +122,6 @@ fun MatchDetailScreen(
             MyText("Tiros", fontSize = 16.sp)
             MyText("${match?.awayTeamKicks ?: "0"}", fontSize = 16.sp)
         }
-
         Spacer(Modifier.height(24.dp))
     }
 }

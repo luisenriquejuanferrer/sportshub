@@ -28,7 +28,7 @@ fun DashboardScreen(modifier: Modifier, navController: NavController) {
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(30.dp)
-            ) {
+        ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,

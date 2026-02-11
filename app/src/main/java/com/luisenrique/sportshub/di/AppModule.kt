@@ -23,13 +23,11 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
     @Provides
     @Singleton
     fun provideDb(
         @ApplicationContext context: Context
     ): SportsHubDatabase {
-
         lateinit var instance: SportsHubDatabase
 
         instance = Room.databaseBuilder(
@@ -44,7 +42,6 @@ object AppModule {
                 )
             )
             .build()
-
         return instance
     }
     @Provides
@@ -67,5 +64,4 @@ object AppModule {
 
     @Provides
     fun provideClassificationDao(db: SportsHubDatabase): ClassificationDao = db.classificationDao()
-
 }

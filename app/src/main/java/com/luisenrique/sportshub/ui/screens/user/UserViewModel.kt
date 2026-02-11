@@ -16,9 +16,9 @@ class UserViewModel @Inject constructor(
 ) : ViewModel() {
     val users: StateFlow<List<User>> =
         repository.observeUsers()
-            .stateIn(viewModelScope,
+            .stateIn(
+                viewModelScope,
                 SharingStarted.WhileSubscribed(5_000),
-                emptyList())
-
-
+                emptyList()
+            )
 }

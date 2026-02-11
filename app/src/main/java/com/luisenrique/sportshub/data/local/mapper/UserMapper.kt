@@ -21,4 +21,4 @@ fun User.toEntity(): UserEntity =
         email = email,
         memberSince = memberSince,
         verified = verified
-        )
+    )

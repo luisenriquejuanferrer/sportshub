@@ -11,7 +11,6 @@ import javax.inject.Inject
 class TeamRepositoryImpl @Inject constructor(
     private val teamDao: TeamDao
 ) : TeamRepository {
-
     override fun observeTeams(): Flow<List<Team>> =
         teamDao.observeTeams().map { list ->
             list.map { it.toDomain() }

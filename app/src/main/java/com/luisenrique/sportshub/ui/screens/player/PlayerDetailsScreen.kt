@@ -29,12 +29,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavController
 
 @Composable
 fun PlayerDetailsScreen(
     modifier: Modifier = Modifier,
-    navController: NavController, // Added NavController for future use
     viewModel: PlayerViewModel = hiltViewModel()
 ) {
     val player by viewModel.player.collectAsStateWithLifecycle()
@@ -70,7 +68,6 @@ fun PlayerDetailsScreen(
                     modifier = Modifier.size(60.dp)
                 )
             }
-
             Spacer(modifier = Modifier.width(16.dp))
 
             Column {
@@ -91,22 +88,26 @@ fun PlayerDetailsScreen(
                 )
             }
         }
-
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Estadísticas
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceAround
         ) {
             StatBox(value = player!!.goals.toString(), label = "Goles", color = Color(0xFF4CAF50))
-            StatBox(value = player!!.assists.toString(), label = "Asistencias", color = Color(0xFF2196F3))
-            StatBox(value = player!!.games.toString(), label = "Partidos", color = Color(0xFFFF9800))
+            StatBox(
+                value = player!!.assists.toString(),
+                label = "Asistencias",
+                color = Color(0xFF2196F3)
+            )
+            StatBox(
+                value = player!!.games.toString(),
+                label = "Partidos",
+                color = Color(0xFFFF9800)
+            )
         }
-
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Datos personales
         DetailRow(label = "Altura:", value = "${player!!.height} cm")
         DetailRow(label = "Peso:", value = "${player!!.weight} kg")
         DetailRow(label = "Edad:", value = player!!.age.toString())

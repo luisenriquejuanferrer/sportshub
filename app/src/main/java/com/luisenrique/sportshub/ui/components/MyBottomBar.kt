@@ -21,10 +21,9 @@ import com.luisenrique.sportshub.ui.navigation.Routes
 fun BottomBar(
     selectedItem: String = "Inicio",
     navController: NavController,
-    onItemClick: (String) -> Unit = {}
+    onItemClick: (String) -> Unit = { }
 ) {
     NavigationBar(containerColor = colorResource(id = R.color.azul_petroleo)) {
-
         NavigationBarItem(
             selected = selectedItem == "Inicio",
             onClick = {
@@ -38,7 +37,6 @@ fun BottomBar(
                 unselectedIconColor = Color.White
             )
         )
-
         NavigationBarItem(
             selected = selectedItem == "Ligas",
             onClick = {
@@ -65,7 +63,6 @@ fun BottomBar(
                 unselectedIconColor = Color.White
             )
         )
-
         NavigationBarItem(
             selected = selectedItem == "Perfil",
             onClick = {
@@ -79,6 +76,5 @@ fun BottomBar(
                 unselectedIconColor = Color.White
             )
         )
-
     }
 }

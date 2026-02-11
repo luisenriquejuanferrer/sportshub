@@ -12,7 +12,6 @@ class AppDatabaseCallback(
     private val scope: CoroutineScope,
     private val dbProvider: () -> SportsHubDatabase
 ) : RoomDatabase.Callback() {
-
     override fun onCreate(db: SupportSQLiteDatabase) {
         super.onCreate(db)
         scope.launch(Dispatchers.IO) {

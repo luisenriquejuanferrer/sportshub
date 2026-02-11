@@ -53,7 +53,8 @@ fun BetsScreen(
             Image(
                 painter = painterResource(id = R.drawable.escudo_ies_chabas),
                 contentDescription = "IES Chabas",
-                modifier = Modifier.size(50.dp)
+                modifier = Modifier
+                    .size(50.dp)
                     .clip(CircleShape),
                 contentScale = ContentScale.Crop
             )
@@ -69,7 +70,8 @@ fun BetsScreen(
             Image(
                 painter = painterResource(id = R.drawable.escudo_maria_ivars),
                 contentDescription = "IES Chabas",
-                modifier = Modifier.size(50.dp)
+                modifier = Modifier
+                    .size(50.dp)
                     .clip(CircleShape),
                 contentScale = ContentScale.Crop
             )
@@ -85,7 +87,7 @@ fun BetsScreen(
 
         OutlinedTextField(
             value = apuesta,
-            onValueChange = {newText -> apuesta = newText },
+            onValueChange = { newText -> apuesta = newText },
             label = { Text("Número de apuesta (€)") },
             enabled = true
         )

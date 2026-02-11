@@ -183,8 +183,7 @@ fun SportsHubGraph(modifier: Modifier, navController: NavHostController) {
                 })
         ) {
             PlayerDetailsScreen(
-                modifier = modifier,
-                navController = navController
+                modifier = modifier
             )
         }
     }

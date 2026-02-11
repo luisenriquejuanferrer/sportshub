@@ -12,7 +12,6 @@ interface FavoriteTeamDao {
     @Query("SELECT * FROM favorites WHERE userId = :userId")
     fun observeFavoritesByUser(userId: String): Flow<List<FavoriteTeamEntity>>
 
-    // Útil para saber si un equipo concreto es favorito y pintar el "corazón" relleno
     @Query("SELECT EXISTS(SELECT 1 FROM favorites WHERE userId = :userId AND teamId = :teamId)")
     fun isFavorite(userId: String, teamId: String): Flow<Boolean>
 

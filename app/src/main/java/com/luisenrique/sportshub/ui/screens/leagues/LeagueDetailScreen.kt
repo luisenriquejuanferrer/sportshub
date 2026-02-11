@@ -70,6 +70,5 @@ fun LeagueDetailScreen(
         } ?: run {
             MyText(text = "Cargando...")
         }
-
     }
 }

@@ -16,7 +16,6 @@ class PlayerViewModel @Inject constructor(
     repository: PlayerRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-
     private val playerId: String = checkNotNull(savedStateHandle["playerId"])
 
     val player: StateFlow<Player?> = repository.observePlayer(playerId)

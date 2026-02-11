@@ -25,5 +25,4 @@ class PlayerRepositoryImpl @Inject constructor(
 
     override suspend fun getPlayer(id: String): Player? =
         playerDao.getPlayer(id)?.toDomain()
-
 }

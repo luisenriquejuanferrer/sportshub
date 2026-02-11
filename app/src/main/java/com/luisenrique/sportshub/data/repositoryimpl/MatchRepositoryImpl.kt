@@ -10,8 +10,7 @@ import javax.inject.Inject
 
 class MatchRepositoryImpl @Inject constructor(
     private val matchDao: MatchDao
-) : MatchRepository { // Added the interface implementation
-
+) : MatchRepository {
     override fun observeMatches(): Flow<List<Match>> =
         matchDao.observeMatches()
             .map { list -> list.map { it.toDomain() } }

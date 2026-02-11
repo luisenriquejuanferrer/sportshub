@@ -14,7 +14,6 @@ import javax.inject.Inject
 class TeamViewModel @Inject constructor(
     repository: TeamRepository
 ) : ViewModel() {
-
     val teams: StateFlow<List<Team>> =
         repository.observeTeams()
             .stateIn(

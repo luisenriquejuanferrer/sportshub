@@ -19,9 +19,17 @@ fun InfoRow(icon: ImageVector, label: String, value: String) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Icon(icon, contentDescription = null)
         Spacer(modifier = Modifier.width(8.dp))
+
         Column {
-            Text(label, fontSize = 12.sp)
-            Text(value, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+            Text(
+                text = label,
+                fontSize = 12.sp
+            )
+            Text(
+                text = value,
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold
+            )
         }
     }
 }
