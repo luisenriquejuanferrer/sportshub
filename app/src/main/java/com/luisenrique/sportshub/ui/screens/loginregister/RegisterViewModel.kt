@@ -1,4 +1,4 @@
-package com.luisenrique.sportshub.ui.screens
+package com.luisenrique.sportshub.ui.screens.loginregister
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

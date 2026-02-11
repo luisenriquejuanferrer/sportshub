@@ -66,7 +66,7 @@ dependencies {
     // Hilt - Dependency Injection
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
-    implementation(libs.hilt.navigation.compose) // Hilt integration for Compose Navigation
+    implementation(libs.hilt.navigation.compose)
 
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
