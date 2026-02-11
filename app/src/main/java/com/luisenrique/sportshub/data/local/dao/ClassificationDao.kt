@@ -16,6 +16,14 @@ interface ClassificationDao {
     fun observeClassifications(): Flow<List<ClassificationWithTeamAndClub>>
 
     @Transaction
+    @Query("""
+        SELECT * FROM classifications 
+        WHERE teamId IN (SELECT id FROM teams WHERE leagueId = :leagueId) 
+        ORDER BY totalPoints DESC
+        """)
+    fun observeClassificationForLeague(leagueId: String): Flow<List<ClassificationWithTeamAndClub>>
+
+    @Transaction
     @Query("SELECT * FROM classifications WHERE id = :id LIMIT 1")
     suspend fun getClassification(id: String): ClassificationWithTeamAndClub?
 

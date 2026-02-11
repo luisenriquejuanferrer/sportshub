@@ -41,7 +41,6 @@ fun ClasificationTeamItem(
             alignment = Alignment.CenterStart,
             contentScale = ContentScale.Fit
         )
-
         MyText(
             text = classification.club.name,
             color = textColor,

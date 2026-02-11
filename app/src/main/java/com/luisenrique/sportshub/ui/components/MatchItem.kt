@@ -43,6 +43,7 @@ fun MatchItem(
             MyText(text = formatUtcDate(partido.dateUtc))
             MyText(text = partido.status)
             Spacer(Modifier.padding(vertical = 8.dp))
+
             Row {
                 MyImage(
                     painter = painterResource(R.drawable.escudo_ies_chabas),
@@ -57,6 +58,7 @@ fun MatchItem(
                 MyText(text = partido.homeTeam.name, fontSize = 24.sp)
             }
             Spacer(Modifier.padding(vertical = 8.dp))
+
             Row {
                 MyImage(
                     painter = painterResource(R.drawable.escudo_maria_ivars),
@@ -72,6 +74,7 @@ fun MatchItem(
             }
         }
         Spacer(modifier = Modifier.weight(1f))
+
         Box(
             modifier = Modifier
                 .border(1.dp, Color.DarkGray, RoundedCornerShape(8.dp))

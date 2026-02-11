@@ -21,7 +21,6 @@ data class SamplePayload(
 )
 
 object SampleData {
-
     fun create(): SamplePayload {
         // 1) Leagues
         val leagues = listOf(
@@ -40,15 +39,32 @@ object SampleData {
                 logoUrl = null
             )
         )
-        // 2) Clubs (ojo: TeamEntity tiene clubId, y ClassificationEntity también tiene clubId)
+
+        // 2) Clubs
         val clubs = listOf(
-            ClubEntity(id = "club_rm", name = "Real Madrid"),
-            ClubEntity(id = "club_fcb", name = "FC Barcelona"),
-            ClubEntity(id = "club_val", name = "Valencia CF"),
-            ClubEntity(id = "club_ars", name = "Arsenal"),
-            ClubEntity(id = "club_mci", name = "Manchester City")
+            ClubEntity(
+                id = "club_rm",
+                name = "Real Madrid"
+            ),
+            ClubEntity(
+                id = "club_fcb",
+                name = "FC Barcelona"
+            ),
+            ClubEntity(
+                id = "club_val",
+                name = "Valencia CF"
+            ),
+            ClubEntity(
+                id = "club_ars",
+                name = "Arsenal"
+            ),
+            ClubEntity(
+                id = "club_mci",
+                name = "Manchester City"
+            )
         )
-        // 3) Teams (id único, leagueId y clubId coherentes)
+
+        // 3) Teams
         val teams = listOf(
             TeamEntity(
                 id = "team_rm",
@@ -106,7 +122,8 @@ object SampleData {
                 entrenador = "Pep Guardiola"
             )
         )
-        // 4) Players (teamId debe existir)
+
+        // 4) Players
         val players = listOf(
             PlayerEntity(
                 id = "p_rm_1",
@@ -138,7 +155,6 @@ object SampleData {
                 games = 30,
                 age = 25
             ),
-
             PlayerEntity(
                 id = "p_fcb_1",
                 teamId = "team_fcb",
@@ -169,7 +185,6 @@ object SampleData {
                 games = 30,
                 age = 18
             ),
-
             PlayerEntity(
                 id = "p_val_1",
                 teamId = "team_val",
@@ -185,7 +200,6 @@ object SampleData {
                 games = 30,
                 age = 19
             ),
-
             PlayerEntity(
                 id = "p_ars_1",
                 teamId = "team_ars",
@@ -216,11 +230,9 @@ object SampleData {
                 games = 0,
                 age = 25
             ),
+        )
 
-            )
-
-
-        // 5) Matches (leagueId + homeTeamId/awayTeamId deben existir)
+        // 5) Matches
         val matches = listOf(
             MatchEntity(
                 id = "m_laliga_1",
@@ -265,8 +277,8 @@ object SampleData {
                 awayTeamKicks = null
             )
         )
-        // 6) Classifications (OJO: tableName = "classifications" y requiere teamId + clubId)
-        // En tu diseño actual, NO hay leagueId en ClassificationEntity, así que normalmente filtrarías por teams de una liga.
+
+        // 6) Classifications
         val classifications = listOf(
             ClassificationEntity(
                 id = "c_team_rm",
@@ -319,6 +331,7 @@ object SampleData {
                 totalPoints = 20
             )
         )
+
         // 7) User
         val user = UserEntity(
             id = "u1",
@@ -328,11 +341,13 @@ object SampleData {
             memberSince = "2024-03-12",
             verified = true
         )
-        // 8) Favorites (userId + teamId existentes)
+
+        // 8) Favorites
         val favorites = listOf(
             FavoriteTeamEntity(userId = "u1", teamId = "team_val"),
             FavoriteTeamEntity(userId = "u1", teamId = "team_ars")
         )
+
         return SamplePayload(
             leagues = leagues,
             clubs = clubs,

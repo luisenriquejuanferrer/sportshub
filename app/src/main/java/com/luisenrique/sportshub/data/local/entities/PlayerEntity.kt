@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "player",
-    indices = [Index(value = ["teamId"])], // Added index on teamId
+    indices = [Index(value = ["teamId"])],
     foreignKeys = [
         ForeignKey(
             entity = TeamEntity::class,

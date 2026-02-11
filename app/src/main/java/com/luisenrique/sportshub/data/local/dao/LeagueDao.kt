@@ -13,6 +13,9 @@ interface LeagueDao {
     fun observeLeagues(): Flow<List<LeagueEntity>>
 
     @Query("SELECT * FROM leagues WHERE id = :id LIMIT 1")
+    fun observeLeague(id: String): Flow<LeagueEntity?>
+
+    @Query("SELECT * FROM leagues WHERE id = :id LIMIT 1")
     suspend fun getLeague(id: String): LeagueEntity?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

@@ -9,9 +9,9 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun MyButton(
+    modifier: Modifier = Modifier,
     onClick: () -> Unit,
     enabled: Boolean = true,
-    modifier: Modifier = Modifier,
     colors: ButtonColors = ButtonDefaults.buttonColors(),
     text: String
 ) {

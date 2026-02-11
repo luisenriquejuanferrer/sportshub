@@ -1,4 +1,4 @@
-package com.ieschabas.navigationcompose.navigation
+package com.luisenrique.sportshub.ui.navigation
 
 import BetsScreen
 import ProfileScreen
@@ -11,10 +11,9 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.ieschabas.sportshub.ui.screens.DashboardScreen
-import com.luisenrique.sportshub.ui.navigation.Routes
-import com.luisenrique.sportshub.ui.screens.loginregister.LoginRegisterScreen
-import com.luisenrique.sportshub.ui.screens.loginregister.RegisterScreen
+import com.luisenrique.sportshub.ui.screens.DashboardScreen
+import com.luisenrique.sportshub.ui.screens.LoginRegisterScreen
+import com.luisenrique.sportshub.ui.screens.RegisterScreen
 import com.luisenrique.sportshub.ui.screens.classification.ClasificationScreen
 import com.luisenrique.sportshub.ui.screens.leagues.LeagueDetailScreen
 import com.luisenrique.sportshub.ui.screens.leagues.LeagueListScreen
@@ -32,59 +31,160 @@ fun SportsHubGraph(modifier: Modifier, navController: NavHostController) {
         navController = navController,
         startDestination = Routes.LoginRegister
     ) {
-        composable(route = Routes.LoginRegister) {
-            LoginRegisterScreen(modifier = modifier, navController = navController)
+        composable(
+            route = Routes.LoginRegister
+        ) {
+            LoginRegisterScreen(
+                modifier = modifier,
+                navController = navController
+            )
         }
-        composable(route = Routes.Register) {
-            RegisterScreen(modifier = modifier, navController = navController)
+
+        composable(
+            route = Routes.Register
+        ) {
+            RegisterScreen(
+                modifier = modifier,
+                navController = navController
+            )
         }
-        composable(route = Routes.Dashboard) {
-            DashboardScreen(modifier = modifier, navController = navController)
+
+        composable(
+            route = Routes.Dashboard
+        ) {
+            DashboardScreen(
+                modifier = modifier,
+                navController = navController
+            )
         }
-        composable(route = Routes.Leagues) {
-            LeagueListScreen(modifier = modifier, navController = navController)
+
+        composable(
+            route = Routes.Leagues
+        ) {
+            LeagueListScreen(
+                modifier = modifier,
+                navController = navController
+            )
         }
-        composable(route = Routes.Teams) {
-            TeamsListScreen(modifier = modifier, navController = navController)
+
+        composable(
+            route = Routes.Teams
+        ) {
+            TeamsListScreen(
+                modifier = modifier,
+                navController = navController
+            )
         }
-        composable(route = Routes.Matches) {
+
+        composable(
+            route = Routes.Matches,
+            arguments = listOf(
+                navArgument(
+                    name = Routes.MatchesArg
+                ) {
+                    type = NavType.StringType
+                    nullable = true
+                }
+            )) {
             MatchesScreen(
                 modifier = modifier,
-                navController = navController,
-                onMatchClick = { matchId ->
-                    navController.navigate(Routes.createMatchDetailRoute(matchId))
-                })
+                navController = navController
+            )
         }
+
         composable(
             route = Routes.MatchDetail,
             arguments = listOf(
-                navArgument(name = Routes.MatchDetailArg) {
+                navArgument(
+                    name = Routes.MatchDetailArg
+                ) {
                     type = NavType.StringType
                     nullable = false
                 }
             )) {
-            MatchDetailScreen(modifier = modifier)
+            MatchDetailScreen(
+                modifier = modifier
+            )
         }
-        composable(route = Routes.Clasification) {
-            ClasificationScreen(modifier = modifier, navController = navController)
-        }
-        composable(route = Routes.LeagueDetail) {
-            LeagueDetailScreen(modifier = modifier, navController = navController)
-        }
-        composable(route = Routes.Bets) {
-            BetsScreen(modifier = modifier)
-        }
-        composable(route = Routes.Profile) {
-            ProfileScreen(modifier = modifier, navController = navController)
-        }
-        composable(route = Routes.TeamDetail + "/{teamId}") { // Ruta con parametro
-            TeamDetailScreen(modifier = modifier, navController = navController)
-        }
+
         composable(
-            route = Routes.PlayerDetail + "/{playerId}", // Ruta con parametro
-            arguments = listOf(navArgument("playerId") { type = NavType.StringType }) // Definimos el argumento
+            route = Routes.Clasification,
+            arguments = listOf(
+                navArgument(
+                    name = Routes.ClasificationArg
+                ) {
+                    type = NavType.StringType
+                    nullable = true
+                }
+            )) {
+            ClasificationScreen(
+                modifier = modifier
+            )
+        }
+
+        composable(
+            route = Routes.LeagueDetail,
+            arguments = listOf(
+                navArgument(
+                    name = Routes.LeagueDetailArg
+                ) {
+                    type = NavType.StringType
+                    nullable = false
+                }
+            )) {
+            LeagueDetailScreen(
+                modifier = modifier,
+                navController = navController
+            )
+        }
+
+        composable(
+            route = Routes.Bets
         ) {
-            PlayerDetailsScreen(modifier = modifier, navController = navController)
+            BetsScreen(
+                modifier = modifier
+            )
+        }
+
+        composable(
+            route = Routes.Profile
+        ) {
+            ProfileScreen(
+                modifier = modifier,
+                navController = navController
+            )
+        }
+
+        composable(
+            route = Routes.TeamDetail,
+            arguments = listOf(
+                navArgument(
+                    name = Routes.TeamDetailArg
+                ) {
+                    type = NavType.StringType
+                    nullable = false
+                }
+            )
+        ) {
+            TeamDetailScreen(
+                modifier = modifier,
+                navController = navController
+            )
+        }
+
+        composable(
+            route = Routes.PlayerDetail,
+            arguments = listOf(
+                navArgument(
+                    name = Routes.PlayerDetailArg
+                ) {
+                    type = NavType.StringType
+                    nullable = false
+                })
+        ) {
+            PlayerDetailsScreen(
+                modifier = modifier
+            )
         }
     }
 }

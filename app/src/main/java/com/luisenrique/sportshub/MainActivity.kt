@@ -1,9 +1,11 @@
 package com.luisenrique.sportshub
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DrawerValue
@@ -23,16 +25,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.ieschabas.navigationcompose.navigation.SportsHubGraph
 import com.luisenrique.sportshub.ui.components.BottomBar
 import com.luisenrique.sportshub.ui.components.MainNavigationDrawer
 import com.luisenrique.sportshub.ui.components.TopBar
 import com.luisenrique.sportshub.ui.navigation.Routes
+import com.luisenrique.sportshub.ui.navigation.SportsHubGraph
 import com.luisenrique.sportshub.ui.theme.SportsHubTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +45,6 @@ class MainActivity : ComponentActivity() {
 
             val navBackStackEntry by navController.currentBackStackEntryAsState()
             val currentRoute = navBackStackEntry?.destination?.route
-
 
             val routesWithSimpleTopBar = listOf(
                 Routes.LoginRegister,
@@ -63,11 +65,7 @@ class MainActivity : ComponentActivity() {
                 Routes.PlayerDetail
             )
 
-
-            // ... (código anterior)
-
-            // CAMBIAMOS EL 'when' PARA QUE SEA MÁS ROBUSTO
-            val topBarTitle = remember(currentRoute) { // Usamos remember para eficiencia
+            val topBarTitle = remember(currentRoute) {
                 when {
                     currentRoute?.startsWith(Routes.LoginRegister) == true -> "Acceso"
                     currentRoute?.startsWith(Routes.Register) == true -> "Registro de usuario"
@@ -85,12 +83,8 @@ class MainActivity : ComponentActivity() {
                 }
             }
 
-
             val showFullUI = routesWithFullTopBar.any { currentRoute?.startsWith(it) == true }
             val showSimpleTopBar = routesWithSimpleTopBar.any { currentRoute?.startsWith(it) == true }
-
-// ... (el resto del código sigue igual)
-
 
             var currentScreen by remember { mutableStateOf("Inicio") }
 

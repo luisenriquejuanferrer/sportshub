@@ -1,4 +1,4 @@
-package com.ieschabas.sportshub.ui.screens
+package com.luisenrique.sportshub.ui.screens
 
 
 import androidx.compose.foundation.layout.Arrangement
@@ -28,7 +28,7 @@ fun DashboardScreen(modifier: Modifier, navController: NavController) {
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(30.dp)
-            ) {
+        ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -52,11 +52,11 @@ fun DashboardScreen(modifier: Modifier, navController: NavController) {
                 DashboardBox(
                     "Partidos",
                     Color(0xFF49F527),
-                    onClick = { navController.navigate(Routes.Matches) })
+                    onClick = { navController.navigate(Routes.MatchesBase) })
                 DashboardBox(
                     "Clasificación",
                     Color(0xFFED2600),
-                    onClick = { navController.navigate(Routes.Clasification) })
+                    onClick = { navController.navigate(Routes.ClasificationBase) })
             }
         }
     }

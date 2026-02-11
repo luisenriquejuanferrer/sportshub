@@ -19,7 +19,6 @@ class MatchDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     private val matchId: String = checkNotNull(savedStateHandle[Routes.MatchDetailArg])
-
     private val _state = MutableStateFlow<Match?>(null)
     val state: StateFlow<Match?> = _state.asStateFlow()
 

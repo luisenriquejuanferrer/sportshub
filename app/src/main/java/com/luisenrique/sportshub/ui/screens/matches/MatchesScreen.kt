@@ -15,14 +15,14 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.luisenrique.sportshub.ui.components.MatchItem
+import com.luisenrique.sportshub.ui.navigation.Routes
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun MatchesScreen(
     modifier: Modifier,
     navController: NavController,
-    viewModel: MatchesViewModel = hiltViewModel(),
-    onMatchClick: (String) -> Unit
+    viewModel: MatchesViewModel = hiltViewModel()
 ) {
     val matches by viewModel.matches.collectAsState()
 
@@ -34,7 +34,8 @@ fun MatchesScreen(
         itemsIndexed(matches) { _, item ->
             MatchItem(
                 partido = item,
-                onClick = { onMatchClick(item.id) })
+                onClick = { navController.navigate(Routes.createMatchDetailRoute(item.id)) }
+            )
             HorizontalDivider()
         }
     }

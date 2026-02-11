@@ -36,4 +36,3 @@ fun Player.toEntity(): PlayerEntity =
         games = games,
         age = age
     )
-
