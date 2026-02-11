@@ -20,6 +20,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.luisenrique.sportshub.ui.components.MyCard
 import com.luisenrique.sportshub.ui.components.MyText
+import com.luisenrique.sportshub.ui.navigation.Routes
 
 @Composable
 fun LeagueListScreen(
@@ -42,7 +43,7 @@ fun LeagueListScreen(
                 colors = CardDefaults.cardColors(
                     containerColor = Color(0xFF3aa57a)
                 ),
-                onClick = { navController.navigate("league_detail/${league.id}") }
+                onClick = { navController.navigate(Routes.createLeagueDetailRoute(league.id)) }
             ) {
                 Column(
                     modifier = Modifier.padding(16.dp)

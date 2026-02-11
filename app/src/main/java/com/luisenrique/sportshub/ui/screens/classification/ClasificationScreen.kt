@@ -16,7 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.luisenrique.sportshub.ui.components.ClasificationTeamItem
 import com.luisenrique.sportshub.ui.components.MyText
 

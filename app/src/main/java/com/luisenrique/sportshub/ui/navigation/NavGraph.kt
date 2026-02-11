@@ -31,82 +31,161 @@ fun SportsHubGraph(modifier: Modifier, navController: NavHostController) {
         navController = navController,
         startDestination = Routes.LoginRegister
     ) {
-        composable(route = Routes.LoginRegister) {
-            LoginRegisterScreen(modifier = modifier, navController = navController)
+        composable(
+            route = Routes.LoginRegister
+        ) {
+            LoginRegisterScreen(
+                modifier = modifier,
+                navController = navController
+            )
         }
-        composable(route = Routes.Register) {
-            RegisterScreen(modifier = modifier, navController = navController)
+
+        composable(
+            route = Routes.Register
+        ) {
+            RegisterScreen(
+                modifier = modifier,
+                navController = navController
+            )
         }
-        composable(route = Routes.Dashboard) {
-            DashboardScreen(modifier = modifier, navController = navController)
+
+        composable(
+            route = Routes.Dashboard
+        ) {
+            DashboardScreen(
+                modifier = modifier,
+                navController = navController
+            )
         }
-        composable(route = Routes.Leagues) {
-            LeagueListScreen(modifier = modifier, navController = navController)
+
+        composable(
+            route = Routes.Leagues
+        ) {
+            LeagueListScreen(
+                modifier = modifier,
+                navController = navController
+            )
         }
-        composable(route = Routes.Teams) {
-            TeamsListScreen(modifier = modifier, navController = navController)
+
+        composable(
+            route = Routes.Teams
+        ) {
+            TeamsListScreen(
+                modifier = modifier,
+                navController = navController
+            )
         }
+
         composable(
             route = Routes.Matches,
             arguments = listOf(
-                navArgument(name = Routes.MatchesArg) {
+                navArgument(
+                    name = Routes.MatchesArg
+                ) {
                     type = NavType.StringType
                     nullable = true
                 }
             )) {
             MatchesScreen(
                 modifier = modifier,
-                navController = navController,
-                onMatchClick = { matchId ->
-                    navController.navigate(Routes.createMatchDetailRoute(matchId))
-                })
+                navController = navController
+            )
         }
+
         composable(
             route = Routes.MatchDetail,
             arguments = listOf(
-                navArgument(name = Routes.MatchDetailArg) {
+                navArgument(
+                    name = Routes.MatchDetailArg
+                ) {
                     type = NavType.StringType
                     nullable = false
                 }
             )) {
-            MatchDetailScreen(modifier = modifier)
+            MatchDetailScreen(
+                modifier = modifier
+            )
         }
+
         composable(
             route = Routes.Clasification,
             arguments = listOf(
-                navArgument(name = Routes.ClasificationArg) {
+                navArgument(
+                    name = Routes.ClasificationArg
+                ) {
                     type = NavType.StringType
                     nullable = true
                 }
             )) {
-            ClasificationScreen(modifier = modifier)
+            ClasificationScreen(
+                modifier = modifier
+            )
         }
+
         composable(
             route = Routes.LeagueDetail,
             arguments = listOf(
-                navArgument(name = Routes.LeagueDetailArg) {
+                navArgument(
+                    name = Routes.LeagueDetailArg
+                ) {
                     type = NavType.StringType
                     nullable = false
                 }
             )) {
-            LeagueDetailScreen(modifier = modifier, navController = navController)
+            LeagueDetailScreen(
+                modifier = modifier,
+                navController = navController
+            )
         }
-        composable(route = Routes.Bets) {
-            BetsScreen(modifier = modifier)
-        }
-        composable(route = Routes.Profile) {
-            ProfileScreen(modifier = modifier, navController = navController)
-        }
-        composable(route = Routes.TeamDetail + "/{teamId}") { // Ruta con parametro
-            TeamDetailScreen(modifier = modifier, navController = navController)
-        }
+
         composable(
-            route = Routes.PlayerDetail + "/{playerId}", // Ruta con parametro
-            arguments = listOf(navArgument("playerId") {
-                type = NavType.StringType
-            }) // Definimos el argumento
+            route = Routes.Bets
         ) {
-            PlayerDetailsScreen(modifier = modifier, navController = navController)
+            BetsScreen(
+                modifier = modifier
+            )
+        }
+
+        composable(
+            route = Routes.Profile
+        ) {
+            ProfileScreen(
+                modifier = modifier,
+                navController = navController
+            )
+        }
+
+        composable(
+            route = Routes.TeamDetail,
+            arguments = listOf(
+                navArgument(
+                    name = Routes.TeamDetailArg
+                ) {
+                    type = NavType.StringType
+                    nullable = false
+                }
+            )
+        ) {
+            TeamDetailScreen(
+                modifier = modifier,
+                navController = navController
+            )
+        }
+
+        composable(
+            route = Routes.PlayerDetail,
+            arguments = listOf(
+                navArgument(
+                    name = Routes.PlayerDetailArg
+                ) {
+                    type = NavType.StringType
+                    nullable = false
+                })
+        ) {
+            PlayerDetailsScreen(
+                modifier = modifier,
+                navController = navController
+            )
         }
     }
 }

@@ -217,7 +217,7 @@ fun TeamDetailScreen(
                             .padding(horizontal = 16.dp, vertical = 4.dp)
                             .background(Color(0xFFF5F5F5), shape = MaterialTheme.shapes.medium)
                             .clip(MaterialTheme.shapes.medium)
-                            .clickable { navController.navigate(Routes.PlayerDetail + "/${player.id}") }
+                            .clickable { navController.navigate(Routes.createPlayerDetailRoute(player.id)) }
                             .padding(12.dp),
                         contentAlignment = Alignment.CenterStart
                     ) {

@@ -1,9 +1,11 @@
 package com.luisenrique.sportshub
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DrawerValue
@@ -33,6 +35,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +46,6 @@ class MainActivity : ComponentActivity() {
             val navBackStackEntry by navController.currentBackStackEntryAsState()
             val currentRoute = navBackStackEntry?.destination?.route
 
-
             val routesWithSimpleTopBar = listOf(
                 Routes.LoginRegister,
                 Routes.Register
@@ -51,7 +53,7 @@ class MainActivity : ComponentActivity() {
 
             val routesWithFullTopBar = listOf(
                 Routes.Dashboard,
-                Routes.MatchesBase,
+                Routes.Matches,
                 Routes.MatchDetail,
                 Routes.Teams,
                 Routes.Bets,
@@ -63,15 +65,11 @@ class MainActivity : ComponentActivity() {
                 Routes.PlayerDetail
             )
 
-
-            // ... (código anterior)
-
-            // CAMBIAMOS EL 'when' PARA QUE SEA MÁS ROBUSTO
-            val topBarTitle = remember(currentRoute) { // Usamos remember para eficiencia
+            val topBarTitle = remember(currentRoute) {
                 when {
                     currentRoute?.startsWith(Routes.LoginRegister) == true -> "Acceso"
                     currentRoute?.startsWith(Routes.Register) == true -> "Registro de usuario"
-                    currentRoute?.startsWith(Routes.MatchesBase) == true -> "Partidos"
+                    currentRoute?.startsWith(Routes.Matches) == true -> "Partidos"
                     currentRoute?.startsWith(Routes.MatchDetail) == true -> "Detalle de partido"
                     currentRoute?.startsWith(Routes.Teams) == true -> "Equipos"
                     currentRoute?.startsWith(Routes.Bets) == true -> "Apuesta"
@@ -85,12 +83,8 @@ class MainActivity : ComponentActivity() {
                 }
             }
 
-
             val showFullUI = routesWithFullTopBar.any { currentRoute?.startsWith(it) == true }
             val showSimpleTopBar = routesWithSimpleTopBar.any { currentRoute?.startsWith(it) == true }
-
-// ... (el resto del código sigue igual)
-
 
             var currentScreen by remember { mutableStateOf("Inicio") }
 

@@ -14,7 +14,6 @@ class LeaguesViewModel @Inject constructor(
     private val leagueRepository: LeagueRepository,
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-
     val leagues = leagueRepository.observeLeagues()
         .stateIn(
             scope = viewModelScope,
