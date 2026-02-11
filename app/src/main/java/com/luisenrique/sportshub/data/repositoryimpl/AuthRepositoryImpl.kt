@@ -1,5 +1,6 @@
 package com.luisenrique.sportshub.data.repositoryimpl
 
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.luisenrique.sportshub.domain.repository.AuthRepository
@@ -19,5 +20,9 @@ class AuthRepositoryImpl @Inject constructor(
         } catch (e: Exception) {
             Resource.Error(e)
         }
+    }
+
+    override suspend fun createUser(email: String, password: String): AuthResult {
+        return firebaseAuth.createUserWithEmailAndPassword(email, password).await()
     }
 }
