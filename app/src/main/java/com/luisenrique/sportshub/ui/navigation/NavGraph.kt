@@ -12,11 +12,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.luisenrique.sportshub.ui.screens.DashboardScreen
-import com.luisenrique.sportshub.ui.screens.LoginRegisterScreen
-import com.luisenrique.sportshub.ui.screens.RegisterScreen
 import com.luisenrique.sportshub.ui.screens.classification.ClasificationScreen
 import com.luisenrique.sportshub.ui.screens.leagues.LeagueDetailScreen
 import com.luisenrique.sportshub.ui.screens.leagues.LeagueListScreen
+import com.luisenrique.sportshub.ui.screens.loginregister.LoginRegisterScreen
+import com.luisenrique.sportshub.ui.screens.loginregister.RegisterScreen
 import com.luisenrique.sportshub.ui.screens.matches.MatchDetailScreen
 import com.luisenrique.sportshub.ui.screens.matches.MatchesScreen
 import com.luisenrique.sportshub.ui.screens.player.PlayerDetailsScreen
