@@ -75,13 +75,10 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.authentication)
     implementation(libs.firebase.firestore)
-
-    implementation(libs.google.firebase.messaging.ktx)
+    implementation(libs.firebase.messaging.ktx)
 
     // Jetpack Compose - Permissions
     implementation(libs.jetpack.compose.permissions)
-
-
 
     // --- TESTING ---
 
