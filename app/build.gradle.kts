@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.implementation
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -61,6 +63,7 @@ dependencies {
     // Room - Local Database
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
+    implementation(libs.google.firebase.messaging.ktx)
     ksp(libs.androidx.room.compiler)
 
     // Hilt - Dependency Injection
@@ -71,6 +74,11 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.authentication)
+
+    // Jetpack Compose - Permissions
+    implementation(libs.jetpack.compose.permissions)
+
+
 
     // --- TESTING ---
 
