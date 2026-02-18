@@ -3,6 +3,7 @@ package com.luisenrique.sportshub.ui.screens
 
 import android.Manifest
 import android.os.Build
+import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.launch
@@ -39,10 +40,10 @@ fun DashboardScreen(modifier: Modifier, navController: NavController) {
             onResult = { isGranted ->
                 if (isGranted) {
                     // Permiso concedido, puedes hacer algo si quieres (o simplemente dejarlo)
-                    println("Permiso para notificaciones CONCEDIDO")
+                    Log.d("FCM", "Permiso de notificaciones concedido")
                 } else {
                     // Permiso denegado. Puedes mostrar un mensaje explicando por qué lo necesitas.
-                    println("Permiso para notificaciones DENEGADO")
+                    Log.d("FCM", "Permiso de notificaciones denegado")
                 }
             }
         )
