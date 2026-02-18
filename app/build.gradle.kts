@@ -74,6 +74,11 @@ dependencies {
     implementation(libs.firebase.authentication)
     implementation(libs.firebase.firestore)
 
+    // ExoPlayer
+    implementation(libs.exoplayer)
+    implementation(libs.exoplayer.ui)
+    implementation(libs.exoplayer.dash)
+
     // --- TESTING ---
 
     // Unit Tests

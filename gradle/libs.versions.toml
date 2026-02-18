@@ -32,6 +32,11 @@ hiltNavigationCompose = "1.3.0"
 firebase = "4.4.4"
 firebaseBom = "34.8.0"
 
+# --- ExoPlayer ---
+exoplayer = "1.2.1"
+exoplayerUi = "1.2.1"
+exoplayerDash = "1.2.1"
+
 # --- Testing ---
 junit = "4.13.2"
 androidxJunit = "1.3.0"
@@ -71,6 +76,11 @@ firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "fir
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-authentication = { module = "com.google.firebase:firebase-auth" }
 firebase-firestore = { module = "com.google.firebase:firebase-firestore" }
+
+# --- ExoPlayer ---
+exoplayer = { module = "androidx.media3:media3-exoplayer", version.ref = "exoplayer" }
+exoplayer-ui = { module = "androidx.media3:media3-ui", version.ref = "exoplayerUi" }
+exoplayer-dash = { module = "androidx.media3:media3-exoplayer-dash", version.ref = "exoplayerDash" }
 
 # --- Testing - Unit & Instrumented ---
 # Unit Tests
