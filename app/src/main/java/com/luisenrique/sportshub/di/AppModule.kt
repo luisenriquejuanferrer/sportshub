@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.luisenrique.sportshub.data.local.SportsHubDatabase
 import com.luisenrique.sportshub.data.local.dao.ClassificationDao
 import com.luisenrique.sportshub.data.local.dao.ClubDao
@@ -79,4 +80,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideAuthRepository(impl: AuthRepositoryImpl): AuthRepository = impl
+
+    @Provides
+    @Singleton
+    fun provideFirebaseFirestore(): FirebaseFirestore = FirebaseFirestore.getInstance()
 }

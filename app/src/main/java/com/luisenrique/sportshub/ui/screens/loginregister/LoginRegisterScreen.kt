@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -62,7 +63,8 @@ fun LoginRegisterScreen(
     LaunchedEffect(loginState) {
         when (loginState) {
             is Resource.Success -> {
-                Toast.makeText(context, "¡Bienvenido Madurito!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "¡Bienvenido!", Toast.LENGTH_SHORT).show()
+                navController.navigate(Routes.Dashboard)
             }
 
             is Resource.Error -> {
@@ -71,10 +73,8 @@ fun LoginRegisterScreen(
             }
 
             is Resource.Loading -> {
-                // Opcional: Mostrar log en consola
             }
-
-            null -> {}
+            null -> { }
         }
     }
 
@@ -87,14 +87,18 @@ fun LoginRegisterScreen(
         MyImage(
             painter = painterResource(R.drawable.logo_chabas),
             contentDescription = "Logo Chabàs",
-            modifier = Modifier.size(260.dp),
+            modifier = Modifier.fillMaxWidth().height(240.dp),
             alignment = Alignment.Center,
             contentScale = ContentScale.Fit
         )
         Spacer(Modifier.padding(vertical = 8.dp))
+
         TextField(
             value = email,
             onValueChange = { email = it },
+            placeholder = {
+                Text(text = "Email")
+            },
             colors = TextFieldDefaults.colors(
                 focusedContainerColor = Color.Transparent,
                 unfocusedContainerColor = Color.Transparent,
@@ -112,6 +116,9 @@ fun LoginRegisterScreen(
         TextField(
             value = password,
             onValueChange = { password = it },
+            placeholder = {
+                Text(text = "Contraseña")
+            },
             colors = TextFieldDefaults.colors(
                 focusedContainerColor = Color.Transparent,
                 unfocusedContainerColor = Color.Transparent,
@@ -126,6 +133,7 @@ fun LoginRegisterScreen(
                 )
         )
         Spacer(Modifier.padding(vertical = 8.dp))
+
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
@@ -141,6 +149,7 @@ fun LoginRegisterScreen(
             MyText(text = "Recordarme")
         }
         Spacer(Modifier.padding(vertical = 8.dp))
+
         Button(
             onClick = { viewModel.login(email, password) },
             enabled = loginState !is Resource.Loading,
@@ -150,10 +159,9 @@ fun LoginRegisterScreen(
             )
         ) {
             Text("Login")
-            //navController.navigate(Routes.Dashboard)
         }
-
         Spacer(Modifier.padding(vertical = 8.dp))
+
         Row(modifier = Modifier.fillMaxWidth()) {
             MyText(
                 text = "¿No tienes cuenta?",
