@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.implementation
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -73,6 +75,10 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.authentication)
     implementation(libs.firebase.firestore)
+    implementation(libs.firebase.messaging.ktx)
+
+    // Jetpack Compose - Permissions
+    implementation(libs.jetpack.compose.permissions)
 
     // ExoPlayer
     implementation(libs.exoplayer)
