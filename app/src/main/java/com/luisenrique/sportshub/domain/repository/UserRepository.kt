@@ -1,10 +1,8 @@
 package com.luisenrique.sportshub.domain.repository
 
 import com.luisenrique.sportshub.domain.model.User
-import kotlinx.coroutines.flow.Flow
+import com.luisenrique.sportshub.ui.utils.Resource
 
 interface UserRepository {
-    fun observeUsers(): Flow<List<User>>
-    suspend fun getUser(id: String): User?
-    suspend fun registerUser(user: User)
+    suspend fun getUser(userId: String): Resource<User>
 }

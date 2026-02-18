@@ -1,25 +1,24 @@
 package com.luisenrique.sportshub.data.repositoryimpl
 
-import com.luisenrique.sportshub.data.local.dao.UserDao
-import com.luisenrique.sportshub.data.local.mapper.toDomain
-import com.luisenrique.sportshub.data.local.mapper.toEntity
+import com.google.firebase.firestore.FirebaseFirestore
 import com.luisenrique.sportshub.domain.model.User
 import com.luisenrique.sportshub.domain.repository.UserRepository
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
+import com.luisenrique.sportshub.ui.utils.Resource
+import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
-    private val userDao: UserDao
+    private val firestore: FirebaseFirestore
 ) : UserRepository {
-    override fun observeUsers(): Flow<List<User>> =
-        userDao.observeUsers()
-            .map { list -> list.map { it.toDomain() } }
-
-    override suspend fun getUser(id: String): User? =
-        userDao.getUser(id)?.toDomain()
-
-    override suspend fun registerUser(user: User) {
-        userDao.upsert(user.toEntity())
+    override suspend fun getUser(userId: String): Resource<User> {
+        return try {
+            val document = firestore.collection("users").document(userId).get().await()
+            val user = document.toObject(User::class.java)
+            user?.let {
+                Resource.Success(it)
+            } ?: Resource.Error(Exception("Usuario no encontrado."))
+        } catch (e: Exception) {
+            Resource.Error(e)
+        }
     }
 }

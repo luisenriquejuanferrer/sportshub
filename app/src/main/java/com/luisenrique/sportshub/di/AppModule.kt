@@ -2,6 +2,8 @@ package com.luisenrique.sportshub.di
 
 import android.content.Context
 import androidx.room.Room
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.luisenrique.sportshub.data.local.SportsHubDatabase
 import com.luisenrique.sportshub.data.local.dao.ClassificationDao
 import com.luisenrique.sportshub.data.local.dao.ClubDao
@@ -10,6 +12,8 @@ import com.luisenrique.sportshub.data.local.dao.MatchDao
 import com.luisenrique.sportshub.data.local.dao.PlayerDao
 import com.luisenrique.sportshub.data.local.dao.TeamDao
 import com.luisenrique.sportshub.data.local.dao.UserDao
+import com.luisenrique.sportshub.data.repositoryimpl.AuthRepositoryImpl
+import com.luisenrique.sportshub.domain.repository.AuthRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,11 +27,13 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+
     @Provides
     @Singleton
     fun provideDb(
         @ApplicationContext context: Context
     ): SportsHubDatabase {
+
         lateinit var instance: SportsHubDatabase
 
         instance = Room.databaseBuilder(
@@ -42,6 +48,7 @@ object AppModule {
                 )
             )
             .build()
+
         return instance
     }
     @Provides
@@ -64,4 +71,16 @@ object AppModule {
 
     @Provides
     fun provideClassificationDao(db: SportsHubDatabase): ClassificationDao = db.classificationDao()
+
+    @Provides
+    @Singleton
+    fun provideFirebaseAuth(): FirebaseAuth = FirebaseAuth.getInstance()
+
+    @Provides
+    @Singleton
+    fun provideAuthRepository(impl: AuthRepositoryImpl): AuthRepository = impl
+
+    @Provides
+    @Singleton
+    fun provideFirebaseFirestore(): FirebaseFirestore = FirebaseFirestore.getInstance()
 }

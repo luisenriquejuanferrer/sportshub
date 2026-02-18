@@ -53,7 +53,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
 
     // Jetpack Compose - UI Toolkit
-    implementation(platform(libs.androidx.compose.bom)) // Compose Bill of Materials
+    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.runtime)
@@ -69,11 +69,13 @@ dependencies {
     // Hilt - Dependency Injection
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
-    implementation(libs.hilt.navigation.compose) // Hilt integration for Compose Navigation
+    implementation(libs.hilt.navigation.compose)
 
+    // Firebase
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.authentication)
+    implementation(libs.firebase.firestore)
 
     // Jetpack Compose - Permissions
     implementation(libs.jetpack.compose.permissions)

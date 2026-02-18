@@ -1,5 +1,8 @@
-package com.luisenrique.sportshub.ui.screens
+package com.luisenrique.sportshub.ui.screens.loginregister
 
+import android.os.Build
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,10 +17,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
@@ -32,6 +34,7 @@ import com.luisenrique.sportshub.ui.components.MyOutlinedTextField
 import com.luisenrique.sportshub.ui.components.MyText
 import com.luisenrique.sportshub.ui.navigation.Routes
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun RegisterScreen(
     modifier: Modifier,
@@ -39,13 +42,18 @@ fun RegisterScreen(
     viewModel: RegisterViewModel = hiltViewModel()
 ) {
     val sexo = listOf("Masculino", "Femenino", "Otro")
-    val (selectedOption, onOptionSelected) = remember { mutableStateOf(sexo[0]) }
-    val uiState by viewModel.uiState.collectAsState()
+    val state by viewModel.state.collectAsState()
 
-    if (uiState.registrationSuccess) {
-        LaunchedEffect(Unit) {
-            navController.navigate(Routes.Dashboard)
+    LaunchedEffect(state.registrationSuccess) {
+        if (state.registrationSuccess) {
+            navController.navigate(Routes.Dashboard) {
+                popUpTo(Routes.Register) { inclusive = true }
+            }
         }
+    }
+
+    if (state.errorMessage != null) {
+        Toast.makeText(LocalContext.current, state.errorMessage, Toast.LENGTH_LONG).show()
     }
 
     Column(
@@ -55,8 +63,8 @@ fun RegisterScreen(
     ) {
         MyText(text = "Usuario", fontSize = 14.sp, fontWeight = FontWeight.Bold)
         MyOutlinedTextField(
-            value = uiState.userName,
-            onValueChange = viewModel::onUserNameChange,
+            value = state.userName,
+            onValueChange = { viewModel.onUserNameChange(it) },
             placeHolder = "",
             modifier = Modifier.fillMaxWidth()
         )
@@ -64,8 +72,8 @@ fun RegisterScreen(
         Spacer(Modifier.padding(8.dp))
         MyText(text = "Nombre y apellidos", fontSize = 14.sp, fontWeight = FontWeight.Bold)
         MyOutlinedTextField(
-            value = uiState.fullName,
-            onValueChange = viewModel::onFullNameChange,
+            value = state.fullName,
+            onValueChange = { viewModel.onFullNameChange(it) },
             placeHolder = "",
             modifier = Modifier.fillMaxWidth()
         )
@@ -77,15 +85,15 @@ fun RegisterScreen(
                 Row(
                     Modifier
                         .selectable(
-                            selected = (text == selectedOption),
-                            onClick = { onOptionSelected(text) },
+                            selected = (text == state.sex),
+                            onClick = { viewModel.onSexChange(text) },
                             role = Role.RadioButton
                         ),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     RadioButton(
-                        selected = (text == selectedOption),
-                        onClick = null
+                        selected = (text == state.sex),
+                        onClick = { viewModel.onSexChange(text) }
                     )
                     Spacer(Modifier.padding(start = 4.dp))
                     MyText(text = text, fontSize = 14.sp)
@@ -96,8 +104,8 @@ fun RegisterScreen(
         Spacer(Modifier.padding(8.dp))
         MyText(text = "Email", fontSize = 14.sp, fontWeight = FontWeight.Bold)
         MyOutlinedTextField(
-            value = uiState.email,
-            onValueChange = viewModel::onEmailChange,
+            value = state.email,
+            onValueChange = { viewModel.onEmailChange(it) },
             placeHolder = "",
             modifier = Modifier.fillMaxWidth()
         )
@@ -105,8 +113,8 @@ fun RegisterScreen(
         Spacer(Modifier.padding(8.dp))
         MyText(text = "Contraseña", fontSize = 14.sp, fontWeight = FontWeight.Bold)
         MyOutlinedTextField(
-            value = "",
-            onValueChange = {},
+            value = state.password,
+            onValueChange = { viewModel.onPasswordChange(it) },
             placeHolder = "",
             modifier = Modifier.fillMaxWidth()
         )
@@ -119,12 +127,12 @@ fun RegisterScreen(
         Spacer(Modifier.height(8.dp))
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
             MyButton(
-                onClick = viewModel::onRegisterClick,
-                enabled = true,
+                onClick = { viewModel.onRegisterClick() },
+                enabled = !state.isLoading,
                 colors = ButtonDefaults.buttonColors(
                     containerColor = colorResource(R.color.azul_petroleo)
                 ),
-                text = "Registrar",
+                text = if (state.isLoading) "Registrando..." else "Registrar",
             )
         }
     }

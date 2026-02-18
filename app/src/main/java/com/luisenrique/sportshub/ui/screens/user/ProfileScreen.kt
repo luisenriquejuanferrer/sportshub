@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
@@ -29,6 +28,7 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.luisenrique.sportshub.ui.navigation.Routes
+import com.luisenrique.sportshub.ui.screens.user.UserState
 import com.luisenrique.sportshub.ui.screens.user.UserViewModel
 
 @Composable
@@ -37,8 +37,7 @@ fun ProfileScreen(
     navController: NavController,
     viewModel: UserViewModel = hiltViewModel()
 ) {
-    val users by viewModel.users.collectAsStateWithLifecycle()
-    val user = users.firstOrNull()
+    val userState by viewModel.userState.collectAsStateWithLifecycle()
 
     Column(
         modifier = modifier
@@ -71,80 +70,93 @@ fun ProfileScreen(
             Column(
                 modifier = Modifier.padding(16.dp)
             ) {
+                when (val state = userState) {
+                    is UserState.Loading -> {
+                        Text(
+                            text = "Cargando perfil...",
+                            modifier = Modifier.padding(16.dp),
+                            fontSize = 16.sp
+                        )
+                    }
 
-                if (user != null) {
-                    Text(
-                        text = "Nombre: ${user.fullName}",
-                        modifier = Modifier.padding(top = 10.dp, start = 16.dp),
-                        fontSize = 16.sp
-                    )
-                    Text(
-                        text = "Usuario: @${user.userName.lowercase()}",
-                        modifier = Modifier.padding(top = 4.dp, start = 16.dp),
-                        fontSize = 16.sp
-                    )
-                    Text(
-                        text = "Email: ${user.email}",
-                        modifier = Modifier.padding(top = 4.dp, start = 16.dp),
-                        fontSize = 16.sp
-                    )
-                    Text(
-                        text = "Miembro desde: ${user.memberSince}",
-                        modifier = Modifier.padding(top = 4.dp, start = 16.dp),
-                        fontSize = 16.sp
-                    )
+                    is UserState.Success -> {
+                        val user = state.user
+                        Text(
+                            text = "Nombre: ${user.fullName}",
+                            modifier = Modifier.padding(top = 10.dp, start = 16.dp),
+                            fontSize = 16.sp
+                        )
+                        Text(
+                            text = "Usuario: @${user.userName.lowercase()}",
+                            modifier = Modifier.padding(top = 4.dp, start = 16.dp),
+                            fontSize = 16.sp
+                        )
+                        Text(
+                            text = "Email: ${user.email}",
+                            modifier = Modifier.padding(top = 4.dp, start = 16.dp),
+                            fontSize = 16.sp
+                        )
+                        Text(
+                            text = "Miembro desde: ${user.memberSince}",
+                            modifier = Modifier.padding(top = 4.dp, start = 16.dp),
+                            fontSize = 16.sp
+                        )
 
-                    Row(
-                        modifier = Modifier.padding(16.dp),
-                    ) {
-                        Box(
-                            modifier = Modifier
-                                .width(100.dp)
-                                .height(35.dp)
-                                .clip(RoundedCornerShape(10.dp))
-                                .background(Color(0xFFF5F5F5))
-                                .border(
-                                    width = 1.dp,
-                                    color = Color.Black,
-                                    shape = RoundedCornerShape(10.dp)
-                                ),
-                            contentAlignment = Alignment.Center
+                        Row(
+                            modifier = Modifier.padding(16.dp),
                         ) {
-                            Text(
-                                text = if (user.verified) "Verificado" else "No verificado",
-                                color = if (user.verified) Color(0xFF4CAF50) else Color.Red,
-                                fontSize = 16.sp
-                            )
+                            Box(
+                                modifier = Modifier
+                                    .height(35.dp)
+                                    .clip(RoundedCornerShape(12.dp))
+                                    .border(
+                                        width = 1.dp,
+                                        color = Color.Black,
+                                        shape = RoundedCornerShape(12.dp)
+                                    )
+                                    .background(Color(0xFFF5F5F5))
+                                    .padding(8.dp),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Text(
+                                    text = if (user.verified) "Verificado" else "No verificado",
+                                    color = if (user.verified) Color(0xFF4CAF50) else Color.Red,
+                                    fontSize = 16.sp
+                                )
+                            }
                         }
                     }
-                } else {
-                    Text(
-                        text = "Cargando perfil...",
-                        modifier = Modifier.padding(16.dp),
-                        fontSize = 16.sp
-                    )
+
+                    is UserState.Error -> {
+                        Text(
+                            text = "Error: ${state.message}",
+                            modifier = Modifier.padding(16.dp),
+                            fontSize = 16.sp,
+                            color = Color.Red
+                        )
+                    }
                 }
             }
         }
+    }
 
-        Row(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Text("Zona de peligro", fontSize = 20.sp, color = Color.Red)
-        }
+    Row(
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center
+    ) {
+        Text("Zona de peligro", fontSize = 20.sp, color = Color.Red)
+    }
 
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center
+    ) {
+        OutlinedButton(
+            onClick = { navController.navigate(Routes.LoginRegister) }
         ) {
-            OutlinedButton(
-                onClick = { navController.navigate(Routes.LoginRegister) }
-            ) {
-                Text(text = "Cerrar Sesión", fontSize = 16.sp, color = Color.Red)
-            }
+            Text(text = "Cerrar Sesión", fontSize = 16.sp, color = Color.Red)
         }
     }
 }
