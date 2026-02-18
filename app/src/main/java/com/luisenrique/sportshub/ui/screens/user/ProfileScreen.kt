@@ -17,6 +17,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -38,6 +39,20 @@ fun ProfileScreen(
     viewModel: UserViewModel = hiltViewModel()
 ) {
     val userState by viewModel.userState.collectAsStateWithLifecycle()
+    val logoutCompleted by viewModel.logoutCompleted.collectAsStateWithLifecycle()
+
+    if (logoutCompleted) {
+        LaunchedEffect(Unit) {
+            navController.navigate(Routes.LoginRegister) {
+                popUpTo(navController.graph.startDestinationId) {
+                    inclusive = true
+                }
+
+                launchSingleTop = true
+            }
+            viewModel.onLogoutHandled()
+        }
+    }
 
     Column(
         modifier = modifier
@@ -138,25 +153,24 @@ fun ProfileScreen(
                 }
             }
         }
-    }
-
-    Row(
-        modifier = Modifier
-            .padding(16.dp)
-            .fillMaxWidth(),
-        horizontalArrangement = Arrangement.Center
-    ) {
-        Text("Zona de peligro", fontSize = 20.sp, color = Color.Red)
-    }
-
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.Center
-    ) {
-        OutlinedButton(
-            onClick = { navController.navigate(Routes.LoginRegister) }
+        Row(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
         ) {
-            Text(text = "Cerrar Sesión", fontSize = 16.sp, color = Color.Red)
+            Text("Zona de peligro", fontSize = 20.sp, color = Color.Red)
+        }
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            OutlinedButton(
+                onClick = { viewModel.logout() }
+            ) {
+                Text(text = "Cerrar Sesión", fontSize = 16.sp, color = Color.Red)
+            }
         }
     }
 }

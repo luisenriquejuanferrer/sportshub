@@ -41,4 +41,8 @@ class AuthRepositoryImpl @Inject constructor(
             Resource.Error(e)
         }
     }
+
+    override fun logout() {
+        firebaseAuth.signOut()
+    }
 }

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.luisenrique.sportshub.domain.model.User
+import com.luisenrique.sportshub.domain.repository.AuthRepository
 import com.luisenrique.sportshub.domain.repository.UserRepository
 import com.luisenrique.sportshub.ui.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,14 +22,27 @@ sealed class UserState {
 @HiltViewModel
 class UserViewModel @Inject constructor(
     private val userRepository: UserRepository,
+    private val authRepository: AuthRepository,
     private val firebaseAuth: FirebaseAuth
 ) : ViewModel() {
 
     private val _userState = MutableStateFlow<UserState>(UserState.Loading)
     val userState: StateFlow<UserState> = _userState
 
+    private val _logoutCompleted = MutableStateFlow(false)
+    val logoutCompleted: StateFlow<Boolean> = _logoutCompleted
+
     init {
         fetchCurrentUser()
+    }
+
+    fun logout() {
+        authRepository.logout()
+        _logoutCompleted.value = true
+    }
+
+    fun onLogoutHandled() {
+        _logoutCompleted.value = false
     }
 
     private fun fetchCurrentUser() {
