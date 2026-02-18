@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
@@ -31,7 +30,6 @@ import androidx.navigation.NavController
 import com.luisenrique.sportshub.ui.navigation.Routes
 import com.luisenrique.sportshub.ui.screens.user.UserState
 import com.luisenrique.sportshub.ui.screens.user.UserViewModel
-import kotlin.text.lowercase
 
 @Composable
 fun ProfileScreen(

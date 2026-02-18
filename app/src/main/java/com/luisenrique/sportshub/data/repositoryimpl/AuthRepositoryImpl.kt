@@ -1,6 +1,5 @@
 package com.luisenrique.sportshub.data.repositoryimpl
 
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore

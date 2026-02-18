@@ -4,15 +4,12 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.luisenrique.sportshub.domain.model.User
 import com.luisenrique.sportshub.domain.repository.AuthRepository
-import com.luisenrique.sportshub.domain.repository.UserRepository
 import com.luisenrique.sportshub.ui.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -20,8 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
-    private val authRepository: AuthRepository,
-    private val userRepository: UserRepository
+    private val authRepository: AuthRepository
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(RegisterState())
@@ -53,7 +49,6 @@ class RegisterViewModel @Inject constructor(
 
         val currentState = _state.value
 
-        // 1. Validaciones
         if (currentState.email.isBlank() || currentState.password.isBlank() || currentState.userName.isBlank()) {
             _state.update {
                 it.copy(
@@ -64,19 +59,16 @@ class RegisterViewModel @Inject constructor(
             return@launch
         }
 
-        // 2. Crear el modelo PRELIMINAR (con ID vacío)
-        // Nota: memberSince lo generamos aquí con LocalDate
         val userToCreate = User(
-            id = "", // El repositorio lo rellenará con el UID real de Firebase
+            id = "",
             userName = currentState.userName,
             fullName = currentState.fullName,
             email = currentState.email,
             sex = currentState.sex,
-            memberSince = LocalDate.now().toString(), // "2023-10-27"
-            verified = false // Por defecto false
+            memberSince = LocalDate.now().toString(),
+            verified = false
         )
 
-        // 3. Llamar al repositorio enviando la password por separado
         val result = authRepository.register(
             email = currentState.email,
             password = currentState.password,
@@ -87,7 +79,6 @@ class RegisterViewModel @Inject constructor(
             is Resource.Success -> {
                 _state.update { it.copy(isLoading = false, registrationSuccess = true) }
             }
-
             is Resource.Error -> {
                 _state.update {
                     it.copy(
@@ -96,8 +87,7 @@ class RegisterViewModel @Inject constructor(
                     )
                 }
             }
-
-            else -> {} // Loading
+            else -> {}
         }
     }
 }

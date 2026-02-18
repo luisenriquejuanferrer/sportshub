@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -38,11 +37,9 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.luisenrique.sportshub.R
-import com.luisenrique.sportshub.ui.components.MyButton
 import com.luisenrique.sportshub.ui.components.MyImage
 import com.luisenrique.sportshub.ui.components.MySwitch
 import com.luisenrique.sportshub.ui.components.MyText
-import com.luisenrique.sportshub.ui.components.MyTextField
 import com.luisenrique.sportshub.ui.navigation.Routes
 import com.luisenrique.sportshub.ui.utils.Resource
 

@@ -2,7 +2,6 @@ package com.luisenrique.sportshub.di
 
 import android.content.Context
 import androidx.room.Room
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.luisenrique.sportshub.data.local.SportsHubDatabase
