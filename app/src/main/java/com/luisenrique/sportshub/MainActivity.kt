@@ -2,6 +2,7 @@ package com.luisenrique.sportshub
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -25,6 +26,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.google.firebase.Firebase
+import com.google.firebase.messaging.messaging
 import com.luisenrique.sportshub.ui.components.BottomBar
 import com.luisenrique.sportshub.ui.components.MainNavigationDrawer
 import com.luisenrique.sportshub.ui.components.TopBar
@@ -41,6 +44,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            retrieveToken()
+
             val navController = rememberNavController()
 
             val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -141,6 +146,15 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                 }
+            }
+        }
+    }
+
+    fun retrieveToken() {
+        Firebase.messaging.token.addOnCompleteListener {
+            if (it.isSuccessful) {
+                val token = it.result
+                Log.d("FCM", "Token: $token")
             }
         }
     }
