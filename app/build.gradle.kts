@@ -63,7 +63,6 @@ dependencies {
     // Room - Local Database
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
-    implementation(libs.google.firebase.messaging.ktx)
     ksp(libs.androidx.room.compiler)
 
     // Hilt - Dependency Injection
@@ -76,6 +75,8 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.authentication)
     implementation(libs.firebase.firestore)
+
+    implementation(libs.google.firebase.messaging.ktx)
 
     // Jetpack Compose - Permissions
     implementation(libs.jetpack.compose.permissions)
