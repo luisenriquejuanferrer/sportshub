@@ -46,7 +46,7 @@ fun RegisterScreen(
 
     LaunchedEffect(state.registrationSuccess) {
         if (state.registrationSuccess) {
-            navController.navigate(Routes.Dashboard) {
+            navController.navigate(Routes.LoginRegister) {
                 popUpTo(Routes.Register) { inclusive = true }
             }
         }
