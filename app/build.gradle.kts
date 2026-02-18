@@ -78,6 +78,12 @@ dependencies {
 
     implementation(libs.google.firebase.messaging.ktx)
 
+    // ExoPlayer
+    implementation(libs.exoplayer)
+    implementation(libs.exoplayer.ui)
+    implementation(libs.exoplayer.dash)
+
+
     // Jetpack Compose - Permissions
     implementation(libs.jetpack.compose.permissions)
 

@@ -33,16 +33,13 @@ fun DashboardScreen(modifier: Modifier, navController: NavController) {
     // --- LÓGICA PARA PERMISO DE NOTIFICACIONES ---
     val context = LocalContext.current
 
-    // Solo necesitamos pedir permiso en Android 13 (API 33) y superior
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
         val launcher = rememberLauncherForActivityResult(
             contract = ActivityResultContracts.RequestPermission(),
             onResult = { isGranted ->
                 if (isGranted) {
-                    // Permiso concedido, puedes hacer algo si quieres (o simplemente dejarlo)
                     Log.d("FCM", "Permiso de notificaciones concedido")
                 } else {
-                    // Permiso denegado. Puedes mostrar un mensaje explicando por qué lo necesitas.
                     Log.d("FCM", "Permiso de notificaciones denegado")
                 }
             }
