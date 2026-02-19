@@ -81,6 +81,11 @@ dependencies {
     // Jetpack Compose - Permissions
     implementation(libs.jetpack.compose.permissions)
 
+    // ExoPlayer
+    implementation(libs.exoplayer)
+    implementation(libs.exoplayer.ui)
+    implementation(libs.exoplayer.dash)
+
     // --- TESTING ---
 
     // Unit Tests

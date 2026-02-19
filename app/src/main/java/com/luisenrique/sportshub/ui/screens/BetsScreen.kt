@@ -22,10 +22,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.luisenrique.sportshub.R
+import com.luisenrique.sportshub.ui.components.ExoPlayerVideoComposable
 
 @Composable
 fun BetsScreen(
@@ -97,5 +99,12 @@ fun BetsScreen(
         Button(onClick = { /* no funcional */ }) {
             Text("Hacer apuesta")
         }
+
+        ExoPlayerVideoComposable(
+            url = "${R.raw.partido}",
+            modifier = Modifier
+                .fillMaxWidth()
+                .size(240.dp)
+        )
     }
 }
