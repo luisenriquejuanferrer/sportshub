@@ -2,6 +2,7 @@ package com.luisenrique.sportshub.ui.screens.loginregister
 
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -50,7 +51,6 @@ fun LoginRegisterScreen(
     navController: NavController
 ) {
     var checked by remember { mutableStateOf(true) }
-
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
@@ -77,8 +77,9 @@ fun LoginRegisterScreen(
 
     Column(
         modifier = modifier
-            .padding(16.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .background(Color.White)
+            .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         MyImage(
