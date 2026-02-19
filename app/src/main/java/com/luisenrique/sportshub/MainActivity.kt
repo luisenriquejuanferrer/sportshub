@@ -7,7 +7,14 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -16,6 +23,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberDrawerState
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -23,7 +31,9 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.Firebase
@@ -35,6 +45,7 @@ import com.luisenrique.sportshub.ui.navigation.Routes
 import com.luisenrique.sportshub.ui.navigation.SportsHubGraph
 import com.luisenrique.sportshub.ui.theme.SportsHubTheme
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -47,7 +58,6 @@ class MainActivity : ComponentActivity() {
             retrieveToken()
 
             val navController = rememberNavController()
-
             val navBackStackEntry by navController.currentBackStackEntryAsState()
             val currentRoute = navBackStackEntry?.destination?.route
 
@@ -82,7 +92,7 @@ class MainActivity : ComponentActivity() {
                     currentRoute?.startsWith(Routes.Leagues) == true -> "Ligas"
                     currentRoute?.startsWith(Routes.LeagueDetail) == true -> "Detalle de liga"
                     currentRoute?.startsWith(Routes.Clasification) == true -> "Clasificación"
-                    currentRoute?.startsWith(Routes.TeamDetail) == true -> "Detalle de equipo" // <-- ESTA LÍNEA AHORA FUNCIONARÁ
+                    currentRoute?.startsWith(Routes.TeamDetail) == true -> "Detalle de equipo"
                     currentRoute?.startsWith(Routes.PlayerDetail) == true -> "Detalle de jugador"
                     else -> "Sports Hub - IES Chabàs"
                 }
@@ -94,37 +104,41 @@ class MainActivity : ComponentActivity() {
             var currentScreen by remember { mutableStateOf("Inicio") }
 
             SportsHubTheme {
-                when {
-                    showFullUI -> {
-                        val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-                        val scopeDrawer = rememberCoroutineScope()
+                val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+                val scopeDrawer = rememberCoroutineScope()
 
-                        MainNavigationDrawer(drawerState, navController = navController) {
-                            Scaffold(
-                                modifier = Modifier.fillMaxSize(),
-                                topBar = {
-                                    TopBar(topBarTitle, drawerState, scopeDrawer)
-                                },
-                                bottomBar = {
-                                    BottomBar(
-                                        selectedItem = currentScreen,
-                                        navController = navController,
-                                        onItemClick = { item -> currentScreen = item }
-                                    )
+                var isBottomBarVisible by remember { mutableStateOf(true) }
+                var lastInteraction by remember { mutableStateOf(System.currentTimeMillis()) }
 
-                                }
-                            ) { innerPadding ->
-                                SportsHubGraph(
-                                    modifier = Modifier.padding(innerPadding),
-                                    navController = navController
-                                )
-                            }
+                LaunchedEffect(lastInteraction) {
+                    delay(3000)
+                    isBottomBarVisible = false
+                }
+
+                fun Modifier.userInteraction(onInteraction: () -> Unit) = pointerInput(Unit) {
+                    awaitPointerEventScope {
+                        while (true) {
+                            awaitPointerEvent()
+                            onInteraction()
                         }
                     }
-                    showSimpleTopBar -> {
-                        Scaffold(
-                            modifier = Modifier.fillMaxSize(),
-                            topBar = {
+                }
+
+                MainNavigationDrawer(
+                    drawerState = drawerState,
+                    navController = navController
+                ) {
+                    Scaffold(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .userInteraction {
+                                lastInteraction = System.currentTimeMillis()
+                                isBottomBarVisible = true
+                            },
+                        topBar = {
+                            if (showFullUI) {
+                                TopBar(topBarTitle, drawerState, scopeDrawer)
+                            } else if (showSimpleTopBar) {
                                 TopAppBar(
                                     title = { Text(topBarTitle, color = Color.White) },
                                     colors = TopAppBarDefaults.topAppBarColors(
@@ -132,16 +146,31 @@ class MainActivity : ComponentActivity() {
                                     )
                                 )
                             }
-                        ) { innerPadding ->
-                            SportsHubGraph(
-                                modifier = Modifier.padding(innerPadding),
-                                navController = navController
-                            )
+                        },
+                        bottomBar = {
+                            if (showFullUI) {
+                                Box(modifier = Modifier.height(88.dp)) {
+                                    AnimatedVisibility(
+                                        visible = isBottomBarVisible,
+                                        enter = slideInVertically { it } + fadeIn(),
+                                        exit = slideOutVertically { it } + fadeOut()
+                                    ) {
+                                        BottomBar(
+                                            selectedItem = currentScreen,
+                                            navController = navController,
+                                            onItemClick = { item ->
+                                                currentScreen = item
+                                                lastInteraction = System.currentTimeMillis()
+                                                isBottomBarVisible = true
+                                            }
+                                        )
+                                    }
+                                }
+                            }
                         }
-                    }
-                    else -> {
+                    ) { innerPadding ->
                         SportsHubGraph(
-                            modifier = Modifier.fillMaxSize(),
+                            modifier = Modifier.padding(innerPadding),
                             navController = navController
                         )
                     }

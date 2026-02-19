@@ -6,7 +6,6 @@ import android.os.Build
 import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.activity.result.launch
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -28,9 +27,6 @@ import com.luisenrique.sportshub.ui.navigation.Routes
 
 @Composable
 fun DashboardScreen(modifier: Modifier, navController: NavController) {
-
-
-    // --- LÓGICA PARA PERMISO DE NOTIFICACIONES ---
     val context = LocalContext.current
 
     // Solo necesitamos pedir permiso en Android 13 (API 33) y superior
@@ -48,7 +44,6 @@ fun DashboardScreen(modifier: Modifier, navController: NavController) {
             }
         )
 
-        // Este efecto se lanzará una vez cuando el composable entre en la composición
         LaunchedEffect(Unit) {
             launcher.launch(Manifest.permission.POST_NOTIFICATIONS)
         }
