@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,7 +35,7 @@ import com.luisenrique.sportshub.ui.components.ExoPlayerVideoComposable
 fun BetsScreen(
     modifier: Modifier
 ) {
-    var apuesta by remember { mutableStateOf("") }
+    var apuesta by rememberSaveable { mutableStateOf("") }
 
     Column(
         modifier = modifier
