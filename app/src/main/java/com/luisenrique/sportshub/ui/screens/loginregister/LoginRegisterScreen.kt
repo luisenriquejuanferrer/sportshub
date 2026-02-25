@@ -11,9 +11,14 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Icon
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
@@ -34,6 +39,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextDecoration
@@ -83,7 +90,7 @@ fun LoginRegisterScreen(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .background(Color.White)
+            .background(MaterialTheme.colorScheme.background)
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -96,7 +103,7 @@ fun LoginRegisterScreen(
             alignment = Alignment.Center,
             contentScale = ContentScale.Fit
         )
-        Spacer(Modifier.padding(vertical = 8.dp))
+        Spacer(Modifier.height(16.dp))
 
         TextField(
             value = email,
@@ -104,6 +111,7 @@ fun LoginRegisterScreen(
             placeholder = {
                 Text(text = "Email")
             },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email, imeAction = ImeAction.Next),
             colors = TextFieldDefaults.colors(
                 focusedContainerColor = Color.Transparent,
                 unfocusedContainerColor = Color.Transparent,
@@ -117,13 +125,15 @@ fun LoginRegisterScreen(
                     shape = RoundedCornerShape(4.dp)
                 )
         )
-        Spacer(Modifier.padding(vertical = 8.dp))
+        Spacer(Modifier.height(16.dp))
         TextField(
             value = password,
             onValueChange = { password = it },
             placeholder = {
                 Text(text = "Contraseña")
             },
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+            keyboardActions = KeyboardActions(onDone = { viewModel.login(email, password) }),
             visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             trailingIcon = {
                 val image = if (isPasswordVisible)
@@ -153,7 +163,7 @@ fun LoginRegisterScreen(
                     shape = RoundedCornerShape(4.dp)
                 )
         )
-        Spacer(Modifier.padding(vertical = 8.dp))
+        Spacer(Modifier.height(16.dp))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -166,10 +176,10 @@ fun LoginRegisterScreen(
                     checkedTrackColor = colorResource(id = R.color.azul_petroleo)
                 )
             )
-            Spacer(Modifier.padding(horizontal = 4.dp))
+            Spacer(Modifier.width(8.dp))
             MyText(text = "Recordarme")
         }
-        Spacer(Modifier.padding(vertical = 8.dp))
+        Spacer(Modifier.height(16.dp))
 
         Button(
             onClick = { viewModel.login(email, password) },
@@ -181,7 +191,12 @@ fun LoginRegisterScreen(
         ) {
             Text("Login")
         }
-        Spacer(Modifier.padding(vertical = 8.dp))
+
+        if (loginState is Resource.Loading) {
+            Spacer(Modifier.height(16.dp))
+            CircularProgressIndicator()
+        }
+        Spacer(Modifier.height(16.dp))
 
         Row(modifier = Modifier.fillMaxWidth()) {
             MyText(

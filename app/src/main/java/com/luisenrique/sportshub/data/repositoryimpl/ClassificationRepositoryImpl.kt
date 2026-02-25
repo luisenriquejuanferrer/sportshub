@@ -19,4 +19,7 @@ class ClassificationRepositoryImpl @Inject constructor(
 
     override suspend fun getClassification(id: String): Classification? =
         dao.getClassification(id)?.toDomain()
+
+    override fun observeClassificationForTeam(teamId: String): Flow<Classification?> =
+        dao.observeClassificationForTeam(teamId).map { it?.toDomain() }
 }

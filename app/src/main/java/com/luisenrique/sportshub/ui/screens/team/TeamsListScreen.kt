@@ -14,8 +14,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,8 +32,13 @@ fun TeamsListScreen(
     navController: NavController,
     viewModel: TeamViewModel = hiltViewModel()
 ) {
-    val teams by viewModel.teams.collectAsState()
+    val teams by viewModel.teams.collectAsStateWithLifecycle()
 
+    if (teams.isEmpty()) {
+        Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            Text("No hay equipos disponibles", color = Color.Gray)
+        }
+    } else {
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
@@ -66,5 +71,6 @@ fun TeamsListScreen(
                 }
             }
         }
+    }
     }
 }

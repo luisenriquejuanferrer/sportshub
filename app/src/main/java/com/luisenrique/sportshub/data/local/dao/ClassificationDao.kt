@@ -27,6 +27,10 @@ interface ClassificationDao {
     @Query("SELECT * FROM classifications WHERE id = :id LIMIT 1")
     suspend fun getClassification(id: String): ClassificationWithTeamAndClub?
 
+    @Transaction
+    @Query("SELECT * FROM classifications WHERE teamId = :teamId LIMIT 1")
+    fun observeClassificationForTeam(teamId: String): Flow<ClassificationWithTeamAndClub?>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsertAll(items: List<ClassificationEntity>)
 }

@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.RadioButton
@@ -69,7 +70,7 @@ fun RegisterScreen(
             modifier = Modifier.fillMaxWidth()
         )
 
-        Spacer(Modifier.padding(8.dp))
+        Spacer(Modifier.height(16.dp))
         MyText(text = "Nombre y apellidos", fontSize = 14.sp, fontWeight = FontWeight.Bold)
         MyOutlinedTextField(
             value = state.fullName,
@@ -78,7 +79,7 @@ fun RegisterScreen(
             modifier = Modifier.fillMaxWidth()
         )
 
-        Spacer(Modifier.padding(8.dp))
+        Spacer(Modifier.height(16.dp))
         MyText(text = "Sexo", fontSize = 14.sp, fontWeight = FontWeight.Bold)
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
             sexo.forEach { text ->
@@ -95,13 +96,13 @@ fun RegisterScreen(
                         selected = (text == state.sex),
                         onClick = { viewModel.onSexChange(text) }
                     )
-                    Spacer(Modifier.padding(start = 4.dp))
+                    Spacer(Modifier.width(4.dp))
                     MyText(text = text, fontSize = 14.sp)
                 }
             }
         }
 
-        Spacer(Modifier.padding(8.dp))
+        Spacer(Modifier.height(16.dp))
         MyText(text = "Email", fontSize = 14.sp, fontWeight = FontWeight.Bold)
         MyOutlinedTextField(
             value = state.email,
@@ -110,7 +111,7 @@ fun RegisterScreen(
             modifier = Modifier.fillMaxWidth()
         )
 
-        Spacer(Modifier.padding(8.dp))
+        Spacer(Modifier.height(16.dp))
         MyText(text = "Contraseña", fontSize = 14.sp, fontWeight = FontWeight.Bold)
         MyOutlinedTextField(
             value = state.password,

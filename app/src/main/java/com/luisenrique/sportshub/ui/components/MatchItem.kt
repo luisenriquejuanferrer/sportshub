@@ -9,8 +9,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
@@ -42,7 +44,7 @@ fun MatchItem(
         Column {
             MyText(text = formatUtcDate(partido.dateUtc))
             MyText(text = partido.status)
-            Spacer(Modifier.padding(vertical = 8.dp))
+            Spacer(Modifier.height(16.dp))
 
             Row {
                 MyImage(
@@ -54,10 +56,10 @@ fun MatchItem(
                     alignment = Alignment.CenterStart,
                     contentScale = ContentScale.Crop
                 )
-                Spacer(Modifier.padding(horizontal = 4.dp))
+                Spacer(Modifier.width(8.dp))
                 MyText(text = partido.homeTeam.name, fontSize = 24.sp)
             }
-            Spacer(Modifier.padding(vertical = 8.dp))
+            Spacer(Modifier.height(16.dp))
 
             Row {
                 MyImage(
@@ -69,7 +71,7 @@ fun MatchItem(
                     alignment = Alignment.CenterStart,
                     contentScale = ContentScale.Crop
                 )
-                Spacer(Modifier.padding(horizontal = 4.dp))
+                Spacer(Modifier.width(8.dp))
                 MyText(text = partido.awayTeam.name, fontSize = 24.sp)
             }
         }

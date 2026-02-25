@@ -101,8 +101,6 @@ class MainActivity : ComponentActivity() {
             val showFullUI = routesWithFullTopBar.any { currentRoute?.startsWith(it) == true }
             val showSimpleTopBar = routesWithSimpleTopBar.any { currentRoute?.startsWith(it) == true }
 
-            var currentScreen by remember { mutableStateOf("Inicio") }
-
             SportsHubTheme {
                 val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
                 val scopeDrawer = rememberCoroutineScope()
@@ -156,10 +154,8 @@ class MainActivity : ComponentActivity() {
                                         exit = slideOutVertically { it } + fadeOut()
                                     ) {
                                         BottomBar(
-                                            selectedItem = currentScreen,
                                             navController = navController,
-                                            onItemClick = { item ->
-                                                currentScreen = item
+                                            onItemClick = {
                                                 lastInteraction = System.currentTimeMillis()
                                                 isBottomBarVisible = true
                                             }

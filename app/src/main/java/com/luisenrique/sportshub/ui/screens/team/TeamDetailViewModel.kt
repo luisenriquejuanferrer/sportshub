@@ -3,8 +3,10 @@ package com.luisenrique.sportshub.ui.screens.team
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.luisenrique.sportshub.domain.model.Classification
 import com.luisenrique.sportshub.domain.model.Player
 import com.luisenrique.sportshub.domain.model.Team
+import com.luisenrique.sportshub.domain.repository.ClassificationRepository
 import com.luisenrique.sportshub.domain.repository.PlayerRepository
 import com.luisenrique.sportshub.domain.repository.TeamRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,6 +19,7 @@ import javax.inject.Inject
 class TeamDetailViewModel @Inject constructor(
     private val teamRepository: TeamRepository,
     private val playerRepository: PlayerRepository,
+    private val classificationRepository: ClassificationRepository,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     private val teamId: String = checkNotNull(savedStateHandle["teamId"])
@@ -35,5 +38,13 @@ class TeamDetailViewModel @Inject constructor(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(5_000),
                 initialValue = emptyList()
+            )
+
+    val classification: StateFlow<Classification?> =
+        classificationRepository.observeClassificationForTeam(teamId)
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5_000),
+                initialValue = null
             )
 }

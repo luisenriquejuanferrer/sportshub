@@ -1,7 +1,5 @@
 package com.luisenrique.sportshub.ui.navigation
 
-import BetsScreen
-import ProfileScreen
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.animation.core.tween
@@ -27,6 +25,8 @@ import com.luisenrique.sportshub.ui.screens.matches.MatchesScreen
 import com.luisenrique.sportshub.ui.screens.player.PlayerDetailsScreen
 import com.luisenrique.sportshub.ui.screens.team.TeamDetailScreen
 import com.luisenrique.sportshub.ui.screens.team.TeamsListScreen
+import com.luisenrique.sportshub.ui.screens.BetsScreen
+import com.luisenrique.sportshub.ui.screens.user.ProfileScreen
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -34,10 +34,20 @@ fun SportsHubGraph(modifier: Modifier, navController: NavHostController) {
     NavHost(
         navController = navController,
         startDestination = Routes.LoginRegister,
-        enterTransition = { slideInHorizontally(initialOffsetX = { it }, animationSpec = tween(400)) },
+        enterTransition = {
+            slideInHorizontally(
+                initialOffsetX = { it },
+                animationSpec = tween(400)
+            )
+        },
         exitTransition = { fadeOut(animationSpec = tween(400)) },
         popEnterTransition = { fadeIn(animationSpec = tween(400)) },
-        popExitTransition = { slideOutHorizontally(targetOffsetX = { it }, animationSpec = tween(400)) }
+        popExitTransition = {
+            slideOutHorizontally(
+                targetOffsetX = { it },
+                animationSpec = tween(400)
+            )
+        }
     ) {
         composable(
             route = Routes.LoginRegister,

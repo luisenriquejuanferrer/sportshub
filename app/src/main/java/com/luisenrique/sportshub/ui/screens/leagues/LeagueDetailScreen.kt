@@ -1,13 +1,17 @@
 package com.luisenrique.sportshub.ui.screens.leagues
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,7 +33,7 @@ fun LeagueDetailScreen(
     navController: NavController,
     viewModel: LeaguesViewModel = hiltViewModel()
 ) {
-    val league by viewModel.league.collectAsState()
+    val league by viewModel.league.collectAsStateWithLifecycle()
 
     Column(
         modifier = modifier
@@ -48,11 +52,11 @@ fun LeagueDetailScreen(
             MyText(text = "País: ${currentLeague.country}")
             MyText(text = "Temporada: ${currentLeague.season}")
 
-            Spacer(Modifier.padding(vertical = 8.dp))
+            Spacer(Modifier.height(16.dp))
             MyButton(
                 onClick = { navController.navigate(Routes.createClasificationRoute(currentLeague.id)) },
                 enabled = true,
-                modifier = Modifier,
+                modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = colorResource(R.color.azul_petroleo)
                 ),
@@ -61,14 +65,16 @@ fun LeagueDetailScreen(
             MyButton(
                 onClick = { navController.navigate(Routes.createMatchesRoute(currentLeague.id)) },
                 enabled = true,
-                modifier = Modifier,
+                modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xFF625b71)
                 ),
                 text = "Ver partidos"
             )
         } ?: run {
-            MyText(text = "Cargando...")
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                CircularProgressIndicator()
+            }
         }
     }
 }

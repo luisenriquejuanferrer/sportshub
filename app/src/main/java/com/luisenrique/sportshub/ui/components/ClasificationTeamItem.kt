@@ -22,7 +22,7 @@ fun ClasificationTeamItem(
     posicion: Int,
     classification: Classification
 ) {
-    val textColor = if (posicion < 4) Color.Magenta else Color.Unspecified
+    val textColor = if (posicion < 4) Color(0xFF4CAF50) else Color.Unspecified
 
     Row(
         modifier = Modifier
@@ -31,6 +31,11 @@ fun ClasificationTeamItem(
         horizontalArrangement = Arrangement.SpaceAround,
         verticalAlignment = Alignment.CenterVertically
     ) {
+        MyText(
+            text = (posicion + 1).toString(),
+            color = textColor,
+            modifier = Modifier.weight(0.7f)
+        )
         MyImage(
             painter = painterResource(R.drawable.escudo_ies_chabas),
             contentDescription = "Logo equipo",

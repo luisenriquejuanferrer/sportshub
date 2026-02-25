@@ -52,6 +52,7 @@ fun TeamDetailScreen(
 ) {
     val team by viewModel.team.collectAsStateWithLifecycle()
     val players by viewModel.players.collectAsStateWithLifecycle()
+    val classification by viewModel.classification.collectAsStateWithLifecycle()
 
     Surface(modifier = modifier.fillMaxSize()) {
         if (team == null) {
@@ -136,19 +137,19 @@ fun TeamDetailScreen(
                         Box(
                             modifier = Modifier.weight(1f).height(40.dp).background(color = Color(0xFFF5F5F5), shape = RoundedCornerShape(12.dp)),
                             contentAlignment = Alignment.Center
-                        ) { Text("Pts ", color = Color.Black) }
+                        ) { Text("Pts ${classification?.totalPoints ?: "-"}", color = Color.Black) }
                         Box(
                             modifier = Modifier.weight(1f).height(40.dp).background(color = Color(0xFFF5F5F5), shape = RoundedCornerShape(12.dp)),
                             contentAlignment = Alignment.Center
-                        ) { Text("G 8", color = Color.Black) }
+                        ) { Text("G ${classification?.victories ?: "-"}", color = Color.Black) }
                         Box(
                             modifier = Modifier.weight(1f).height(40.dp).background(color = Color(0xFFF5F5F5), shape = RoundedCornerShape(12.dp)),
                             contentAlignment = Alignment.Center
-                        ) { Text("E 3", color = Color.Black) }
+                        ) { Text("E ${classification?.ties ?: "-"}", color = Color.Black) }
                         Box(
                             modifier = Modifier.weight(1f).height(40.dp).background(color = Color(0xFFF5F5F5), shape = RoundedCornerShape(12.dp)),
                             contentAlignment = Alignment.Center
-                        ) { Text("P 2", color = Color.Black) }
+                        ) { Text("P ${classification?.lost ?: "-"}", color = Color.Black) }
                     }
                 }
 
@@ -166,7 +167,7 @@ fun TeamDetailScreen(
                                 Spacer(modifier = Modifier.width(8.dp))
                                 Column {
                                     Text(text = "Entrenador", fontSize = 12.sp)
-                                    Text(text = "A. Ortega", fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                                    Text(text = team!!.entrenador, fontSize = 16.sp, fontWeight = FontWeight.Bold)
                                 }
                             }
                             Spacer(modifier = Modifier.height(8.dp))
@@ -175,8 +176,7 @@ fun TeamDetailScreen(
                                 Spacer(modifier = Modifier.width(8.dp))
                                 Column {
                                     Text(text = "Estadio", fontSize = 12.sp)
-                                    // Añadir el estadio al modelo de datos del equipo
-                                    Text(text = "Campo Municipal", fontSize = 16.sp)
+                                    Text(text = team!!.stadium, fontSize = 16.sp)
                                 }
                             }
                             Spacer(modifier = Modifier.height(8.dp))
