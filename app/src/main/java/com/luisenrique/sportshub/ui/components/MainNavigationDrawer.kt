@@ -1,5 +1,6 @@
 package com.luisenrique.sportshub.ui.components
 
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -28,7 +29,11 @@ fun MainNavigationDrawer(
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
-            ModalDrawerSheet(modifier = Modifier.verticalScroll(rememberScrollState())) {
+            ModalDrawerSheet(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .verticalScroll(rememberScrollState())
+            ) {
                 Text("SportsHub Chabàs", modifier = Modifier.padding(16.dp))
                 HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
                 NavigationDrawerItem(
