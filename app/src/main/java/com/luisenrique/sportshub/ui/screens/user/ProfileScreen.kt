@@ -1,3 +1,5 @@
+package com.luisenrique.sportshub.ui.screens.user
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -24,10 +26,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
+import com.luisenrique.sportshub.R
 import com.luisenrique.sportshub.ui.navigation.Routes
 import com.luisenrique.sportshub.ui.screens.user.UserState
 import com.luisenrique.sportshub.ui.screens.user.UserViewModel
@@ -71,8 +75,9 @@ fun ProfileScreen(
             Icon(
                 imageVector = Icons.Default.Person,
                 contentDescription = "Icono de Perfil",
-                tint = Color.Magenta,
-                modifier = Modifier.size(80.dp)
+                tint = colorResource(R.color.azul_petroleo),
+                modifier = Modifier.size(84.dp)
+                    .padding(8.dp)
             )
         }
 
