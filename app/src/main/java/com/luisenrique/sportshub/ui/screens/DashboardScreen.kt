@@ -63,7 +63,7 @@ fun DashboardScreen(modifier: Modifier, navController: NavController) {
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
+                horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically,
 
                 ) {
@@ -78,7 +78,7 @@ fun DashboardScreen(modifier: Modifier, navController: NavController) {
             }
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
+                horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 DashboardBox(

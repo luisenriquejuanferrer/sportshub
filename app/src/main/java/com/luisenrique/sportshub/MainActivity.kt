@@ -109,7 +109,7 @@ class MainActivity : ComponentActivity() {
                 var lastInteraction by remember { mutableStateOf(System.currentTimeMillis()) }
 
                 LaunchedEffect(lastInteraction) {
-                    delay(3000)
+                    delay(5000)
                     isBottomBarVisible = false
                 }
 

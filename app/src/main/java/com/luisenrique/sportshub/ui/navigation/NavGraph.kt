@@ -14,6 +14,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.luisenrique.sportshub.ui.screens.BetsScreen
 import com.luisenrique.sportshub.ui.screens.DashboardScreen
 import com.luisenrique.sportshub.ui.screens.classification.ClasificationScreen
 import com.luisenrique.sportshub.ui.screens.leagues.LeagueDetailScreen
@@ -25,7 +26,6 @@ import com.luisenrique.sportshub.ui.screens.matches.MatchesScreen
 import com.luisenrique.sportshub.ui.screens.player.PlayerDetailsScreen
 import com.luisenrique.sportshub.ui.screens.team.TeamDetailScreen
 import com.luisenrique.sportshub.ui.screens.team.TeamsListScreen
-import com.luisenrique.sportshub.ui.screens.BetsScreen
 import com.luisenrique.sportshub.ui.screens.user.ProfileScreen
 
 @RequiresApi(Build.VERSION_CODES.O)
