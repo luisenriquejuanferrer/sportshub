@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -33,6 +34,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
@@ -53,6 +56,7 @@ fun LoginRegisterScreen(
     var checked by remember { mutableStateOf(true) }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var isPasswordVisible by remember { mutableStateOf(false) }
 
     val loginState by viewModel.loginFlow.collectAsState(initial = null)
     val context = LocalContext.current
@@ -71,7 +75,8 @@ fun LoginRegisterScreen(
 
             is Resource.Loading -> {
             }
-            null -> { }
+
+            null -> {}
         }
     }
 
@@ -85,7 +90,9 @@ fun LoginRegisterScreen(
         MyImage(
             painter = painterResource(R.drawable.logo_chabas),
             contentDescription = "Logo Chabàs",
-            modifier = Modifier.fillMaxWidth().height(240.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(240.dp),
             alignment = Alignment.Center,
             contentScale = ContentScale.Fit
         )
@@ -116,6 +123,22 @@ fun LoginRegisterScreen(
             onValueChange = { password = it },
             placeholder = {
                 Text(text = "Contraseña")
+            },
+            visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+            trailingIcon = {
+                val image = if (isPasswordVisible)
+                    painterResource(R.drawable.baseline_visibility_24)
+                else
+                    painterResource(R.drawable.baseline_visibility_off_24)
+
+                val description = if (isPasswordVisible) "Hide password" else "Show password"
+
+                Icon(
+                    painter = image,
+                    contentDescription = description,
+                    tint = Color.DarkGray,
+                    modifier = Modifier.clickable { isPasswordVisible = !isPasswordVisible }
+                )
             },
             colors = TextFieldDefaults.colors(
                 focusedContainerColor = Color.Transparent,
