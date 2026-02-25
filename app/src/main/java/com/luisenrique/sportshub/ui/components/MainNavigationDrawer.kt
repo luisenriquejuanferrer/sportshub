@@ -62,7 +62,7 @@ fun MainNavigationDrawer(
                     },
                     selected = false,
                     onClick = {
-                        navController.navigate(Routes.Clasification)
+                        navController.navigate(Routes.ClasificationBase)
                     }
                 )
 

@@ -6,8 +6,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -25,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.sp
@@ -60,7 +62,8 @@ fun ProfileScreen(
 
     Column(
         modifier = modifier
-            .fillMaxSize()
+            .fillMaxWidth()
+            .verticalScroll(rememberScrollState())
             .padding(top = 30.dp, start = 16.dp, end = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -76,7 +79,8 @@ fun ProfileScreen(
                 imageVector = Icons.Default.Person,
                 contentDescription = "Icono de Perfil",
                 tint = colorResource(R.color.azul_petroleo),
-                modifier = Modifier.size(84.dp)
+                modifier = Modifier
+                    .size(84.dp)
                     .padding(8.dp)
             )
         }
@@ -101,47 +105,70 @@ fun ProfileScreen(
 
                     is UserState.Success -> {
                         val user = state.user
-                        Text(
-                            text = "Nombre: ${user.fullName}",
-                            modifier = Modifier.padding(top = 10.dp, start = 16.dp),
-                            fontSize = 16.sp
-                        )
-                        Text(
-                            text = "Usuario: @${user.userName.lowercase()}",
-                            modifier = Modifier.padding(top = 4.dp, start = 16.dp),
-                            fontSize = 16.sp
-                        )
-                        Text(
-                            text = "Email: ${user.email}",
-                            modifier = Modifier.padding(top = 4.dp, start = 16.dp),
-                            fontSize = 16.sp
-                        )
-                        Text(
-                            text = "Miembro desde: ${user.memberSince}",
-                            modifier = Modifier.padding(top = 4.dp, start = 16.dp),
-                            fontSize = 16.sp
-                        )
+                        Row(modifier = Modifier.padding(top = 10.dp, start = 16.dp)) {
+                            Text(
+                                text = "Nombre:",
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                text = " ${user.fullName}",
+                                fontSize = 16.sp
+                            )
+                        }
+                        Row(modifier = Modifier.padding(top = 8.dp, start = 16.dp)) {
+                            Text(
+                                text = "Usuario:",
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                text = " @${user.userName.lowercase()}",
+                                fontSize = 16.sp
+                            )
+                        }
+                        Row(modifier = Modifier.padding(top = 8.dp, start = 16.dp)) {
+                            Text(
+                                text = "Email:",
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                text = " ${user.email}",
+                                fontSize = 16.sp
+                            )
+                        }
+                        Row(modifier = Modifier.padding(top = 8.dp, start = 16.dp)) {
+                            Text(
+                                text = "Miembro desde:",
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                text = " ${user.memberSince}",
+                                fontSize = 16.sp
+                            )
+                        }
 
                         Row(
                             modifier = Modifier.padding(16.dp),
                         ) {
                             Box(
                                 modifier = Modifier
-                                    .height(35.dp)
                                     .clip(RoundedCornerShape(12.dp))
                                     .border(
                                         width = 1.dp,
                                         color = Color.Black,
                                         shape = RoundedCornerShape(12.dp)
                                     )
-                                    .background(Color(0xFFF5F5F5))
-                                    .padding(8.dp),
+                                    .background(Color(0xFFF5F5F5)),
                                 contentAlignment = Alignment.Center
                             ) {
                                 Text(
                                     text = if (user.verified) "Verificado" else "No verificado",
                                     color = if (user.verified) Color(0xFF4CAF50) else Color.Red,
-                                    fontSize = 16.sp
+                                    fontSize = 16.sp,
+                                    modifier = Modifier.padding(8.dp, 10.dp)
                                 )
                             }
                         }

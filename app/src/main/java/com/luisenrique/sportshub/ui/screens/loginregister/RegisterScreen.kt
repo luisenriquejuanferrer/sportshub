@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -59,8 +61,9 @@ fun RegisterScreen(
 
     Column(
         modifier = modifier
-            .padding(16.dp)
             .fillMaxWidth()
+            .verticalScroll(rememberScrollState())
+            .padding(16.dp)
     ) {
         MyText(text = "Usuario", fontSize = 14.sp, fontWeight = FontWeight.Bold)
         MyOutlinedTextField(
