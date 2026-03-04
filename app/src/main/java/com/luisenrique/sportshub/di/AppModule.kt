@@ -12,6 +12,7 @@ import com.luisenrique.sportshub.data.local.dao.MatchDao
 import com.luisenrique.sportshub.data.local.dao.PlayerDao
 import com.luisenrique.sportshub.data.local.dao.TeamDao
 import com.luisenrique.sportshub.data.local.dao.UserDao
+import com.luisenrique.sportshub.data.remote.SportsHubApi
 import com.luisenrique.sportshub.data.repositoryimpl.AuthRepositoryImpl
 import com.luisenrique.sportshub.domain.repository.AuthRepository
 import dagger.Module
@@ -22,6 +23,8 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -83,4 +86,14 @@ object AppModule {
     @Provides
     @Singleton
     fun provideFirebaseFirestore(): FirebaseFirestore = FirebaseFirestore.getInstance()
+
+    @Provides
+    @Singleton
+    fun provideSportsHubApi(): SportsHubApi {
+        return Retrofit.Builder()
+            .baseUrl("")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(SportsHubApi::class.java)
+    }
 }
