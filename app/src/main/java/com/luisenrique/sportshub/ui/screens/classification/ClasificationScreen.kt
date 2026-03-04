@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.luisenrique.sportshub.R
+import com.luisenrique.sportshub.ui.components.ClasificationApiItem
 import com.luisenrique.sportshub.ui.components.ClasificationTeamItem
 import com.luisenrique.sportshub.ui.components.MyText
 
@@ -29,7 +30,7 @@ fun ClasificationScreen(
     modifier: Modifier,
     viewModel: ClassificationViewModel = hiltViewModel()
 ) {
-    val classifications by viewModel.classifications.collectAsStateWithLifecycle()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     Column(
         modifier = modifier
@@ -47,62 +48,47 @@ fun ClasificationScreen(
                     .padding(4.dp),
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
-                MyText(
-                    text = "#",
-                    color = Color.White,
-                    modifier = Modifier.weight(0.7f)
-                )
-                MyText(
-                    text = "Club",
-                    color = Color.White,
-                    modifier = Modifier.weight(1f)
-                )
-                MyText(
-                    text = "Equipo",
-                    color = Color.White,
-                    modifier = Modifier.weight(2f)
-                )
-                MyText(
-                    text = "PJ",
-                    color = Color.White,
-                    modifier = Modifier.weight(1f)
-                )
-                MyText(
-                    text = "G",
-                    color = Color.White,
-                    modifier = Modifier.weight(1f)
-                )
-                MyText(
-                    text = "E",
-                    color = Color.White,
-                    modifier = Modifier.weight(1f)
-                )
-                MyText(
-                    text = "P",
-                    color = Color.White,
-                    modifier = Modifier.weight(1f)
-                )
-                MyText(
-                    text = "Pts",
-                    color = Color.White,
-                    modifier = Modifier.weight(1f)
-                )
+                MyText(text = "#", color = Color.White, modifier = Modifier.weight(0.7f))
+                MyText(text = "Club", color = Color.White, modifier = Modifier.weight(1f))
+                MyText(text = "Equipo", color = Color.White, modifier = Modifier.weight(2f))
+                MyText(text = "PJ", color = Color.White, modifier = Modifier.weight(1f))
+                MyText(text = "G", color = Color.White, modifier = Modifier.weight(1f))
+                MyText(text = "E", color = Color.White, modifier = Modifier.weight(1f))
+                MyText(text = "P", color = Color.White, modifier = Modifier.weight(1f))
+                MyText(text = "Pts", color = Color.White, modifier = Modifier.weight(1f))
             }
         }
-        if (classifications.isEmpty()) {
-            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Text("No hay clasificación disponible", color = Color.Gray)
+
+        when (val state = uiState) {
+            is ClassificationUiState.Loading -> {
+                Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                    Text("Cargando...", color = Color.Gray)
+                }
             }
-        } else {
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxWidth()
-            ) {
-                itemsIndexed(classifications) { posicion, item ->
-                    ClasificationTeamItem(
-                        posicion = posicion,
-                        classification = item
-                    )
+            is ClassificationUiState.FromApi -> {
+                if (state.items.isEmpty()) {
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        Text("No hay clasificación disponible", color = Color.Gray)
+                    }
+                } else {
+                    LazyColumn(modifier = Modifier.fillMaxWidth()) {
+                        itemsIndexed(state.items) { posicion, item ->
+                            ClasificationApiItem(posicion = posicion, item = item)
+                        }
+                    }
+                }
+            }
+            is ClassificationUiState.FromRoom -> {
+                if (state.items.isEmpty()) {
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        Text("No hay clasificación disponible", color = Color.Gray)
+                    }
+                } else {
+                    LazyColumn(modifier = Modifier.fillMaxWidth()) {
+                        itemsIndexed(state.items) { posicion, item ->
+                            ClasificationTeamItem(posicion = posicion, classification = item)
+                        }
+                    }
                 }
             }
         }

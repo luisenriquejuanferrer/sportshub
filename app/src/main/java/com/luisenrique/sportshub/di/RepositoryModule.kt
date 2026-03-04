@@ -1,6 +1,5 @@
 package com.luisenrique.sportshub.di
 
-import com.luisenrique.sportshub.BuildConfig
 import com.luisenrique.sportshub.data.repositoryimpl.ClassificationRepositoryApiImpl
 import com.luisenrique.sportshub.data.repositoryimpl.ClassificationRepositoryImpl
 import com.luisenrique.sportshub.data.repositoryimpl.ClubRepositoryImpl
@@ -10,6 +9,7 @@ import com.luisenrique.sportshub.data.repositoryimpl.MatchRepositoryImpl
 import com.luisenrique.sportshub.data.repositoryimpl.PlayerRepositoryImpl
 import com.luisenrique.sportshub.data.repositoryimpl.TeamRepositoryImpl
 import com.luisenrique.sportshub.data.repositoryimpl.UserRepositoryImpl
+import com.luisenrique.sportshub.domain.repository.ClassificationApiRepository
 import com.luisenrique.sportshub.domain.repository.ClassificationRepository
 import com.luisenrique.sportshub.domain.repository.ClubRepository
 import com.luisenrique.sportshub.domain.repository.FavoriteTeamRepository
@@ -20,7 +20,6 @@ import com.luisenrique.sportshub.domain.repository.TeamRepository
 import com.luisenrique.sportshub.domain.repository.UserRepository
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
@@ -28,14 +27,15 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 abstract class RepositoryModule {
 
-    companion object {
-        @Provides
-        fun provideClassificationRepository(
-            roomImpl: ClassificationRepositoryImpl,
-            apiImpl: ClassificationRepositoryApiImpl
-        ): ClassificationRepository =
-            if (BuildConfig.USE_API) apiImpl else roomImpl
-    }
+    @Binds
+    abstract fun bindClassificationRepository(
+        impl: ClassificationRepositoryImpl
+    ): ClassificationRepository
+
+    @Binds
+    abstract fun bindClassificationApiRepository(
+        impl: ClassificationRepositoryApiImpl
+    ): ClassificationApiRepository
 
     @Binds
     abstract fun bindMatchRepository(

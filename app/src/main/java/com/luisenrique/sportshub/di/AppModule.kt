@@ -91,7 +91,7 @@ object AppModule {
     @Singleton
     fun provideSportsHubApi(): SportsHubApi {
         return Retrofit.Builder()
-            .baseUrl("")
+            .baseUrl("http://10.0.2.2:3000/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(SportsHubApi::class.java)

@@ -1,6 +1,6 @@
-package com.luisenrique.sportshub.data.remote.dto
+package com.luisenrique.sportshub.domain.model
 
-data class ClassificationDto(
+data class ClassificationApi(
     val id: String,
     val leagueId: String,
     val teamId: String,
